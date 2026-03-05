@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Best Group of Colleges - History and Mission</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts: Playfair Display (Serif) and Inter (Sans-serif) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'college-gold': '#D4AF37',
+            'college-gold-dark': '#B5952F',
+            'college-navy': '#0f172a',
+            'college-navy-light': '#1e293b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Specific Layout Needs -->
+<style data-purpose="timeline-styles">
+    /* Timeline center line styling */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #cbd5e1; /* slate-300 */
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+    
+    /* Responsive timeline adjustments */
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 32px; /* Adjusted to align with left-aligned dots on mobile */
+      }
+    }
+  </style>
+<style data-purpose="hero-overlay">
+    /* Gradient overlay for text readability on hero image */
+    .hero-overlay {
+      background-color: rgba(15, 23, 42, 0.75);
+      background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.6));
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gray-50">
+<!-- BEGIN: HeroSection -->
+<header class="relative w-full h-screen min-h-[600px] flex flex-col">
+<!-- Hero Background Image -->
+<div class="absolute inset-0 w-full h-full z-0">
+<img alt="University Campus" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4WgTt9yk1AuxlnaaNQlfiVvPXxp7jnx8zrIJKC2qNeFHElYF5FE4RdjoB5S-dtsWKLSH9N4EfNM9yLKVdPpd8JMS7mMeDXHA_-43GYlTOEwhJWo4_0hrsXA6vbQLMTj2ufGWruXp0nzprPr7OcXq9pnuMb3_FiztfxQiRCfRNmla_Sy3_kQ1QB3if6sULxVEbB_4LBgcCCey7j7-4pmBUMBWvfUwFjo_Eue0Ek5v5nna1-1aUGQEvyUpuhRkTQCCKYj-1ADU55e3p"/>
+<div class="absolute inset-0 hero-overlay"></div>
+</div>
+<!-- Navigation Bar -->
+<nav class="relative z-20 w-full px-6 py-6 border-b border-gray-700/30">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<!-- Logo Area -->
+<div class="flex items-center gap-3 text-white">
+<img alt="College Logo" class="h-10 w-10 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb3WtcnR1GlPgq7UL7dWTf8jUxGEdzdGu-KcCsqlBoaz45AYorYldysxR8dbqcoerG1EpUT2n6KxWH2DfQQGl_hy90qDVPpGnsw4HmNWstOull_o1Gs67HuLUP6SMUaZfwkucAVerke66yMeJOeVcBNyP0J3uEbyBQ4N9w8mkyeoha1RH_xeu-mTTV2fJzsG0nqs6fajA3FeZXij2PuXx1ryQK-WflM28N2qRKbEq_OU3hirlLQILHcU6UbVgoKZCyJWi8TIaNR_0U"/>
+<div class="leading-tight">
+<span class="block font-serif font-bold text-lg tracking-wide">THE BEST GROUP</span>
+<span class="block text-xs uppercase tracking-widest text-gray-300">Of Colleges</span>
+</div>
+</div>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-200">
+<a class="hover:text-college-gold transition-colors" href="#">Home</a>
+<a class="text-college-gold font-bold border-b-2 border-college-gold pb-1" href="#">About Us</a>
+<a class="hover:text-college-gold transition-colors" href="#">Campus</a>
+<a class="hover:text-college-gold transition-colors" href="#">Contact</a>
+</div>
+<!-- CTA Button -->
+<div class="hidden md:block">
+<a class="bg-[#D4AF37] text-black font-bold px-6 py-2 rounded shadow-sm hover:opacity-90 transition" href="#">
+            Contact Login
+          </a>
+</div>
+<!-- Mobile Menu Icon (Placeholder) -->
+<div class="md:hidden text-white cursor-pointer">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</nav>
+<!-- Hero Content -->
+<div class="relative z-10 flex-grow flex items-center px-6">
+<div class="max-w-7xl mx-auto w-full">
+<div class="max-w-2xl">
+<h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 font-extrabold">
+            OUR HISTORY <br/>
+<span class="text-college-gold">AND MISSION</span>
+</h1>
+<p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-10 max-w-xl border-l-4 border-college-gold pl-4">
+            Discover the legacy, values, and leadership that define our commitment to quality education and shaping future leaders.
+          </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-college-gold hover:bg-college-gold-dark text-college-navy font-bold py-3 px-8 rounded shadow-lg transition-all transform hover:-translate-y-1" href="#">
+              Apply Now
+            </a>
+<a class="bg-transparent border border-white text-white hover:bg-white hover:text-college-navy font-bold py-3 px-8 rounded transition-all" href="#">
+              Explore Campuses
+            </a>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- END: HeroSection -->
+<!-- BEGIN: TimelineSection -->
+<section class="py-20 bg-white overflow-hidden">
+<div class="max-w-5xl mx-auto px-6">
+<!-- Timeline Container -->
+<div class="timeline relative py-10"><!-- Item 1: 1985 (Left) -->
+<div class="relative flex justify-between items-center w-full mb-12 md:mb-24 flex-col md:flex-row">
+<div class="order-1 md:w-[45%] mb-4 md:mb-0 text-left md:text-right pr-0 md:pr-10">
+<h3 class="font-serif text-2xl font-bold text-gray-900 mb-2">1985</h3>
+<h4 class="text-lg font-bold text-gray-800 mb-2">Founding of The Best Group</h4>
+<p class="text-gray-500 leading-relaxed text-sm font-sans">To Founding of The Best Group we define our commitment to quality education.</p>
+</div>
+<div class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-college-gold rounded-full border-4 border-white shadow-md z-10 top-0 md:top-0 mt-2 md:mt-2 bg-[#D4AF37]"></div>
+<div class="order-2 md:w-[45%] pl-10 md:pl-10"></div>
+</div>
+<!-- Item 2: 1995 (Right) -->
+<div class="relative flex justify-between items-center w-full mb-12 md:mb-24 flex-col md:flex-row">
+<div class="order-1 md:w-[45%] pr-10"></div>
+<div class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-college-gold rounded-full border-4 border-white shadow-md z-10 top-0 md:top-0 mt-2 md:mt-2 bg-[#D4AF37]"></div>
+<div class="order-2 md:w-[45%] mb-4 md:mb-0 text-left pl-10 md:pl-10">
+<h3 class="font-serif text-2xl font-bold text-gray-900 mb-2">1995</h3>
+<h4 class="text-lg font-bold text-gray-800 mb-2">Expansion to Law Campus</h4>
+<p class="text-gray-500 leading-relaxed text-sm font-sans">Expansion to Law Campus incorporated into expansion to Law Campus.</p>
+</div>
+</div>
+<!-- Item 3: 2010 (Left) -->
+<div class="relative flex justify-between items-center w-full mb-12 md:mb-24 flex-col md:flex-row">
+<div class="order-1 md:w-[45%] mb-4 md:mb-0 text-left md:text-right pr-0 md:pr-10">
+<h3 class="font-serif text-2xl font-bold text-gray-900 mb-2">2010</h3>
+<h4 class="text-lg font-bold text-gray-800 mb-2">Introduction of Research Programs</h4>
+<p class="text-gray-500 leading-relaxed text-sm font-sans">Our college start the introduction of research programs.</p>
+</div>
+<div class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-college-gold rounded-full border-4 border-white shadow-md z-10 top-0 md:top-0 mt-2 md:mt-2 bg-[#D4AF37]"></div>
+<div class="order-2 md:w-[45%] pl-10 md:pl-10"></div>
+</div>
+<!-- Item 4: 2023 (Right) -->
+<div class="relative flex justify-between items-center w-full mb-8 flex-col md:flex-row">
+<div class="order-1 md:w-[45%] pr-10"></div>
+<div class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-college-gold rounded-full border-4 border-white shadow-md z-10 top-0 md:top-0 mt-2 md:mt-2 bg-[#D4AF37]"></div>
+<div class="order-2 md:w-[45%] mb-4 md:mb-0 text-left pl-10 md:pl-10">
+<h3 class="font-serif text-2xl font-bold text-gray-900 mb-2">2023</h3>
+<h4 class="text-lg font-bold text-gray-800 mb-2">Global Partnerships &amp; Online Learning</h4>
+<p class="text-gray-500 leading-relaxed text-sm font-sans">Our college companies, Global Partnerships &amp; Online learning.</p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- END: TimelineSection -->
+<!-- BEGIN: MissionVisionValues -->
+<section class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-serif text-3xl md:text-4xl font-bold text-college-navy relative inline-block pb-4">
+          MISSION, VISION &amp; VALUES
+          <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-college-gold"></span>
+</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+<!-- Mission Column -->
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="w-16 h-16 rounded-full border-2 border-[#D4AF37] flex items-center justify-center mb-4 mx-auto"><svg class="w-8 h-8" fill="none" stroke="#D4AF37" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<h3 class="text-2xl font-bold text-college-navy mb-4 font-serif">Mission</h3>
+<p class="text-gray-600 leading-relaxed">
+            To empower futures through rigorous curriculum, to enneristart features, and educient to quality education.
+          </p>
+</div>
+<!-- Vision Column -->
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="w-20 h-20 mx-auto mb-6 rounded-full border-2 border-college-gold flex items-center justify-center text-college-gold">
+<!-- Placeholder for Eye Icon -->
+<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="text-2xl font-bold text-college-navy mb-4 font-serif">Vision</h3>
+<p class="text-gray-600 leading-relaxed">
+            To be a global leader in innovative education in innovation, levitating, and organizers with excellence forss and commination.
+          </p>
+</div>
+<!-- Values Column -->
+<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="w-20 h-20 mx-auto mb-6 rounded-full border-2 border-college-gold flex items-center justify-center text-college-gold">
+<!-- Placeholder for Building Icon -->
+<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="text-2xl font-bold text-college-navy mb-4 font-serif">Values</h3>
+<p class="text-gray-600 leading-relaxed">
+            Integrity, Excellence, Community, Innovation.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MissionVisionValues -->
+<!-- BEGIN: LeadershipSection -->
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-serif text-3xl md:text-4xl font-bold text-college-navy relative inline-block pb-4">
+          MEET OUR LEADERSHIP
+          <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-college-gold"></span>
+</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Leader Card 1 -->
+<div class="flex flex-row items-start p-6 gap-6 bg-slate-50 shadow-sm rounded-lg transition-shadow duration-300 hover:shadow-xl"></div>
+<!-- Leader Card 2 -->
+<div class="flex flex-row items-start p-6 gap-6 bg-slate-50 shadow-sm rounded-lg transition-shadow duration-300 hover:shadow-xl">
+<div class="w-32 h-32 rounded-lg border-2 border-[#D4AF37] flex items-center justify-center flex-shrink-0 bg-white"><svg class="w-8 h-8" fill="none" stroke="#D4AF37" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div class="flex-1 text-left pt-2">
+<h3 class="text-xl font-bold text-college-navy font-serif">Mr. David Chen</h3>
+<p class="text-college-gold font-medium text-sm mb-3">Provost</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                Mr. David Chen ensures the legacy of educational effectiveness and student policy development, focusing on government frameworks.
+              </p>
+</div>
+</div>
+<!-- Leader Card 3 -->
+<div class="flex flex-row items-start p-6 gap-6 bg-slate-50 shadow-sm rounded-lg transition-shadow duration-300 hover:shadow-xl">
+<div class="w-32 h-32 rounded-lg border-2 border-[#D4AF37] flex items-center justify-center flex-shrink-0 bg-white"><svg class="w-8 h-8" fill="none" stroke="#D4AF37" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21v-8.25M5.84 21a.75.75 0 01.75-.75h10.82a.75.75 0 01.75.75v.75H5.84v-.75zm.75-12h10.82a.75.75 0 01.75.75v.75H6.59v-.75a.75.75 0 01.75-.75zm0-3h10.82a.75.75 0 01.75.75v.75H6.59v-.75a.75.75 0 01.75-.75zM3 21h18M3 10h18M3 7h18m-9-4l-6.75 3h13.5L12 3z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div class="flex-1 text-left pt-2">
+<h3 class="text-xl font-bold text-college-navy font-serif">Mr. David Sanon</h3>
+<p class="text-college-gold font-medium text-sm mb-3">Program Officer</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                Mr. David Sanon oversees the best four normalized excellence standards in education, ensuring curriculum quality for learners.
+              </p>
+</div>
+</div>
+<!-- Leader Card 4 -->
+<div class="flex flex-row items-start p-6 gap-6 bg-slate-50 shadow-sm rounded-lg transition-shadow duration-300 hover:shadow-xl">
+<div class="flex-shrink-0">
+<img alt="Mr. David Cehan" class="w-32 h-32 rounded-lg object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkCbnkGjEf9UHfwL2oTtvMugNu6Rh574394km-jOiH7hOlevJDRBeTAHubpdpuQ4dZG8bL8VKestwdQXZ9ewRE0dqNg3MIiYs4KSDYXOsSdSjqUkNZ__3dwarn6NlZsCr-19lOMutyCaw1xQrEtsXGs_HP9V9qu6qw-6qQufLFMFsyE5NbVsUGElgefEWJ26Io2aceR1fGzmQst7ESOlOVjiharS0m20zqdfs29y9LtMq6j3EjsgXgnknxDRhWq82kMOOz2KT-1ipX"/>
+</div>
+<div class="flex-1 text-left pt-2">
+<h3 class="text-xl font-bold text-college-navy font-serif">Mr. David Cehan</h3>
+<p class="text-college-gold font-medium text-sm mb-3">Program Officer</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                Mr. David Cehan mediates the context of the residential format based on educational verification and kinetics management.
+              </p>
+</div>
+</div>
+<!-- Leader Card 5 -->
+<div class="flex flex-row items-start p-6 gap-6 bg-slate-50 shadow-sm rounded-lg transition-shadow duration-300 hover:shadow-xl">
+<div class="flex-shrink-0">
+<img alt="Ms. Chiva King" class="w-32 h-32 rounded-lg object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp_uMRxrNBtOp_lZfY8yUg1cMJhxxfMZ3eQG7Jum4KbF9heHvedIqeKbL1PmCZ7jh2HrgtH9L1oxaKlB3HMLrLyksvH7B1w26W0aN7DIVYkAScpO3VamUGe0E6P-8pk8VLsXZ0nrjQn4pbNW0OkM4z0fMzardOfT1ICzaY43ThiCv1cz95Gx9YnDGVHs3h4H4RAE8fY9iQGAcCCReUU-2W23LakXsA25zlNA_Sf0KyGL51ZNU1DMeuS8CCxhmCTe1tkjNTU_frjP0F"/>
+</div>
+<div class="flex-1 text-left pt-2">
+<h3 class="text-xl font-bold text-college-navy font-serif">Ms. Chiva King</h3>
+<p class="text-college-gold font-medium text-sm mb-3">Program Officer</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                Ms. King maintains a legacy of communicating education to rectorate Education Academic core, across professional disciplines.
+              </p>
+</div>
+</div>
+<!-- Leader Card 6 -->
+<div class="flex flex-row items-start p-6 gap-6 bg-slate-50 shadow-sm rounded-lg transition-shadow duration-300 hover:shadow-xl">
+<div class="flex-shrink-0">
+<img alt="Mr. Marly Chappet" class="w-32 h-32 rounded-lg object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPk8o9wn4DsKdvkDEZbfLIZewUfH80gNySkk5BWbn8L89BijIOEy4CAJetjd2j15yJs4XLbs07tSPRc5Zuio-Ay4fjjEKH3KgejuemV-V5Jq9IboM92niZ8eIe_NrXOB6gzM3SfdrxuQh9wn62ng4jLXaGOgYstqftrDOz-7TJSmDUMcXSWpZFVjX3nO8N4LdXQf40qb2k9uGFEOhZGbUsWpCgkdyOmZnlNM7OpU1GXxYVFcz5OIrLyww5hPp1ha1jD5U5-vynIx9Z"/>
+</div>
+<div class="flex-1 text-left pt-2">
+<h3 class="text-xl font-bold text-college-navy font-serif">Mr. Marly Chappet</h3>
+<p class="text-college-gold font-medium text-sm mb-3">Program Officer</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                Mr. Marly Chappet formulated the strategic metric promandates, focusing on admissions and innovation in health sciences.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: LeadershipSection -->
+<!-- BEGIN: AccreditationsSection -->
+<section class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-serif text-3xl md:text-4xl font-bold text-college-navy relative inline-block pb-4">
+          ACCREDITATIONS &amp; AWARDS
+          <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-college-gold"></span>
+</h2>
+</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<!-- Badge 1 -->
+<div class="flex flex-col items-center w-40 text-center">
+<div class="w-24 h-24 mb-4 rounded-full border-4 border-double border-college-gold flex items-center justify-center bg-white shadow-md relative flex flex-col items-center gap-2 mb-4"><div class="w-24 h-24 rounded-full border-2 border-[#D4AF37] p-1"><div class="w-full h-full rounded-full border border-[#D4AF37] flex items-center justify-center bg-white"><span class="text-[10px] font-serif font-bold text-[#D4AF37] uppercase tracking-widest text-center">Seal</span></div></div></div>
+<h4 class="font-bold text-sm text-college-navy">Regional Accreditation Commission</h4>
+</div>
+<!-- Badge 2 -->
+<div class="flex flex-col items-center w-40 text-center">
+<div class="w-24 h-24 mb-4 rounded-full border-4 border-double border-college-gold flex items-center justify-center bg-white shadow-md relative flex flex-col items-center gap-2 mb-4"><div class="w-24 h-24 rounded-full border-2 border-[#D4AF37] p-1"><div class="w-full h-full rounded-full border border-[#D4AF37] flex items-center justify-center bg-white"><span class="text-[10px] font-serif font-bold text-[#D4AF37] uppercase tracking-widest text-center">Seal</span></div></div></div>
+<h4 class="font-bold text-sm text-college-navy">Excellence in Education Award</h4>
+</div>
+<!-- Badge 3 -->
+<div class="flex flex-col items-center w-40 text-center">
+<div class="w-24 h-24 mb-4 rounded-full border-4 border-double border-college-gold flex items-center justify-center bg-white shadow-md relative flex flex-col items-center gap-2 mb-4"><div class="w-24 h-24 rounded-full border-2 border-[#D4AF37] p-1"><div class="w-full h-full rounded-full border border-[#D4AF37] flex items-center justify-center bg-white"><span class="text-[10px] font-serif font-bold text-[#D4AF37] uppercase tracking-widest text-center">Seal</span></div></div></div>
+<h4 class="font-bold text-sm text-college-navy">Top Research Institution 2024</h4>
+</div>
+<!-- Badge 4 -->
+<div class="flex flex-col items-center w-40 text-center">
+<div class="w-24 h-24 mb-4 rounded-full border-4 border-double border-college-gold flex items-center justify-center bg-white shadow-md relative flex flex-col items-center gap-2 mb-4"><div class="w-24 h-24 rounded-full border-2 border-[#D4AF37] p-1"><div class="w-full h-full rounded-full border border-[#D4AF37] flex items-center justify-center bg-white"><span class="text-[10px] font-serif font-bold text-[#D4AF37] uppercase tracking-widest text-center">Seal</span></div></div></div>
+<h4 class="font-bold text-sm text-college-navy">Innovation Excellence 2024</h4>
+</div>
+<!-- Badge 5 -->
+<div class="flex flex-col items-center w-40 text-center">
+<div class="w-24 h-24 mb-4 rounded-full border-4 border-double border-college-gold flex items-center justify-center bg-white shadow-md relative flex flex-col items-center gap-2 mb-4"><div class="w-24 h-24 rounded-full border-2 border-[#D4AF37] p-1"><div class="w-full h-full rounded-full border border-[#D4AF37] flex items-center justify-center bg-white"><span class="text-[10px] font-serif font-bold text-[#D4AF37] uppercase tracking-widest text-center">Seal</span></div></div></div>
+<h4 class="font-bold text-sm text-college-navy">Community Impact Award</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AccreditationsSection -->
+<!-- BEGIN: Footer -->
+<footer class="bg-college-navy text-gray-300 py-16 text-sm">
+<div class="text-xs text-gray-400 mt-4">
+<!-- Footer Column 1: Brand -->
+<div class="text-xs text-gray-400 mt-4">
+<div class="flex items-center gap-3 text-white mb-6">
+<img alt="College Logo" class="h-10 w-10 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDImoKGDO9_5TOXPCJj1Zk7HzH5aCxkvSnwHdQZEKCabbgGe4YlOBW2LwoZqseWsUdFZgBRY8mdySc30qsHSDlrrJzUlHlvsf_J8P015AuTWKazHcaFPQ6Baz1ZzQKMJol-Wzz7mkFmwUlw95g49oJd21q2LzZ7RSW1Gs7WLxI_XxenOs8E8k_DcwLriJ7v0sW8RQ_VKMP2vMPLZDf6xIXmdLmkPPPy2H0RKUpJ8i7wYPLPJXz85H7_dS4wRbkPxyMi5wc11C-6Tq_X"/>
+<div class="leading-tight">
+<span class="block font-serif font-bold text-lg tracking-wide">THE BEST GROUP</span>
+<span class="block text-xs uppercase tracking-widest text-gray-400">Of Colleges</span>
+</div>
+</div>
+<p class="text-gray-400 mb-6 leading-relaxed">
+          Economic Finance Theory. Quality education that empowers future leaders through academic excellence.
+        </p>
+<div class="text-xs text-gray-400 mt-4">
+          © The Best Group of Colleges. All rights reserved.
+        </div>
+</div>
+<!-- Footer Column 2: Quick Links -->
+<div>
+<h4 class="text-white font-bold uppercase tracking-wider mb-6 text-xs">Quick Links</h4>
+<ul class="space-y-3">
+<li><a class="hover:text-college-gold transition-colors" href="#">Home</a></li>
+<li><a class="hover:text-college-gold transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-college-gold transition-colors" href="#">Resources</a></li>
+<li><a class="hover:text-college-gold transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<!-- Footer Column 3: Academic -->
+<div>
+<h4 class="text-white font-bold uppercase tracking-wider mb-6 text-xs">Academic</h4>
+<ul class="space-y-3">
+<li><a class="hover:text-college-gold transition-colors" href="#">Academic Information</a></li>
+<li><a class="hover:text-college-gold transition-colors" href="#">Business History</a></li>
+<li><a class="hover:text-college-gold transition-colors" href="#">Application Dates</a></li>
+<li><a class="hover:text-college-gold transition-colors" href="#">Programme Processes</a></li>
+</ul>
+</div>
+<!-- Footer Column 4: Contact & Social -->
+<div>
+<h4 class="text-white font-bold uppercase tracking-wider mb-6 text-xs">Contact Us</h4>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<span class="text-college-gold">📞</span> (001) 234-5678
+          </li>
+<li class="flex items-center gap-3">
+<span class="text-college-gold">📠</span> (001) 987-6543
+          </li>
+<li class="flex items-center gap-3">
+<span class="text-college-gold">✉️</span> nearest@college.com
+          </li>
+</ul>
+<h4 class="text-white font-bold uppercase tracking-wider mb-4 text-xs">Social Media</h4>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-college-gold hover:text-college-navy transition-all" href="#">f</a>
+<a class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-college-gold hover:text-college-navy transition-all" href="#">t</a>
+<a class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-college-gold hover:text-college-navy transition-all" href="#">y</a>
+<a class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-college-gold hover:text-college-navy transition-all" href="#">in</a>
+</div>
+</div>
+</div>
+<!-- Bottom Footer Links -->
+<div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 flex justify-end text-xs text-gray-500 gap-6">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>
