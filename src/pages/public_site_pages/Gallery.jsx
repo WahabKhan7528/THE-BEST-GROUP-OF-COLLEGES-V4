@@ -3,6 +3,7 @@ import PublicButton from "../../components/shared/PublicButton";
 import PageHero from "../../components/public_site/PageHero";
 import FilterBar from "../../components/public_site/FilterBar";
 import Card from "../../components/public_site/Card";
+import CTASection from "../../components/public_site/CTASection";
 
 import {
   galleryFilters as filters,
@@ -56,6 +57,7 @@ const Gallery = () => {
           { value: "newest", label: "Newest First" },
           { value: "oldest", label: "Oldest First" },
         ]}
+        isSticky={false}
       />
 
       {/* Gallery Grid */}
@@ -90,26 +92,18 @@ const Gallery = () => {
       </main>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-college-gold text-college-navy py-14 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-college-navy mb-4">
-              Want to see it in person?
-            </h2>
-            <p className="text-college-navy/80 text-lg mb-8 max-w-2xl mx-auto">
-              Schedule a campus tour today and experience the energy of our community firsthand. Our student ambassadors are ready to show you around.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <PublicButton to="/contact" variant="primary" size="lg">
-                Book a Campus Tour
-              </PublicButton>
-              <PublicButton to="/admissions" variant="outline" size="lg" className="border-college-navy text-college-navy hover:bg-college-navy hover:text-white">
-                Download Prospectus
-              </PublicButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTASection
+        title="Want to see it in person?"
+        description="Schedule a campus tour today and experience the energy of our community firsthand. Our student ambassadors are ready to show you around."
+        className="bg-college-gold text-college-navy"
+      >
+        <PublicButton to="/contact" variant="secondary" size="lg" shape="slanted">
+          Book a Campus Tour
+        </PublicButton>
+        <PublicButton to="/admissions" variant="primary" size="lg" className="border-2 border-white/10" shape="slanted">
+          Download Prospectus
+        </PublicButton>
+      </CTASection>
     </div>
   );
 };

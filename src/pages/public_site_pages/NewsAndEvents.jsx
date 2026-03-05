@@ -60,11 +60,11 @@ const NewsAndEvents = () => {
             </div>
 
             {/* Contact CTA */}
-            <Card variant="default" hover={false} className="bg-college-navy text-white text-center mt-8 p-6 md:p-8">
+            <Card variant="" hover={false} className="bg-college-navy text-white text-center mt-8 p-6 md:p-8 rounded-lg">
               <h3 className="text-xl font-serif font-bold text-white mb-3">Have Questions?</h3>
               <p className="text-white/70 text-sm mb-6 leading-relaxed">We're here to help! Reach out to us for inquiries, campus tours, or any information you need.</p>
-              <PublicButton to="/contact#contact-form" variant="primary" size="sm">
-                Contact Us
+              <PublicButton to="/contact#contact-form" variant="secondary" className='w-60 h-10 hover:font-bold' shape="slanted">
+                <span className="hover:scale-110 transition-all duration-300">Contact Us</span>
               </PublicButton>
             </Card>
           </div>
@@ -82,16 +82,18 @@ const NewsAndEvents = () => {
           variant="secondary"
           size="md"
           icon={ArrowRight}
-          className="rounded-full shadow-lg hover:scale-105 transition-transform"
+          className=""
+          shape="slanted"
         >
           Share Your Story
         </PublicButton>
         <PublicButton
-          to="/about"
+          to="/campuses/main/student-life"
           variant="outline"
           size="md"
           icon={User}
-          className="bg-white/5 border-white/20 text-white hover:bg-white hover:text-college-navy rounded-full backdrop-blur-sm shadow-lg hover:scale-105 transition-transform"
+          className="border-2 border-white/10"
+          shape="slanted"
         >
           Explore Student Life
         </PublicButton>

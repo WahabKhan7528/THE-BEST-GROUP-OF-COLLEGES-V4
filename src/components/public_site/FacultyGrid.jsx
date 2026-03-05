@@ -74,6 +74,7 @@ export default function FacultyGrid({ filterCampus }) {
                 filters={!filterCampus ? campusFilters : undefined}
                 activeFilter={selectedCampus}
                 onFilterChange={!filterCampus ? setSelectedCampus : undefined}
+                isSticky={false}
             />
 
             {/* Faculty Grid */}

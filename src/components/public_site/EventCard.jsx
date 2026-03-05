@@ -8,7 +8,7 @@ export default function EventCard({ event, className }) {
     return (
         <Card hover className={clsx("p-6 md:p-8 group", className)}>
             <div className="flex justify-between items-start mb-4">
-                <div className="bg-college-gold/10 text-college-gold p-3 rounded-lg text-center min-w-[60px]">
+                <div className="bg-college-navy/20 text-college-navy p-3 rounded-lg text-center min-w-[60px]">
                     <div className="text-xl font-bold leading-none">{event.date.split(" ")[0]}</div>
                     <div className="text-[10px] uppercase font-bold tracking-tighter">{event.date.split(" ")[1]}</div>
                 </div>
@@ -18,7 +18,7 @@ export default function EventCard({ event, className }) {
                     </Badge>
                 )}
             </div>
-            <h3 className="text-lg font-bold text-college-navy mb-2 group-hover:text-college-gold transition-colors">
+            <h3 className="text-lg font-bold text-college-navy mb-2">
                 <Link to={`/events/${event.id}`}>{event.title}</Link>
             </h3>
             <div className="space-y-2 mb-4">
@@ -33,7 +33,7 @@ export default function EventCard({ event, className }) {
             </div>
             <Link
                 to={`/events/${event.id}`}
-                className="text-xs font-bold text-college-navy hover:text-college-gold flex items-center gap-1 transition-colors"
+                className="text-xs font-bold text-college-gold flex items-center gap-1 hover:gap-2 transition-all"
             >
                 Event Details <ArrowRight className="w-3 h-3" />
             </Link>

@@ -28,9 +28,6 @@ export default function NewsCard({ news, className }) {
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">{news.description}</p>
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                        Posted by <span className="text-college-navy font-bold">{news.author}</span>
-                    </div>
                     <Link
                         to={`/news/${news.id}`}
                         className="text-college-gold text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all"
