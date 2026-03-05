@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Facebook,
   Twitter,
@@ -7,12 +8,12 @@ import {
   Mail,
   ArrowRight,
 } from "lucide-react";
-import { Link } from "react-router-dom";
-
-import Faq from "../../components/public_site/Faq";
-import ContactForm from "../../components/public_site/ContactForm";
-import Card from "../../components/public_site/Card";
+import PublicButton from "../../components/shared/PublicButton";
 import Section from "../../components/public_site/Section";
+import SectionHeader from "../../components/public_site/SectionHeader";
+import Card from "../../components/public_site/Card";
+import ContactForm from "../../components/public_site/ContactForm";
+import FAQ from "../../components/public_site/FAQ";
 
 const Contact = () => {
   const socialLinks = [
@@ -40,14 +41,15 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-college-navy font-sans">
+    <div className="min-h-screen bg-white font-sans">
       {/* Main Content */}
-      <Section background="navy" spacing="large">
-        <Section.Header
-          title="Contact Us"
+      <Section variant="gray">
+        <SectionHeader
           badge="Get in Touch"
+          title="Contact Us"
           description="Have questions? We'd love to hear from you. Reach out to us and we'll respond as soon as we can."
-          light={true}
+          variant="light"
+          centered
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -55,59 +57,26 @@ const Contact = () => {
           <div className="space-y-12">
             {/* Contact Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Phone Card */}
-              <Card
-                variant="default"
-                hover
-                shadow="sm"
-                rounded="lg"
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-12 h-12 bg-college-gold/10 rounded-full flex items-center justify-center mb-4 text-college-gold">
+              <Card variant="navy" hover className="p-6 md:p-8 flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4 text-white">
                   <Phone className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif font-bold text-lg mb-2 text-gray-900">
-                  Phone
-                </h3>
-                <p className="text-sm text-gray-600 mb-2">
-                  Mon-Fri from 8am to 5pm
-                </p>
-                <a
-                  className="text-college-gold font-medium hover:underline"
-                  href="tel:+13032254880"
-                >
-                  (303) 225-4880
-                </a>
+                <h3 className="font-serif font-bold text-lg mb-2 text-white">Phone</h3>
+                <p className="text-sm text-white/70 mb-2">Mon-Fri from 8am to 5pm</p>
+                <a className="text-college-gold font-medium hover:underline" href="tel:+13032254880">(303) 225-4880</a>
               </Card>
 
-              {/* Email Card */}
-              <Card
-                variant="default"
-                hover
-                shadow="sm"
-                rounded="lg"
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-12 h-12 bg-college-gold/10 rounded-full flex items-center justify-center mb-4 text-college-gold">
+              <Card variant="navy" hover className="p-6 md:p-8 flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4 text-white">
                   <Mail className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif font-bold text-lg mb-2 text-gray-900">
-                  Email
-                </h3>
-                <p className="text-sm text-gray-600 mb-2">
-                  Our friendly team is here to help.
-                </p>
-                <a
-                  className="text-college-gold font-medium hover:underline"
-                  href="mailto:admissions@reefcollege.edu"
-                >
-                  admissions@reefcollege.edu
-                </a>
+                <h3 className="font-serif font-bold text-lg mb-2 text-white">Email</h3>
+                <p className="text-sm text-white/70 mb-2">Our friendly team is here to help.</p>
+                <a className="text-college-gold font-medium hover:underline" href="mailto:admissions@reefcollege.edu">admissions@reefcollege.edu</a>
               </Card>
             </div>
 
             {/* Contact Form */}
-
             <ContactForm />
           </div>
 
@@ -118,58 +87,32 @@ const Contact = () => {
               <iframe
                 allowFullScreen=""
                 className="absolute inset-0 w-full h-full transition-all duration-500"
-                style={{
-                  border: 0,
-                  filter: "grayscale(20%) contrast(1.2) opacity(0.9)",
-                }}
+                style={{ border: 0, filter: "grayscale(20%) contrast(1.2) opacity(0.9)" }}
                 height="100%"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1839485764047!2d-73.98773192348575!3d40.75797873479743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1715638423491!5m2!1sen!2sus"
                 width="100%"
                 title="Our Location"
-              ></iframe>
-              <div className="absolute bottom-6 left-6 right-6 bg-white p-4 rounded shadow-lg border-l-4 border-college-gold">
-                <h4 className="font-serif font-bold text-gray-900">
-                  Main Administration Office
-                </h4>
-                <p className="text-sm text-gray-600 mt-1">
-                  123 Academic Avenue, Knowledge City, ST 90210
-                </p>
+              />
+              <div className="absolute bottom-6 right-6 max-w-[280px] bg-college-navy p-5 rounded-xl shadow-2xl border-l-4 border-college-gold z-10">
+                <h4 className="font-serif font-bold text-white">Main Administration Office</h4>
+                <p className="text-sm text-white/70 mt-1">123 Academic Avenue, Knowledge City, ST 90210</p>
               </div>
             </div>
 
             {/* Our Campuses */}
             <div>
-              <h3 className="text-xl font-serif font-bold mb-4 text-gray-900 border-b pb-2">
-                Our Campuses
-              </h3>
+              <h3 className="text-xl font-serif font-bold mb-4 text-college-navy border-b border-gray-200 pb-2">Our Campuses</h3>
               <div className="space-y-4">
                 {campuses.map((campus) => (
-                  <Card
-                    key={campus.name}
-                    variant="subtle"
-                    hover
-                    shadow="none"
-                    padding={false}
-                    rounded="lg"
-                    className="p-4"
-                  >
+                  <Card key={campus.name} variant="navy" hover className="p-4">
                     <div className="flex items-start space-x-4">
-                      <img
-                        alt={campus.name}
-                        className="w-20 h-20 object-cover rounded-md flex-shrink-0"
-                        src={campus.image}
-                      />
+                      <img alt={campus.name} className="w-20 h-20 object-cover rounded-md flex-shrink-0" src={campus.image} />
                       <div>
-                        <h4 className="font-bold text-gray-900">{campus.name}</h4>
-                        <p className="text-sm text-gray-500 mt-1">
-                          {campus.description}
-                        </p>
-                        <Link
-                          className="text-college-gold text-sm font-medium mt-2 inline-flex items-center hover:underline"
-                          to={campus.link}
-                        >
+                        <h4 className="font-bold text-white">{campus.name}</h4>
+                        <p className="text-sm text-white/70 mt-1">{campus.description}</p>
+                        <Link className="text-college-gold text-sm font-medium mt-2 inline-flex items-center hover:underline" to={campus.link}>
                           Get Directions <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                       </div>
@@ -179,20 +122,12 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Media */}
-            <Card variant="navy" rounded="lg" className="text-center">
-              <h3 className="font-serif font-bold text-white text-lg mb-4">
-                Connect on Social Media
-              </h3>
+            <Card variant="navy" hover={false} className="p-6 md:p-8 text-center shadow-md">
+              <h3 className="font-serif font-bold text-white text-lg mb-4">Connect on Social Media</h3>
               <div className="flex justify-center space-x-6">
                 {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    className="hover:text-college-gold transition-colors transform hover:scale-110"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-6 h-6" />
+                  <a key={social.label} href={social.href} className="text-white/80 hover:text-college-gold transition-colors transform hover:scale-110" aria-label={social.label}>
+                    <social.icon className="w-6 h-6 text-white/70 hover:text-college-gold" />
                   </a>
                 ))}
               </div>
@@ -202,9 +137,15 @@ const Contact = () => {
       </Section>
 
       {/* FAQ Section */}
-      <div className="bg-gray-100">
-        <Faq limit={4} />
-      </div>
+      <section className="bg-gray-100 py-14 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FAQ
+            limit={4}
+            centered={true}
+            description="Have questions? We'd love to hear from you. Reach out to us and we'll respond as soon as we can."
+          />
+        </div>
+      </section>
     </div>
   );
 };

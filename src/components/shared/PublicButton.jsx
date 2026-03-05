@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 
 const variants = {
     primary:
-        "bg-college-navy text-white border-2 border-college-navy shadow-sm hover:bg-college-gold hover:text-college-navy hover:border-college-gold hover:shadow-md active:bg-college-navy active:text-white",
+        "bg-college-navy text-white border-2 border-college-navy shadow-sm hover:brightness-150 hover:shadow-md active:brightness-95",
     secondary:
-        "bg-college-gold text-college-navy border-2 border-college-gold shadow-sm hover:bg-college-navy hover:text-white hover:border-college-navy hover:shadow-md active:bg-college-gold active:text-college-navy",
-    outline:
-        "border-2 border-college-navy text-college-navy hover:bg-college-navy hover:text-white active:bg-college-navy/90",
+        "bg-college-gold text-college-navy border-2 border-college-gold shadow-sm hover:brightness-90 hover:shadow-md active:brightness-75",
     ghost:
         "text-college-navy hover:text-college-gold transition-colors",
     unstyled:
@@ -22,21 +20,36 @@ const sizes = {
     none: "",
 };
 
+const shapes = {
+    normal: "",
+    slanted: {
+        sm: "[clip-path:polygon(0_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%)]",
+        md: "[clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]",
+        lg: "[clip-path:polygon(0_0,100%_0,100%_calc(100%-16px),calc(100%-16px)_100%,0_100%)]",
+        icon: "[clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]",
+        none: "[clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]",
+    },
+};
+
 export default function PublicButton({
     children,
     variant = "primary",
     size = "md",
+    shape = "normal",
     className,
     icon: Icon,
     disabled = false,
     to,
     ...props
 }) {
+    const shapeClass = shape === "slanted" ? (shapes.slanted[size] ?? shapes.slanted.md) : "";
+
     const baseClasses = clsx(
         "inline-flex items-center justify-center transition-all duration-200",
-        "focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-1",
+        "focus:outline-none focus:ring-2 focus:ring-college-gold/50 focus:ring-offset-1",
         variants[variant] ?? variants.primary,
         sizes[size] ?? sizes.md,
+        shapeClass,
         {
             "opacity-50 cursor-not-allowed pointer-events-none": disabled,
         },

@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Section from "../../../components/public_site/Section";
-import FacultyComponent from "../../../components/public_site/FacultyComponent";
-import GSAPReveal from "../../../components/shared/GSAPReveal";
+import SectionHeader from "../../../components/public_site/SectionHeader";
+import FacultyGrid from "../../../components/public_site/FacultyGrid";
 
 const FacultyPage = () => {
   const location = useLocation();
@@ -14,18 +14,17 @@ const FacultyPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Section background="white" spacing="standard">
-        <GSAPReveal>
-          <Section.Header
-            title="Our Faculty"
-            badge={campusName || "Faculty"}
-            description="Meet the dedicated educators who shape the future of our students."
-          />
-        </GSAPReveal>
-        <GSAPReveal y={40} delay={0.2}>
-          <FacultyComponent filterCampus={campusName} />
-        </GSAPReveal>
+      <Section variant="white" className="py-12 md:py-16">
+        <SectionHeader
+          badge={campusName || "Faculty"}
+          title="Our Faculty"
+          description="Meet the dedicated educators who shape the future of our students."
+          variant="light"
+          centered
+        />
       </Section>
+
+      <FacultyGrid filterCampus={campusName} />
     </div>
   );
 };

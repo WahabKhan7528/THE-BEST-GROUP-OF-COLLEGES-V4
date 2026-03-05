@@ -9,7 +9,6 @@ import {
   Mail,
   LogIn,
 } from "lucide-react";
-import Card from "../../components/public_site/Card";
 import PublicButton from "../../components/shared/PublicButton";
 
 const Login = () => {
@@ -32,12 +31,6 @@ const Login = () => {
         return {
           title: "Admin Portal",
           description: "Manage college system and operations",
-          icon: (
-            <ShieldCheck
-              size={32}
-              className="md:w-10 md:h-10 text-primary-600"
-            />
-          ),
           buttonClass: "bg-primary-600 hover:bg-primary-700",
           shadow: "shadow-md",
           path: "/admin/dashboard",
@@ -46,12 +39,6 @@ const Login = () => {
         return {
           title: "Faculty Portal",
           description: "Access teaching resources and manage classes",
-          icon: (
-            <GraduationCap
-              size={32}
-              className="md:w-10 md:h-10 text-primary-600"
-            />
-          ),
           buttonClass: "bg-primary-600 hover:bg-primary-700",
           shadow: "shadow-md",
           path: "/faculty/dashboard",
@@ -60,9 +47,6 @@ const Login = () => {
         return {
           title: "Student Portal",
           description: "View courses, grades, and campus resources",
-          icon: (
-            <Users size={32} className="md:w-10 md:h-10 text-primary-600" />
-          ),
           buttonClass: "bg-primary-600 hover:bg-primary-700",
           shadow: "shadow-md",
           path: "/student/dashboard",
@@ -100,11 +84,8 @@ const Login = () => {
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-background p-4 relative">
       <div className="w-full max-w-md relative z-10">
-        <Card variant="default" shadow="lg" rounded="xl" className="md:rounded-2xl">
+        <div className="bg-white border border-gray-200 overflow-hidden transition-all duration-300 ease-out rounded-xl shadow-lg p-6 md:p-8 md:rounded-2xl">
           <div className="text-center mb-8 md:mb-10">
-            <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-primary-50 text-primary-900 mb-5 md:mb-6 border border-primary-100">
-              {portalinfo.icon}
-            </div>
             <h1 className="text-2xl md:text-3xl font-bold text-primary-900 tracking-tight">
               {portalinfo.title}
             </h1>
@@ -181,7 +162,7 @@ const Login = () => {
               </p>
             </div>
           </form>
-        </Card>
+        </div>
       </div>
     </div>
   );
