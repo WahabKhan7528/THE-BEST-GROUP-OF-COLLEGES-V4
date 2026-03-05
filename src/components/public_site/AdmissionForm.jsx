@@ -76,7 +76,7 @@ export default function AdmissionForm({ programs }) {
                     </div>
                 </div>
 
-                <PublicButton type="submit" disabled={loading} variant="primary" size="md" className="w-full font-bold py-4 rounded transition-all shadow-md uppercase tracking-wider text-sm mt-4" icon={Send}>
+                <PublicButton type="submit" disabled={loading} variant="primary" size="md" shape="slanted" className="w-full font-bold py-4 rounded transition-all shadow-md uppercase tracking-wider text-sm mt-4" icon={Send}>
                     {loading ? "Submitting..." : "Submit Application"}
                 </PublicButton>
 
