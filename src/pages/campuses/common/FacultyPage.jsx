@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import Section from "../../../components/public_site/Section";
 import SectionHeader from "../../../components/public_site/SectionHeader";
 import FacultyGrid from "../../../components/public_site/FacultyGrid";
+import CampusCta from "../../../components/public_site/CampusCta";
 
 const FacultyPage = () => {
   const location = useLocation();
@@ -23,8 +24,17 @@ const FacultyPage = () => {
           centered
         />
       </Section>
-
       <FacultyGrid filterCampus={campusName} />
+
+      <CampusCta
+        badge="JOIN OUR FACULTY"
+        title={<>Shape the <br /></>}
+        highlightedWord="Future"
+        description="Are you passionate about education? Join our world-class faculty and help us nurture the next generation of leaders."
+        image="/maincampus.webp"
+        primaryButton={{ text: "VIEW OPENINGS", to: "/contact" }}
+        secondaryButton={{ text: "TALK TO US", to: "/contact" }}
+      />
     </div>
   );
 };

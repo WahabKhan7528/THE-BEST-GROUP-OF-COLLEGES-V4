@@ -86,7 +86,7 @@ export default function Navbar() {
                         alt="Logo"
                         className="h-12 w-auto"
                         loading="eager"
-                        fetchPriority="high"
+                        fetchpriority="high"
                     />
                     <span className="sm:text-2xl md:text-3xl font-serif font-black tracking-wider text-college-navy">
                         THE BEST GROUP

@@ -1,4 +1,4 @@
-import { Phone, Mail, CheckSquare, Send } from "lucide-react";
+import { Phone, Mail, CheckSquare, Send, ArrowRight } from "lucide-react";
 import PublicButton from "../../components/shared/PublicButton";
 import Section from "../../components/public_site/Section";
 import SectionHeader from "../../components/public_site/SectionHeader";
@@ -9,11 +9,32 @@ import AdmissionForm from "../../components/public_site/AdmissionForm";
 import {
   admissionSteps,
   requirements,
-  programs,
 } from "../../data/admissionsData";
+import { programsData } from "../../data/programsData";
+import ProgramCard from "../../components/public_site/ProgramCard";
 import { useRef, useState } from "react";
 
 const Admissions = () => {
+  // Flatten all programs across campuses
+  const allPrograms = [
+    ...programsData.main.flatMap((cat) => cat.items),
+    ...programsData.law.flatMap((cat) => cat.items),
+    ...programsData.hala.flatMap((cat) => cat.items),
+  ];
+
+  const [visibleCount, setVisibleCount] = useState(6);
+  const displayedPrograms = allPrograms.slice(0, visibleCount);
+  const hasMore = visibleCount < allPrograms.length;
+
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + 6);
+  };
+
+  const formPrograms = [
+    ...programsData.main.flatMap((cat) => cat.items).map(p => ({ value: p.title, label: p.title, campus: "Main Campus" })),
+    ...programsData.law.flatMap((cat) => cat.items).map(p => ({ value: p.title, label: p.title, campus: "Law Campus" })),
+    ...programsData.hala.flatMap((cat) => cat.items).map(p => ({ value: p.title, label: p.title, campus: "Hala Campus" })),
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -56,31 +77,19 @@ const Admissions = () => {
           className="relative z-10"
         />
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10 mt-10">
-          {programs.map((programCategory) => (
-            <Card key={programCategory.category} hover className="group flex flex-col">
-              <div className="h-2 bg-college-gold w-full md:w-0 group-hover:w-full transition-all duration-500 ease-out" />
-              <div className="space-y-4 p-8 flex-grow">
-                <div className="text-center mb-8 pb-6 border-b border-gray-100 group-hover:border-college-gold/20 transition-colors relative">
-                  <h3 className="text-2xl font-serif font-bold text-college-navy group-hover:text-college-gold transition-colors">
-                    {programCategory.category}
-                  </h3>
-                </div>
-                <ul className="space-y-4">
-                  {programCategory.courses.map((course, cIdx) => (
-                    <li key={cIdx} className="flex items-start gap-3 text-gray-700 text-sm font-medium group/item">
-                      <CheckSquare className="w-5 h-5 text-college-gold opacity-50 group-hover/item:opacity-100 flex-shrink-0 transition-opacity" />
-                      <span className="group-hover/item:text-college-navy transition-colors">{course}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="p-4 bg-gray-50 border-t border-gray-100 text-center">
-                <span className="text-xs font-bold text-college-navy uppercase tracking-widest group-hover:text-college-gold transition-colors">View Details</span>
-              </div>
-            </Card>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto relative z-10 mt-10">
+          {displayedPrograms.map((program, idx) => (
+            <ProgramCard key={`${program.title}-${idx}`} program={program} />
           ))}
         </div>
+
+        {hasMore && (
+          <div className="text-center mt-12 relative z-10">
+            <PublicButton onClick={loadMore} className='px-8 flex items-center gap-2 hover:gap-4' variant="primary" size="md" shape="slanted">
+              Load More Programs <ArrowRight />
+            </PublicButton>
+          </div>
+        )}
       </Section>
 
       {/* Requirements Section */}
@@ -151,7 +160,7 @@ const Admissions = () => {
           <div className="absolute -top-10 -left-10 w-40 h-40 bg-college-gold/10 rounded-full blur-2xl pointer-events-none" />
           <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-college-navy/10 rounded-full blur-2xl pointer-events-none" />
 
-          <AdmissionForm programs={programs} />
+          <AdmissionForm programs={formPrograms} />
         </div>
       </Section>
 

@@ -7,6 +7,7 @@ import SectionHeader from "../../components/public_site/SectionHeader";
 import Badge from "../../components/public_site/Badge";
 import ProgramCard from "../../components/public_site/ProgramCard";
 import FacilityCard from "../../components/public_site/FacilityCard";
+import CampusCta from "../../components/public_site/CampusCta";
 
 import { programsData } from "../../data/programsData";
 import { lawCampusStats as stats, lawFacilities as facilities } from "../../data/campusData";
@@ -53,8 +54,7 @@ const LawCampus = () => {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 bg-college-gold/10 rounded-2xl transform rotate-1 blur-sm" />
-            <div className="relative border border-gray-100 shadow-2xl bg-white/95 backdrop-blur-md rounded-2xl p-8 md:p-10 overflow-hidden group">
+            <div className="relative border border-gray-100 shadow-xl bg-white/95 backdrop-blur-md rounded-2xl p-8 md:p-10 overflow-hidden group">
               <div className="relative z-10">
                 <div className="mb-6">
                   <Badge variant="gold" className="bg-college-navy text-college-gold px-4 py-1.5">Our Mission</Badge>
@@ -109,31 +109,15 @@ const LawCampus = () => {
         </div>
       </Section>
 
-      {/* Epic CTA */}
-      <section className="relative overflow-hidden bg-college-navy text-white text-center py-16 md:py-20 flex items-center justify-center">
-        <div className="absolute inset-0 opacity-10">
-          <img src="/lawcampus.webp" className="w-full h-full object-cover filter grayscale" alt="Campus" />
-        </div>
-        <div className="absolute inset-0 bg-college-navy/80 backdrop-blur-[2px]" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <Badge variant="gold" className="mb-6 px-5 py-1.5">ADMISSIONS IN PROGRESS</Badge>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-white leading-none uppercase tracking-tighter">
-            Your Path to <br /> <span className="text-college-gold">Justice</span>
-          </h2>
-          <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-2xl mx-auto font-sans">
-            Join Pakistan's premier law college and embark on a journey to
-            become a defender of truth and a leader in the legal fraternity.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <PublicButton to="/admissions" variant="secondary" size="lg" className="rounded px-10 py-4 shadow-2xl hover:scale-105 active:scale-95 transition-all text-base tracking-widest">
-              ENROLL NOW
-            </PublicButton>
-            <PublicButton to="/contact" variant="outline" size="lg" className="!border-white !text-white hover:!bg-white hover:!text-college-navy rounded px-10 py-4 text-base tracking-widest font-black">
-              GET IN TOUCH
-            </PublicButton>
-          </div>
-        </div>
-      </section>
+      <CampusCta
+        badge="ADMISSIONS IN PROGRESS"
+        title={<>Your Path to <br /></>}
+        highlightedWord="Justice"
+        description="Join Pakistan's premier law college and embark on a journey to become a defender of truth and a leader in the legal fraternity."
+        image="/lawcampus.webp"
+        primaryButton={{ text: "ENROLL NOW", to: "/admissions" }}
+        secondaryButton={{ text: "GET IN TOUCH", to: "/contact" }}
+      />
     </div>
   );
 };

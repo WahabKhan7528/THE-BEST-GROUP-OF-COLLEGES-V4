@@ -24,10 +24,10 @@ export default function ProgramCard({ program, className }) {
             </p>
 
             <div className="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
-                <span className="flex items-center text-xs font-black text-gray-300 uppercase tracking-[0.15em]">
+                <span className="flex items-center text-xs font-black text-gray-600 uppercase tracking-[0.15em]">
                     {program.seats} AVAILABLE SEATS
                 </span>
-                <PublicButton to="/admissions" variant="primary" size="sm" className="rounded px-5 font-bold">
+                <PublicButton to="/admissions" variant="primary" size="sm" className="rounded px-5 font-bold" shape="slanted">
                     APPLY
                 </PublicButton>
             </div>

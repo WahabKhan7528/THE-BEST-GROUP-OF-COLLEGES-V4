@@ -14,7 +14,7 @@ export default function CampusHero({ title, image, alt, className }) {
                     alt={alt || title}
                     className="w-full h-full object-cover object-center"
                     loading="eager"
-                    fetchPriority="high"
+                    fetchpriority="high"
                 />
             </div>
             <div className="absolute inset-0 z-0 bg-college-navy/50" />
