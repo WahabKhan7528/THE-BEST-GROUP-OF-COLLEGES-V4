@@ -18,7 +18,7 @@ export default function TestimonialSlider({ testimonials }) {
     return (
         <div className="relative z-10 max-w-6xl mx-auto mt-10">
             {/* Controls */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between z-20 pointer-events-none p-4">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 hidden md:flex justify-between z-20 pointer-events-none p-4">
                 <PublicButton
                     variant="primary"
                     size="sm"
