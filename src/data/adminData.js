@@ -9,6 +9,14 @@ export const mockAdminUser = {
     allocatedCampuses: ["main", "law", "hala"],
 };
 
+// System Metadata for Headers (Foundational Data)
+export const systemMetadata = {
+    authority: "HEC Recognized Institution",
+    infrastructure: "Enterprise Cloud-Native",
+    version: "Core Engine v4.8.0 Stable",
+    security: "Root Access Protocol Active",
+};
+
 // Mock campuses
 export const mockCampuses = [
     { id: "main", name: "Main Campus", code: "MC", location: "Islamabad" },
@@ -19,7 +27,7 @@ export const mockCampuses = [
 // Dashboard stats by campus
 export const mockAllStats = {
     all: {
-        users: { value: "2,430", hint: "+12% from last month" },
+        users: { value: "2,430", hint: "Verified Accounts" },
         classes: { value: "125", hint: "Active classes" },
         subjects: { value: "84", hint: "Active subjects" },
         courses: { value: "42", hint: "Active courses" },

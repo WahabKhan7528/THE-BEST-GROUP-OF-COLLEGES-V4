@@ -48,13 +48,13 @@ const StudentAnnouncements = () => {
             {/* Header */}
             <div className="bg-white border rounded-2xl shadow-sm p-6">
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-primary-100 rounded-full text-primary-600">
+                    <div className="p-3 bg-college-navy/10 rounded-full text-college-gold">
                         <Bell size={24} />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900">Class Announcements</h1>
+                        <h1 className="text-2xl font-bold text-college-navy">Class Announcements</h1>
                         <p className="text-gray-500 text-sm">Updates from your teachers and department</p>
-                        <p className="text-xs text-primary-600 font-medium mt-1"> {campusNames[campus]}</p>
+                        <p className="text-xs text-college-gold font-medium mt-1"> {campusNames[campus]}</p>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@ const StudentAnnouncements = () => {
                         <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Bell size={32} className="text-gray-400" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">No New Announcements</h3>
+                        <h3 className="text-lg font-semibold text-college-navy">No New Announcements</h3>
                         <p className="text-gray-500 mt-2">
                             You're all caught up! No recent updates from your classes.
                         </p>

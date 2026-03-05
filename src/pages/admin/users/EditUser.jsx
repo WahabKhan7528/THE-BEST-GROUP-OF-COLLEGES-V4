@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PublicButton from "../../../components/shared/PublicButton";
 import FormInput from "../../../components/admin/FormInput";
 import { useAdminContext } from "../../../context/AdminContext";
-import {  ArrowLeft, Building2, Shield, User, Save, Trash2, X } from "lucide-react";
+import { ArrowLeft, Building2, Shield, User, Save, Trash2, X } from "lucide-react";
 
 const EditUser = () => {
   const { id } = useParams();
@@ -116,8 +117,8 @@ const EditUser = () => {
             <ArrowLeft size={20} />
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Edit User</h1>
-            <p className="text-gray-500 text-sm">Update details for {id}</p>
+            <h1 className="text-2xl font-bold text-college-navy dark:text-college-gold tracking-tight">Edit User</h1>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Update details for {id}</p>
           </div>
         </div>
 
@@ -132,16 +133,16 @@ const EditUser = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl shadow-sm p-8 space-y-8"
+        className="bg-white/60 dark:bg-college-navy/60 backdrop-blur-md border border-white/60 dark:border-college-gold/20 rounded-2xl shadow-sm p-8 space-y-8"
       >
         {/* Role Display (Read-Only) */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-            <Shield size={18} className="text-blue-600" />
+          <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+            <Shield size={18} className="text-blue-600 dark:text-college-gold" />
             <h2>Role & Permissions</h2>
           </div>
           <div className="flex items-center gap-3">
-            <span className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg font-semibold text-sm border border-primary-100">
+            <span className="px-4 py-2 bg-college-navy/5 text-college-navy rounded-lg font-semibold text-sm border border-college-navy/10">
               {role}
             </span>
             <span className="text-sm text-gray-500">Role cannot be changed after creation.</span>
@@ -150,8 +151,8 @@ const EditUser = () => {
 
         {/* Basic Info Section */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-            <User size={18} className="text-blue-600" />
+          <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+            <User size={18} className="text-blue-600 dark:text-college-gold" />
             <h2>Personal Identity</h2>
           </div>
 
@@ -186,8 +187,8 @@ const EditUser = () => {
         {/* Academic / Professional Details */}
         {(role === "Student" || role === "Faculty" || role === "Sub-Admin") && (
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-              <Building2 size={18} className="text-primary-600" />
+            <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+              <Building2 size={18} className="text-college-gold" />
               <h2>{role === "Student" ? "Academic Information" : "Professional Details"}</h2>
             </div>
 
@@ -240,7 +241,7 @@ const EditUser = () => {
                     onChange={(v) => handleChange("qualification", v)}
                   />
                   <div className="md:col-span-2 space-y-3">
-                    <label className="text-sm font-medium text-gray-700 flex justify-between items-center">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-200 flex justify-between items-center">
                       <span>Course & Class Allocation</span>
                       <button
                         type="button"
@@ -257,7 +258,7 @@ const EditUser = () => {
                             <input
                               type="text"
                               placeholder="Class / Section (e.g. BSCS-5A)"
-                              className="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500"
+                              className="w-full px-4 py-2 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy text-sm focus:outline-none focus:border-college-gold dark:text-white"
                               value={alloc.class}
                               onChange={(e) => handleAllocationChange(idx, 'class', e.target.value)}
                             />
@@ -266,7 +267,7 @@ const EditUser = () => {
                             <input
                               type="text"
                               placeholder="Subject (e.g. Operating Systems)"
-                              className="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500"
+                              className="w-full px-4 py-2 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy text-sm focus:outline-none focus:border-college-gold dark:text-white"
                               value={alloc.subject}
                               onChange={(e) => handleAllocationChange(idx, 'subject', e.target.value)}
                             />
@@ -301,13 +302,13 @@ const EditUser = () => {
         {/* Campus Allocation Section */}
         {showCampusField && (
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-              <Building2 size={18} className="text-primary-600" />
+            <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+              <Building2 size={18} className="text-college-gold" />
               <h2>Campus Allocation</h2>
             </div>
 
-            <div className="bg-gray-50/50 rounded-xl p-4 border border-gray-100">
-              <h3 className="text-sm font-medium text-gray-700 mb-3 block">
+            <div className="bg-gray-50/50 dark:bg-college-navy/30 rounded-xl p-4 border border-gray-100 dark:border-college-gold/10">
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-3 block">
                 {isSingleCampus ? "Primary Campus" : "Allocated Campuses"}
               </h3>
 
@@ -318,7 +319,7 @@ const EditUser = () => {
                     onChange={(e) => {
                       setSelectedCampuses(e.target.value ? [e.target.value] : []);
                     }}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-college-gold/20"
                     required
                   >
                     <option value="">Select a campus...</option>
@@ -335,21 +336,21 @@ const EditUser = () => {
                     <label
                       key={campus.id}
                       className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${selectedCampuses.includes(campus.id)
-                        ? "bg-blue-50 border-blue-200 shadow-sm"
-                        : "bg-white border-gray-200 hover:bg-gray-50"
+                        ? "bg-blue-50 dark:bg-college-gold/10 border-blue-200 dark:border-college-gold/50 shadow-sm"
+                        : "bg-white dark:bg-college-navy border-gray-200 dark:border-college-gold/20 hover:bg-gray-50 dark:hover:bg-college-navy/80"
                         }`}
                     >
                       <input
                         type="checkbox"
                         checked={selectedCampuses.includes(campus.id)}
                         onChange={() => handleCampusToggle(campus.id)}
-                        className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-gray-300"
+                        className="w-4 h-4 text-blue-600 rounded focus:ring-college-gold border-gray-300"
                       />
                       <div className="ml-3">
-                        <span className={`block text-sm font-medium ${selectedCampuses.includes(campus.id) ? "text-blue-900" : "text-gray-700"}`}>
+                        <span className={`block text-sm font-medium ${selectedCampuses.includes(campus.id) ? "text-blue-900 dark:text-college-gold" : "text-gray-700 dark:text-gray-200"}`}>
                           {campus.name}
                         </span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
                           {campus.code}
                         </span>
                       </div>
@@ -362,17 +363,13 @@ const EditUser = () => {
         )}
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-3 pt-6 border-t border-gray-100">
-          <button
-            type="button"
-            onClick={() => navigate("/admin/users")}
-            className="px-6 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-xl font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
-          >
+        <div className="flex justify-end gap-3 pt-6 border-t border-gray-100 dark:border-college-gold/20">
+          <PublicButton variant="secondary" onClick={() => navigate("/admin/users")}>
             Cancel
-          </button>
+          </PublicButton>
           <button
             type="submit"
-            className="flex items-center gap-2 px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all"
+            className="flex items-center gap-2 px-6 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all"
           >
             <Save size={18} />
             Save Changes

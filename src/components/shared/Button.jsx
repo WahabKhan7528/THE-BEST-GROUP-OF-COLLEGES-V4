@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 
 const variants = {
   primary:
-    "bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md active:bg-primary-800",
+    "bg-college-navy text-white shadow-sm hover:bg-college-navy/90 hover:shadow-md active:bg-college-navy/80",
+  secondary:
+    "bg-college-gold text-college-navy shadow-sm hover:bg-college-gold/90 hover:shadow-md active:bg-college-gold/80 font-semibold",
   outline:
-    "border border-primary-600 text-primary-600 hover:bg-primary-50 hover:text-primary-700 active:bg-primary-100",
+    "border border-college-navy dark:border-college-gold/40 text-college-navy dark:text-college-gold hover:bg-college-navy/5 dark:hover:bg-college-gold/10 hover:text-college-navy active:bg-college-navy/10",
   ghost:
-    "text-secondary-600 hover:text-primary-600 hover:bg-slate-50",
+    "text-gray-600 dark:text-gray-400 hover:text-college-gold hover:bg-college-gold/5",
+  danger:
+    "bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md active:bg-red-800",
 };
 
 const sizes = {

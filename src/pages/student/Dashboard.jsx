@@ -56,51 +56,51 @@ const Dashboard = () => {
       {/* Header Section with Campus Info */}
       <div>
         <section className="bg-white border border-border rounded-3xl shadow-sm overflow-hidden relative p-8">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-50 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none opacity-50"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-college-navy/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none opacity-50"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-xs font-semibold uppercase tracking-wide">
+                <span className="px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-xs font-semibold uppercase tracking-wide">
                   Student Dashboard
                 </span>
-                <span className="px-3 py-1 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-xs font-semibold uppercase tracking-wide">
+                <span className="px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-xs font-semibold uppercase tracking-wide">
                   {campusNames[campus]}
                 </span>
               </div>
-              <h1 className="text-3xl font-bold text-primary-900">
+              <h1 className="text-3xl font-bold text-college-navy">
                 Welcome back, {currentStudent.name.split(" ")[0]}!
               </h1>
               <div className="flex flex-wrap gap-4 mt-4 text-sm font-medium text-text-secondary">
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
                   <span className="text-text-disabled">ID:</span>
-                  <span className="text-primary-900">{currentStudent.id}</span>
+                  <span className="text-college-navy">{currentStudent.id}</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
                   <span className="text-text-disabled">program:</span>
-                  <span className="text-primary-900">
+                  <span className="text-college-navy">
                     {currentStudent.department}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
                   <span className="text-text-disabled">semester:</span>
-                  <span className="text-primary-900">
+                  <span className="text-college-navy">
                     {currentStudent.semester}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
                   <span className="text-text-disabled">credits:</span>
-                  <span className="text-primary-900">{totalCredits} hrs</span>
+                  <span className="text-college-navy">{totalCredits} hrs</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 bg-primary-50 p-4 rounded-2xl border border-primary-100 shadow-sm">
+            <div className="flex items-center gap-6 bg-college-navy/5 p-4 rounded-2xl border border-college-navy/10 shadow-sm">
               <div className="text-right">
                 <p className="text-sm font-medium text-text-secondary">
                   Overall CGPA
                 </p>
-                <p className="text-3xl font-bold text-primary-700">
+                <p className="text-3xl font-bold text-college-navy">
                   {currentStudent.cgpa}
                 </p>
               </div>
@@ -124,14 +124,14 @@ const Dashboard = () => {
               >
                 <Icon size={24} />
               </div>
-              <h3 className="text-lg font-bold text-primary-900 mb-1 group-hover:text-primary-600 transition-colors">
+              <h3 className="text-lg font-bold text-college-navy mb-1 group-hover:text-college-gold transition-colors">
                 {link.title}
               </h3>
               <p className="text-sm text-text-secondary font-medium mb-3">
                 {link.description}
               </p>
 
-              <div className="flex items-center text-sm font-bold text-text-disabled group-hover:text-primary-600 transition-colors">
+              <div className="flex items-center text-sm font-bold text-text-disabled group-hover:text-college-gold transition-colors">
                 <span>Access</span>
                 <ArrowRight
                   size={14}
@@ -148,7 +148,7 @@ const Dashboard = () => {
         <div className="bg-white border border-border rounded-3xl shadow-sm p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-primary-900">
+              <h2 className="text-xl font-bold text-college-navy">
                 Enrolled Courses
               </h2>
               <p className="text-sm text-text-secondary">
@@ -157,7 +157,7 @@ const Dashboard = () => {
             </div>
             <Link
               to="/student/materials"
-              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-xl text-sm font-semibold hover:bg-primary-100 transition-colors"
+              className="px-4 py-2 bg-college-navy/5 text-college-navy rounded-xl text-sm font-semibold hover:bg-college-navy/10 transition-colors"
             >
               View Materials
             </Link>
@@ -168,14 +168,14 @@ const Dashboard = () => {
               {courses.map((course) => (
                 <div
                   key={course.code}
-                  className="group flex items-center justify-between p-4 rounded-2xl border border-border hover:shadow-md hover:border-primary-100 transition-all duration-300"
+                  className="group flex items-center justify-between p-4 rounded-2xl border border-border hover:shadow-md hover:border-college-navy/10 transition-all duration-300"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center font-bold text-lg">
+                    <div className="w-12 h-12 rounded-xl bg-college-navy/10 text-college-gold flex items-center justify-center font-bold text-lg">
                       {course.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary-900 group-hover:text-primary-700 transition-colors">
+                      <h4 className="font-bold text-college-navy group-hover:text-college-navy transition-colors">
                         {course.name}
                       </h4>
                       <div className="flex items-center gap-2 mt-1">
@@ -188,7 +188,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs font-bold text-primary-700 bg-primary-50 px-3 py-1.5 rounded-lg border border-primary-100">
+                  <span className="text-xs font-bold text-college-navy bg-college-navy/5 px-3 py-1.5 rounded-lg border border-college-navy/10">
                     {course.credits} Cr
                   </span>
                 </div>
@@ -196,7 +196,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-border rounded-2xl">
-              <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-college-navy/5 rounded-full flex items-center justify-center mb-4">
                 <BookOpen size={24} className="text-primary-300" />
               </div>
               <p className="text-text-secondary font-medium">
@@ -209,7 +209,7 @@ const Dashboard = () => {
         <div className="bg-white border border-border rounded-3xl shadow-sm p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-primary-900">
+              <h2 className="text-xl font-bold text-college-navy">
                 Recent Announcements
               </h2>
               <p className="text-sm text-text-secondary">
@@ -218,7 +218,7 @@ const Dashboard = () => {
             </div>
             <Link
               to="/student/announcements"
-              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-xl text-sm font-semibold hover:bg-primary-100 transition-colors"
+              className="px-4 py-2 bg-college-navy/5 text-college-navy rounded-xl text-sm font-semibold hover:bg-college-navy/10 transition-colors"
             >
               See All
             </Link>
@@ -229,10 +229,10 @@ const Dashboard = () => {
               {displayAnnouncements.slice(0, 3).map((item, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden bg-primary-50 border border-primary-100 p-5 rounded-2xl hover:bg-white hover:shadow-md hover:border-primary-200 transition-all duration-200"
+                  className="group relative overflow-hidden bg-college-navy/5 border border-college-navy/10 p-5 rounded-2xl hover:bg-white hover:shadow-md hover:border-primary-200 transition-all duration-200"
                 >
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center shadow-sm">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-college-navy/10 text-college-gold flex items-center justify-center shadow-sm">
                       <Megaphone size={20} />
                     </div>
                     <div>
@@ -241,7 +241,7 @@ const Dashboard = () => {
                           {item.date}
                         </span>
                       </div>
-                      <h4 className="font-bold text-primary-900 text-sm mb-1 group-hover:text-primary-700 transition-colors">
+                      <h4 className="font-bold text-college-navy text-sm mb-1 group-hover:text-college-navy transition-colors">
                         {item.title}
                       </h4>
                       <p className="text-xs text-text-secondary line-clamp-2">
@@ -255,7 +255,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-border rounded-2xl">
-              <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-college-navy/5 rounded-full flex items-center justify-center mb-4">
                 <Megaphone size={24} className="text-primary-300" />
               </div>
               <p className="text-text-secondary font-medium">

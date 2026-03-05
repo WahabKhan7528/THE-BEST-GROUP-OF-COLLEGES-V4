@@ -7,7 +7,7 @@ const AdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-neutral-50 dark:bg-dark-base flex flex-col lg:flex-row transition-colors duration-300">
       {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div

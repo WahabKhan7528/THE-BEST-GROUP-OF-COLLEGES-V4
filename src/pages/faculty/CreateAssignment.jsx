@@ -39,12 +39,12 @@ const CreateAssignment = () => {
       <div className="flex items-center gap-3 md:gap-4">
         <Link
           to="/faculty/assignments"
-          className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/50 hover:bg-white text-gray-500 hover:text-gray-900 border border-transparent hover:border-gray-200 transition-all duration-200"
+          className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/50 hover:bg-white text-gray-500 hover:text-college-navy border border-transparent hover:border-gray-200 transition-all duration-200"
         >
           <ArrowLeft size={18} className="md:w-5 md:h-5" />
         </Link>
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-900">Create New Assignment</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-college-navy">Create New Assignment</h1>
           <p className="text-xs md:text-sm text-gray-500">Publish a new assignment for your students</p>
         </div>
       </div>
@@ -88,7 +88,7 @@ const CreateAssignment = () => {
             onChange={(e) => handleChange('description', e.target.value)}
             rows={6}
             placeholder="Detailed instructions for the assignment..."
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all outline-none resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all outline-none resize-none"
           />
         </div>
 
@@ -122,7 +122,7 @@ const CreateAssignment = () => {
                 onChange={handleFile}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               />
-              <div className="w-full px-4 py-3 rounded-xl border border-dashed border-gray-300 bg-white/30 text-gray-500 group-hover:bg-primary-50 group-hover:border-primary-300 group-hover:text-primary-600 transition-all flex items-center gap-2 truncate">
+              <div className="w-full px-4 py-3 rounded-xl border border-dashed border-gray-300 bg-white/30 text-gray-500 group-hover:bg-college-navy/5 group-hover:border-primary-300 group-hover:text-college-gold transition-all flex items-center gap-2 truncate">
                 <FileText size={18} />
                 <span className="truncate">{form.attachmentName || "Choose file..."}</span>
               </div>
@@ -139,7 +139,7 @@ const CreateAssignment = () => {
           </Link>
           <button
             type="submit"
-            className="flex items-center gap-2 px-8 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            className="flex items-center gap-2 px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200"
           >
             <Check size={18} />
             Publish Assignment

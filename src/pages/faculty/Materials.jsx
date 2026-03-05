@@ -83,16 +83,16 @@ const Materials = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4">
           <div>
             <p className="text-xs md:text-sm text-gray-500">Course Materials</p>
-            <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
+            <h1 className="text-xl md:text-2xl font-semibold text-college-navy">
               Uploaded resources
             </h1>
-            <p className="text-xs md:text-sm text-primary-600 mt-2">
+            <p className="text-xs md:text-sm text-college-gold mt-2">
               📍 {campusNames[campus]}
             </p>
           </div>
           <Link
             to="/faculty/materials/upload"
-            className="px-4 md:px-5 py-2.5 md:py-3 text-xs md:text-sm bg-primary-600 text-white rounded-lg md:rounded-xl font-semibold hover:bg-primary-700 transition-all shadow-md hover:shadow-lg"
+            className="px-4 md:px-5 py-2.5 md:py-3 text-xs md:text-sm bg-college-navy text-white rounded-lg md:rounded-xl font-semibold hover:bg-college-navy/90 transition-all shadow-md hover:shadow-lg"
           >
             Upload Material
           </Link>
@@ -112,7 +112,7 @@ const Materials = () => {
           </p>
           <Link
             to="/faculty/materials/upload"
-            className="text-primary-700 font-semibold hover:text-primary-800 mt-2 inline-block"
+            className="text-college-navy font-semibold hover:text-primary-800 mt-2 inline-block"
           >
             Upload your first material →
           </Link>

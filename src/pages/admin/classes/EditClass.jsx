@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
+import PublicButton from "../../../components/shared/PublicButton";
 import FormInput from "../../../components/admin/FormInput";
 import {
   Building2,
@@ -76,8 +77,8 @@ const EditClass = () => {
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Edit Class</h1>
-            <p className="text-sm text-gray-500">Update class details and assignments</p>
+            <h1 className="text-2xl font-bold text-college-navy dark:text-college-gold">Edit Class</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Update class details and assignments</p>
           </div>
         </div>
         <button
@@ -91,15 +92,15 @@ const EditClass = () => {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Campus Selection Section */}
-        <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-4">
+        <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center gap-2 mb-2">
-            <Building2 className="w-5 h-5 text-blue-600" />
-            <h2 className="text-lg font-semibold text-gray-800">Campus Allocation</h2>
+            <Building2 className="w-5 h-5 text-blue-600 dark:text-college-gold" />
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Campus Allocation</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Select Campus <span className="text-red-500">*</span>
               </label>
 
@@ -111,8 +112,8 @@ const EditClass = () => {
                       className={`
                         relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                         ${form.campus === campus.id
-                          ? 'border-blue-600 bg-blue-50'
-                          : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50'
+                          ? 'border-blue-600 dark:border-college-gold bg-blue-50 dark:bg-college-gold/10'
+                          : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-blue-200 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
                         }
                       `}
                     >
@@ -124,12 +125,12 @@ const EditClass = () => {
                         onChange={(e) => handleChange("campus", e.target.value)}
                         className="sr-only"
                       />
-                      <Building2 className={`w-6 h-6 mb-2 ${form.campus === campus.id ? 'text-blue-600' : 'text-gray-400'}`} />
-                      <span className={`text-sm font-medium text-center ${form.campus === campus.id ? 'text-blue-700' : 'text-gray-600'}`}>
+                      <Building2 className={`w-6 h-6 mb-2 ${form.campus === campus.id ? 'text-blue-600 dark:text-college-gold' : 'text-gray-400'}`} />
+                      <span className={`text-sm font-medium text-center ${form.campus === campus.id ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>
                         {campus.name}
                       </span>
                       {form.campus === campus.id && (
-                        <div className="absolute top-2 right-2 text-blue-600">
+                        <div className="absolute top-2 right-2 text-blue-600 dark:text-college-gold">
                           <CheckCircle2 className="w-4 h-4" />
                         </div>
                       )}
@@ -137,10 +138,10 @@ const EditClass = () => {
                   ))}
                 </div>
               ) : (
-                <div className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-700">
+                <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl text-gray-700 dark:text-gray-200">
                   <Building2 className="w-5 h-5 text-gray-400" />
                   <span className="font-medium">{getCampusLabel()}</span>
-                  <span className="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Automated Selection</span>
+                  <span className="ml-auto text-xs bg-blue-100 dark:bg-college-gold/20 text-blue-700 dark:text-college-gold px-2 py-1 rounded-full">Automated Selection</span>
                 </div>
               )}
             </div>
@@ -148,10 +149,10 @@ const EditClass = () => {
         </section>
 
         {/* Class Details Section */}
-        <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-6">
+        <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2">
-            <GraduationCap className="w-5 h-5 text-primary-600" />
-            <h2 className="text-lg font-semibold text-gray-800">Academic Details</h2>
+            <GraduationCap className="w-5 h-5 text-college-gold" />
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Academic Details</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -184,7 +185,7 @@ const EditClass = () => {
             </div>
 
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Subjects
               </label>
               <div className="relative">
@@ -194,7 +195,7 @@ const EditClass = () => {
                   onChange={(e) => handleChange("subjects", e.target.value)}
                   placeholder="e.g. Operating Systems, Data Structures, Linear Algebra..."
                   rows="3"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all resize-none dark:text-white dark:placeholder-gray-500"
                 />
               </div>
             </div>
@@ -203,16 +204,12 @@ const EditClass = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center justify-end gap-4 pt-4">
-          <button
-            type="button"
-            onClick={() => navigate("/admin/classes")}
-            className="px-6 py-2.5 text-gray-700 font-medium hover:bg-gray-100 rounded-xl transition-colors"
-          >
+          <PublicButton variant="secondary" onClick={() => navigate("/admin/classes")}>
             Cancel
-          </button>
+          </PublicButton>
           <button
             type="submit"
-            className="flex items-center gap-2 px-8 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+            className="flex items-center gap-2 px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
           >
             <Save size={18} />
             Save Changes

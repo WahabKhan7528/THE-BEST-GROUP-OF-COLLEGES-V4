@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
+import PublicButton from "../../../../components/shared/PublicButton";
 import FormInput from "../../../../components/admin/FormInput";
 import {
   ArrowLeft,
@@ -10,7 +11,8 @@ import {
   CheckCircle2,
   Save,
   Trash2,
-  Upload
+  Upload,
+  Megaphone
 } from "lucide-react";
 
 const EditNews = () => {
@@ -49,6 +51,13 @@ const EditNews = () => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      handleChange("image", file);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`${type === "news" ? "News" : "Event"} ${id} updated successfully!`);
@@ -74,8 +83,8 @@ const EditNews = () => {
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Edit Post</h1>
-            <p className="text-sm text-gray-500">Update news or event details</p>
+            <h1 className="text-2xl font-bold text-college-navy dark:text-college-gold tracking-tight">Edit Post</h1>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Update communication details</p>
           </div>
         </div>
         <button
@@ -91,15 +100,15 @@ const EditNews = () => {
         {/* Main Content Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Content Type Selection */}
-          <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Content Type</h2>
+          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm">
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Content Type</h2>
             <div className="grid grid-cols-2 gap-4">
               <label
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                   ${type === "news"
-                    ? 'border-blue-600 bg-blue-50'
-                    : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50'
+                    ? 'border-blue-600 dark:border-college-gold bg-blue-50 dark:bg-college-gold/10'
+                    : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-blue-200 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
                   }
                 `}
               >
@@ -111,17 +120,17 @@ const EditNews = () => {
                   onChange={() => setType("news")}
                   className="sr-only"
                 />
-                <Newspaper className={`w-6 h-6 mb-2 ${type === "news" ? 'text-blue-600' : 'text-gray-400'}`} />
-                <span className={`text-sm font-medium ${type === "news" ? 'text-blue-700' : 'text-gray-600'}`}>News & Announcement</span>
-                {type === "news" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-blue-600" />}
+                <Newspaper className={`w-6 h-6 mb-2 ${type === "news" ? 'text-blue-600 dark:text-college-gold' : 'text-gray-400'}`} />
+                <span className={`text-sm font-medium ${type === "news" ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>News & Announcement</span>
+                {type === "news" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-blue-600 dark:text-college-gold" />}
               </label>
 
               <label
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                   ${type === "event"
-                    ? 'border-primary-600 bg-primary-50'
-                    : 'border-gray-100 bg-white hover:border-primary-200 hover:bg-gray-50'
+                    ? 'border-primary-600 dark:border-college-gold bg-college-navy/5 dark:bg-college-gold/10'
+                    : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-primary-200 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
                   }
                 `}
               >
@@ -133,15 +142,15 @@ const EditNews = () => {
                   onChange={() => setType("event")}
                   className="sr-only"
                 />
-                <Calendar className={`w-6 h-6 mb-2 ${type === "event" ? 'text-primary-600' : 'text-gray-400'}`} />
-                <span className={`text-sm font-medium ${type === "event" ? 'text-primary-700' : 'text-gray-600'}`}>Event</span>
-                {type === "event" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-primary-600" />}
+                <Calendar className={`w-6 h-6 mb-2 ${type === "event" ? 'text-college-gold' : 'text-gray-400'}`} />
+                <span className={`text-sm font-medium ${type === "event" ? 'text-college-navy dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>Event</span>
+                {type === "event" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-college-gold" />}
               </label>
             </div>
           </section>
 
           {/* Details Form */}
-          <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-4">
+          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
             <div>
               <FormInput
                 label="Title"
@@ -158,7 +167,7 @@ const EditNews = () => {
                 <select
                   value={form.category}
                   onChange={(e) => handleChange("category", e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm appearance-none"
+                  className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none"
                 >
                   <option value="" disabled>Select category</option>
                   <option value="Academic">Academic</option>
@@ -179,7 +188,7 @@ const EditNews = () => {
                       value={form.location}
                       onChange={(e) => handleChange("location", e.target.value)}
                       placeholder="Event Venue"
-                      className="w-full pl-9 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+                      className="w-full pl-9 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm"
                     />
                   </div>
                 </div>
@@ -195,7 +204,7 @@ const EditNews = () => {
                 onChange={(e) => handleChange("description", e.target.value)}
                 rows={6}
                 placeholder="Write the full content description here..."
-                className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm resize-none leading-relaxed"
+                className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm resize-none leading-relaxed"
                 required
               />
             </div>
@@ -204,11 +213,12 @@ const EditNews = () => {
 
         {/* Sidebar Column */}
         <div className="space-y-6">
-          {/* Publish Settings */}
-          <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">Publishing</h3>
-
-
+          {/* Metadata */}
+          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+              <Megaphone className="w-4 h-4 text-college-gold" />
+              Publishing Details
+            </h3>
 
             <div>
               <FormInput
@@ -222,6 +232,22 @@ const EditNews = () => {
 
             {type === "event" && (
               <div>
+                <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1">
+                  Event Date
+                </label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <input
+                    type="date"
+                    value={form.date}
+                    onChange={(e) => handleChange("date", e.target.value)}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 dark:border-college-gold/20 dark:bg-college-navy/50 rounded-xl focus:outline-none focus:border-college-gold transition-all text-sm font-medium text-gray-700 dark:text-white"
+                  />
+                </div>
+              </div>
+            )}
+            {type === "event" && (
+              <div>
                 <FormInput
                   label="Time"
                   type="time"
@@ -230,29 +256,46 @@ const EditNews = () => {
                 />
               </div>
             )}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5 ml-1">
+                Content
+              </label>
+              <textarea
+                value={form.description}
+                onChange={(e) => handleChange("description", e.target.value)}
+                placeholder="Write the full content..."
+                rows="6"
+                className="w-full px-4 py-3 bg-white/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:border-college-gold focus:bg-white dark:focus:bg-college-navy transition-all resize-y text-gray-700 dark:text-white dark:placeholder-gray-500"
+                required
+              />
+            </div>
           </section>
 
-          {/* Image Upload */}
-          <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">Featured Image</h3>
+          {/* Cover Image */}
+          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+              <ImageIcon className="w-4 h-4 text-college-gold" />
+              Cover Image
+            </h3>
 
-            <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors cursor-pointer group">
+            <div className="relative border-2 border-dashed border-gray-200 dark:border-college-gold/30 rounded-xl p-6 hover:bg-gray-50 dark:hover:bg-college-navy/80 transition-colors group">
               <input
                 type="file"
-                className="hidden"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 id="image-upload"
-                onChange={(e) => handleChange("image", e.target.files?.[0])}
               />
               <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center w-full">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-blue-50 dark:bg-college-gold/10 text-blue-600 dark:text-college-gold rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   <Upload className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-gray-700">Click to upload</span>
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Click to replace</span>
                 <span className="text-xs text-gray-400 mt-1">SVG, PNG, JPG (max 2MB)</span>
               </label>
             </div>
             {form.image && (
-              <div className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg text-xs flex items-center gap-2">
+              <div className="bg-blue-50 dark:bg-college-gold/10 text-blue-700 dark:text-college-gold px-3 py-2 rounded-lg text-xs flex items-center gap-2">
                 <ImageIcon className="w-3 h-3" />
                 <span className="truncate">{form.image.name}</span>
               </div>
@@ -263,18 +306,14 @@ const EditNews = () => {
           <div className="flex flex-col gap-3">
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
             >
               <Save size={18} />
               Save Changes
             </button>
-            <button
-              type="button"
-              onClick={() => navigate("/admin/cms/news")}
-              className="w-full px-4 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors"
-            >
+            <PublicButton variant="secondary" onClick={() => navigate("/admin/cms/news")} className="w-full">
               Cancel
-            </button>
+            </PublicButton>
           </div>
         </div>
       </form>

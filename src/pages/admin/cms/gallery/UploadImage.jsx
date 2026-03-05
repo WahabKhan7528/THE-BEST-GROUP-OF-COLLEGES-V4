@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import PublicButton from '../../../../components/shared/PublicButton';
 import { ArrowLeft, Upload, Image as ImageIcon, X, CheckCircle2 } from 'lucide-react';
 
 const UploadImage = () => {
@@ -77,8 +78,8 @@ const UploadImage = () => {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Upload Media</h1>
-          <p className="text-sm text-gray-500">Add new photos to your campus gallery</p>
+          <h1 className="text-2xl font-bold text-college-navy dark:text-white">Upload Media</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Add new photos to your campus gallery</p>
         </div>
       </div>
 
@@ -93,10 +94,10 @@ const UploadImage = () => {
             className={`
               relative aspect-square md:aspect-[4/3] rounded-2xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center cursor-pointer overflow-hidden
               ${isDragging
-                ? 'border-primary-500 bg-primary-50'
+                ? 'border-primary-500 bg-college-navy/5 dark:bg-college-gold/10 dark:border-college-gold'
                 : preview
-                  ? 'border-primary-200 bg-gray-50'
-                  : 'border-gray-300 bg-white hover:border-primary-400 hover:bg-gray-50'
+                  ? 'border-primary-200 bg-gray-50 dark:border-college-gold/50 dark:bg-college-navy/30'
+                  : 'border-gray-300 bg-white hover:border-primary-400 hover:bg-gray-50 dark:border-college-gold/30 dark:bg-college-navy/50 dark:hover:bg-college-navy/80 hover:border-college-gold'
               }
             `}
           >
@@ -126,25 +127,25 @@ const UploadImage = () => {
               </div>
             ) : (
               <div className="text-center p-6 space-y-3">
-                <div className="w-16 h-16 mx-auto bg-primary-50 text-primary-600 rounded-full flex items-center justify-center mb-2">
+                <div className="w-16 h-16 mx-auto bg-college-navy/5 dark:bg-college-gold/10 text-college-gold rounded-full flex items-center justify-center mb-2">
                   <Upload className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">Click or drag image to upload</p>
-                  <p className="text-xs text-gray-500 mt-1">SVG, PNG, JPG (max 5MB)</p>
+                  <p className="text-sm font-semibold text-college-navy dark:text-gray-200">Click or drag image to upload</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">SVG, PNG, JPG (max 5MB)</p>
                 </div>
               </div>
             )}
           </div>
 
           {file && (
-            <div className="flex items-center gap-3 p-3 bg-white/50 border border-white/20 rounded-xl shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center text-primary-600">
+            <div className="flex items-center gap-3 p-3 bg-white/50 dark:bg-college-navy/50 border border-white/20 dark:border-college-gold/20 rounded-xl shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-gold">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">{file.name}</p>
-                <p className="text-xs text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                <p className="text-sm font-medium text-college-navy dark:text-white truncate">{file.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
               </div>
               <CheckCircle2 className="w-5 h-5 text-green-500" />
             </div>
@@ -152,31 +153,31 @@ const UploadImage = () => {
         </div>
 
         {/* Right Column: Details Form */}
-        <div className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-5 h-fit">
-          <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-            <ImageIcon className="w-5 h-5 text-primary-600" />
+        <div className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-5 h-fit">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+            <ImageIcon className="w-5 h-5 text-college-gold" />
             Image Details
           </h2>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Image Title <span className="text-red-500">*</span></label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Image Title <span className="text-red-500">*</span></label>
               <input
                 type="text"
                 value={form.title}
                 onChange={(e) => handleChange("title", e.target.value)}
                 placeholder="e.g. Orientation Ceremony 2025"
-                className="w-full px-4 py-2.5 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Album / Category <span className="text-red-500">*</span></label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Album / Category <span className="text-red-500">*</span></label>
               <select
                 value={form.album}
                 onChange={(e) => handleChange("album", e.target.value)}
-                className="w-full px-4 py-2.5 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none"
+                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all appearance-none dark:text-white"
                 required
               >
                 <option value="" disabled>Select album</option>
@@ -189,29 +190,25 @@ const UploadImage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Tags (Optional)</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Tags (Optional)</label>
               <input
                 type="text"
                 value={form.tags}
                 onChange={(e) => handleChange("tags", e.target.value)}
                 placeholder="e.g. students, auditorium, celebration"
-                className="w-full px-4 py-2.5 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
               />
               <p className="text-xs text-gray-400 mt-1">Comma separated</p>
             </div>
           </div>
 
           <div className="pt-4 flex gap-3">
-            <button
-              type="button"
-              onClick={() => navigate("/admin/cms/gallery")}
-              className="flex-1 px-4 py-2.5 bg-white border border-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors"
-            >
+            <PublicButton variant="secondary" onClick={() => navigate("/admin/cms/gallery")} className="flex-1">
               Cancel
-            </button>
+            </PublicButton>
             <button
               type="submit"
-              className="flex-1 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+              className="flex-1 px-4 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
             >
               Upload Image
             </button>

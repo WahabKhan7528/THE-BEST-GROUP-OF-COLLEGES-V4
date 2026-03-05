@@ -6,9 +6,9 @@ import { BarChart3, TrendingUp, Award, ChevronDown, ChevronRight } from "lucide-
 const getGradeDetails = (marks) => {
   if (marks >= 85) return { grade: "A", qp: 4.0, color: "text-emerald-600 bg-emerald-50" };
   if (marks >= 80) return { grade: "A-", qp: 3.7, color: "text-emerald-600 bg-emerald-50" };
-  if (marks >= 75) return { grade: "B+", qp: 3.3, color: "text-primary-600 bg-primary-50" };
-  if (marks >= 70) return { grade: "B", qp: 3.0, color: "text-primary-600 bg-primary-50" };
-  if (marks >= 65) return { grade: "B-", qp: 2.7, color: "text-primary-600 bg-primary-50" };
+  if (marks >= 75) return { grade: "B+", qp: 3.3, color: "text-college-gold bg-college-navy/5" };
+  if (marks >= 70) return { grade: "B", qp: 3.0, color: "text-college-gold bg-college-navy/5" };
+  if (marks >= 65) return { grade: "B-", qp: 2.7, color: "text-college-gold bg-college-navy/5" };
   if (marks >= 61) return { grade: "C+", qp: 2.3, color: "text-orange-600 bg-orange-50" };
   if (marks >= 58) return { grade: "C", qp: 2.0, color: "text-orange-600 bg-orange-50" };
   if (marks >= 55) return { grade: "C-", qp: 1.7, color: "text-orange-600 bg-orange-50" };
@@ -71,21 +71,21 @@ const StudentResults = () => {
       {/* Header & Filter */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 bg-white p-5 md:p-6 rounded-xl md:rounded-2xl border shadow-sm">
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-900">Academic Results</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-college-navy">Academic Results</h1>
           <p className="text-gray-500 text-xs md:text-sm">Track your GPA and academic performance</p>
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
-          <div className="bg-primary-50 px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl border border-primary-100 flex flex-col items-end">
-            <span className="text-[10px] md:text-xs text-primary-600 font-semibold uppercase tracking-wider">CGPA</span>
-            <span className="text-xl md:text-2xl font-bold text-primary-700 leading-none">{currentCGPA}</span>
+          <div className="bg-college-navy/5 px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl border border-college-navy/10 flex flex-col items-end">
+            <span className="text-[10px] md:text-xs text-college-gold font-semibold uppercase tracking-wider">CGPA</span>
+            <span className="text-xl md:text-2xl font-bold text-college-navy leading-none">{currentCGPA}</span>
           </div>
 
           <div className="relative">
             <select
               value={selectedSemesterId}
               onChange={(e) => setSelectedSemesterId(e.target.value)}
-              className="appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-2 md:py-3 pl-3 md:pl-4 pr-8 md:pr-10 text-sm md:text-base rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-medium cursor-pointer min-w-[120px] md:min-w-[150px]"
+              className="appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-2 md:py-3 pl-3 md:pl-4 pr-8 md:pr-10 text-sm md:text-base rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold font-medium cursor-pointer min-w-[120px] md:min-w-[150px]"
             >
               <option value="all">All Semesters</option>
               {semesters.map(sem => (
@@ -111,20 +111,20 @@ const StudentResults = () => {
                 className="group relative bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Decorative Background */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 group-hover:bg-primary-50/50"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 group-hover:bg-college-navy/5/50"></div>
 
                 <div className="relative z-10">
                   <div className="flex justify-between items-start mb-4 md:mb-6">
-                    <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-xl font-bold ${isCompleted ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400'}`}>
+                    <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-xl font-bold ${isCompleted ? 'bg-college-navy/10 text-college-gold' : 'bg-gray-100 text-gray-400'}`}>
                       {sem.id}
                     </div>
                     <div className="text-right">
                       <span className="text-[10px] md:text-xs text-gray-400 font-semibold uppercase tracking-wider">SGPA</span>
-                      <p className={`text-2xl md:text-3xl font-bold ${isCompleted ? 'text-gray-900' : 'text-gray-400'}`}>{sgpa}</p>
+                      <p className={`text-2xl md:text-3xl font-bold ${isCompleted ? 'text-college-navy' : 'text-gray-400'}`}>{sgpa}</p>
                     </div>
                   </div>
 
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">{sem.name}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-college-navy mb-2 group-hover:text-blue-700 transition-colors">{sem.name}</h3>
 
                   <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-500 mb-4 md:mb-6">
                     <span className="flex items-center gap-1.5 bg-gray-50 px-2 py-1 rounded-lg">
@@ -141,7 +141,7 @@ const StudentResults = () => {
                     <span className={`text-[10px] md:text-xs font-semibold px-2 py-1 rounded-md ${isCompleted ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
                       {isCompleted ? 'Completed' : 'In Progress'}
                     </span>
-                    <div className="flex items-center gap-1 text-xs md:text-sm font-semibold text-primary-600 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    <div className="flex items-center gap-1 text-xs md:text-sm font-semibold text-college-gold opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                       View Results <ChevronRight size={14} className="md:w-4 md:h-4" />
                     </div>
                   </div>
@@ -205,16 +205,16 @@ const StudentResults = () => {
                       const { grade, qp, color } = getGradeDetails(sub.marks);
                       return (
                         <tr key={idx} className="hover:bg-gray-50/50 transition-colors">
-                          <td className="p-4 text-sm font-medium text-gray-900">{sub.code}</td>
+                          <td className="p-4 text-sm font-medium text-college-navy">{sub.code}</td>
                           <td className="p-4 text-sm text-gray-600">{sub.title}</td>
                           <td className="p-4 text-sm text-gray-600 text-center">{sub.credits}</td>
-                          <td className="p-4 text-sm font-medium text-gray-900 text-center">{sub.marks}</td>
+                          <td className="p-4 text-sm font-medium text-college-navy text-center">{sub.marks}</td>
                           <td className="p-4 text-center">
                             <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-bold ${color}`}>
                               {grade}
                             </span>
                           </td>
-                          <td className="p-4 text-sm font-medium text-gray-900 text-center">{(qp * sub.credits).toFixed(1)}</td>
+                          <td className="p-4 text-sm font-medium text-college-navy text-center">{(qp * sub.credits).toFixed(1)}</td>
                         </tr>
                       );
                     })}

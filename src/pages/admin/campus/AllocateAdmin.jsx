@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import Button from "../../../components/shared/Button";
+import PublicButton from "../../../components/shared/PublicButton";
+import { useAdminContext } from "../../../context/AdminContext";
 import { mockAllAdmins } from "../../../data/adminData";
 
 
@@ -136,7 +137,7 @@ const AllocateAdmin = () => {
                 <div className="text-sm text-gray-600">{admin.email}</div>
               </div>
               {currentAllocations[admin.id] && (
-                <span className="text-xs bg-primary-50 text-primary-700 px-3 py-1 rounded-full">
+                <span className="text-xs bg-college-navy/5 text-college-navy px-3 py-1 rounded-full">
                   Currently Allocated
                 </span>
               )}
@@ -155,19 +156,21 @@ const AllocateAdmin = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-4">
-        <Button
+      <div className="flex gap-4 mt-6">
+        <PublicButton
+          variant="primary"
           onClick={handleSave}
-          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+          className="flex-1"
         >
           Save Allocations
-        </Button>
-        <Button
+        </PublicButton>
+        <PublicButton
+          variant="secondary"
           onClick={() => navigate("/admin/campus")}
-          className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold"
+          className="flex-1"
         >
           Cancel
-        </Button>
+        </PublicButton>
       </div>
     </div>
   );

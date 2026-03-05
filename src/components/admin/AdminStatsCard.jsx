@@ -1,21 +1,45 @@
-const AdminStatsCard = ({ title, value, hint, icon: Icon }) => {
+import React from "react";
+
+/**
+ * AdminStatsCard - A refined "Clean Premium" card for the Admin Portal.
+ * 
+ * Aesthetics:
+ * - Strictly college-navy background.
+ * - Solid 1.5px college-gold border for prominence.
+ * - Clean sans-serif typography for maximum readability.
+ * - Professional pill-style hint/trend indicator.
+ * - No pulsing dots or complex lines as requested.
+ */
+const AdminStatsCard = ({ title, value, hint }) => {
   return (
-    <div className="group bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl md:rounded-2xl p-4 md:p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
-      <div className="flex items-start justify-between">
-        <div className="space-y-0.5 md:space-y-1">
-          <p className="text-xs md:text-sm font-medium text-gray-500">{title}</p>
-          <p className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">{value}</p>
-          {hint && <p className="text-xs font-medium text-gray-400">{hint}</p>}
+    <div className="relative overflow-hidden bg-white dark:bg-college-navy border-[1.5px] border-gray-200 dark:border-college-gold/40 rounded-2xl p-6 shadow-xl transition-all duration-300 hover:border-college-gold hover:scale-[1.01]">
+      <div className="flex flex-col gap-4">
+        {/* Title */}
+        <h3 className="text-gray-500 dark:text-college-gold text-xs font-bold uppercase tracking-[0.25em] leading-none opacity-80">
+          {title}
+        </h3>
+
+        {/* Value Area */}
+        <div className="flex items-center justify-between gap-4">
+          <span className="text-4xl font-bold text-college-navy dark:text-white tracking-tight leading-none">
+            {value}
+          </span>
+
+          {/* Hint Pill - Clean design no lines */}
+          {hint && (
+            <div className="px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 dark:bg-college-gold/10 dark:border-college-gold/30">
+              <span className="text-[10px] font-black text-gray-600 dark:text-college-gold uppercase tracking-widest whitespace-nowrap">
+                {hint}
+              </span>
+            </div>
+          )}
         </div>
-        {Icon && (
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-primary-600 flex items-center justify-center text-white shadow-lg shadow-primary-500/20 transform group-hover:scale-110 transition-transform duration-300">
-            <Icon size={18} className="md:w-[22px] md:h-[22px]" strokeWidth={2.5} />
-          </div>
-        )}
       </div>
+
+      {/* Subtle Bottom Accent Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-college-gold/20 to-transparent" />
     </div>
   );
 };
 
 export default AdminStatsCard;
-

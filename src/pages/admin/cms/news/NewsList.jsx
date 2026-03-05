@@ -73,11 +73,11 @@ const NewsList = () => {
       label: "Title & Category",
       render: (row) => (
         <div className="flex items-start gap-3 max-w-sm">
-          <div className={`p-2 rounded-lg ${row.type === 'Event' ? 'bg-primary-50 text-primary-600' : 'bg-white border border-primary-100 text-primary-600'}`}>
+          <div className={`p-2 rounded-lg ${row.type === 'Event' ? 'bg-college-navy/5 text-college-gold' : 'bg-white border border-college-navy/10 text-college-gold'}`}>
             {row.type === 'Event' ? <Calendar className="w-5 h-5" /> : <Newspaper className="w-5 h-5" />}
           </div>
           <div>
-            <span className="font-semibold text-gray-900 line-clamp-2">{row.title}</span>
+            <span className="font-semibold text-college-navy line-clamp-2">{row.title}</span>
             <div className="flex items-center gap-2 mt-0.5">
               <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">{row.category}</span>
               <span className="text-xs text-gray-400 flex items-center gap-1">
@@ -93,8 +93,8 @@ const NewsList = () => {
       label: "Type",
       render: (row) => (
         <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border ${row.type === "Event"
-          ? "bg-primary-50 text-primary-700 border-primary-100"
-          : "bg-white text-primary-700 border-primary-200"
+          ? "bg-college-navy/5 text-college-navy border-college-navy/10"
+          : "bg-white text-college-navy border-primary-200"
           }`}>
           {row.type}
         </span>
@@ -118,7 +118,7 @@ const NewsList = () => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-college-navy">
             News & Events
           </h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -127,7 +127,7 @@ const NewsList = () => {
         </div>
         <Link
           to="/admin/cms/news/create"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
         >
           <Plus className="w-4 h-4" />
           Create Post
@@ -135,17 +135,17 @@ const NewsList = () => {
       </div>
 
       {/* Filters & Search */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-sm">
+      <div className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-4 rounded-2xl shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           {/* Filter Tabs */}
-          <div className="flex p-1 bg-gray-100/80 rounded-xl w-fit">
+          <div className="flex p-1 bg-gray-100/80 dark:bg-college-navy/50 border border-transparent dark:border-college-gold/20 rounded-xl w-fit">
             {["all", "news", "event"].map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 capitalize ${activeFilter === filter
-                  ? "bg-white text-gray-900 shadow-sm"
-                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-200/50"
+                  ? "bg-white text-college-navy shadow-sm dark:bg-college-navy dark:text-white dark:border dark:border-college-gold/30"
+                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-200/50 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-college-navy/80"
                   }`}
               >
                 {filter === "all" ? "All" : filter === "news" ? "News" : "Events"}
@@ -161,7 +161,7 @@ const NewsList = () => {
               placeholder="Search posts..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white dark:placeholder-gray-400"
             />
           </div>
         </div>
@@ -175,7 +175,7 @@ const NewsList = () => {
           {
             label: "Edit",
             onClick: () => navigate(`/admin/cms/news/edit/${row.id}`),
-            className: "text-blue-600 hover:text-blue-700 font-medium bg-blue-50 border border-blue-100",
+            className: "text-emerald-600 hover:text-emerald-700 font-medium bg-emerald-50 border border-emerald-100 dark:bg-emerald-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-emerald-800",
           },
           {
             label: "Delete",
@@ -184,7 +184,7 @@ const NewsList = () => {
                 alert(`Post ${row.id} deleted (mock)`);
               }
             },
-            className: "text-rose-600 hover:text-rose-700 font-medium bg-rose-50 border border-rose-100",
+            className: "text-red-600 hover:text-red-700 font-medium bg-red-50 border border-red-100 dark:bg-red-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-red-800",
           },
         ]}
       />

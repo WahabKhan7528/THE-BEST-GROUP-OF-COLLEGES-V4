@@ -7,6 +7,7 @@ import {
     Users,
     UserPlus,
     Shield,
+    ArrowLeft,
 } from "lucide-react";
 import { mockCampusAdminsData as adminUsers } from "../../../data/adminData";
 
@@ -33,8 +34,8 @@ const CampusAdminsList = () => {
             label: "Admin Details",
             render: (row) => (
                 <div className="flex flex-col">
-                    <span className="font-semibold text-gray-900">{row.name}</span>
-                    <span className="text-xs text-gray-500">{row.email}</span>
+                    <span className="font-semibold text-college-navy dark:text-college-gold">{row.name}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{row.email}</span>
                 </div>
             )
         },
@@ -42,7 +43,9 @@ const CampusAdminsList = () => {
             key: "role",
             label: "Role",
             render: (row) => (
-                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin' ? 'bg-primary-50 text-primary-700' : 'bg-white text-primary-600 border border-primary-100'
+                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin'
+                    ? 'bg-college-navy/5 text-college-navy dark:bg-college-gold/10 dark:text-college-gold'
+                    : 'bg-white text-college-gold border border-college-navy/10 dark:bg-college-navy/50 dark:border-college-gold/20'
                     }`}>
                     {row.role}
                 </span>
@@ -55,7 +58,7 @@ const CampusAdminsList = () => {
         {
             label: "Edit",
             onClick: () => navigate(`/admin/users/edit/${row.id}`),
-            className: "text-blue-600 hover:text-blue-700 font-medium bg-blue-50 border border-blue-100",
+            className: "text-emerald-600 hover:text-emerald-700 font-medium bg-emerald-50 border border-emerald-100 dark:bg-emerald-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-emerald-800",
         },
         {
             label: "Remove",
@@ -64,7 +67,7 @@ const CampusAdminsList = () => {
                     alert("User removed from campus (mock)");
                 }
             },
-            className: "text-rose-600 hover:text-rose-700 font-medium bg-rose-50 border border-rose-100",
+            className: "text-red-600 hover:text-red-700 font-medium bg-red-50 border border-red-100 dark:bg-red-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-red-800",
         }
     ];
 
@@ -78,11 +81,11 @@ const CampusAdminsList = () => {
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                     </Link>
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-                            <Shield className="w-6 h-6 text-blue-600" />
+                        <h1 className="text-2xl font-bold text-college-navy dark:text-white tracking-tight flex items-center gap-2">
+                            <Shield className="w-6 h-6 text-blue-600 dark:text-college-gold" />
                             {campus.name} Admins
                         </h1>
-                        <p className="text-gray-500 text-sm mt-1">
+                        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
                             Manage administrators allocated to this campus
                         </p>
                     </div>
@@ -90,7 +93,7 @@ const CampusAdminsList = () => {
 
                 <Link
                     to="/admin/users/create"
-                    className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-md transition-all text-sm"
+                    className="flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transition-all text-sm"
                 >
                     <UserPlus size={18} />
                     Add New Admin
@@ -98,7 +101,7 @@ const CampusAdminsList = () => {
             </div>
 
             {/* Search */}
-            <div className="bg-white/60 backdrop-blur-md border border-white/60 p-4 rounded-2xl shadow-sm">
+            <div className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-4 rounded-2xl shadow-sm">
                 <div className="relative max-w-md">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
@@ -106,7 +109,7 @@ const CampusAdminsList = () => {
                         placeholder="Search admins..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+                        className="w-full pl-10 pr-4 py-2 bg-white dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white"
                     />
                 </div>
             </div>

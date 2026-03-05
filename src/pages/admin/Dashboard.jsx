@@ -11,10 +11,14 @@ import {
 
 import { useAdminContext } from "../../context/AdminContext";
 import AdminStatsCard from "../../components/admin/AdminStatsCard";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
+import Card from "../../components/public_site/Card";
 
 import {
   mockAllStats,
   adminQuickActions as quickActions,
+  systemMetadata,
 } from "../../data/adminData";
 
 const Dashboard = () => {
@@ -61,29 +65,21 @@ const Dashboard = () => {
   return (
     <div className="space-y-8 pb-10">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-primary-900 tracking-tight">
-            System Dashboard
-          </h1>
-          <p className="text-text-secondary text-sm md:text-base mt-1">
-            Real-time overview of your educational ecosystem
-          </p>
-        </div>
-
-        {/* Context Badge */}
-        <div className="flex items-center gap-3">
-          {(!isSuperAdmin || selectedCampusFilter !== "all") && (
-            <div className="px-4 py-2 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-sm font-semibold shadow-sm flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary-500"></span>
+      <PortalPageHeader
+        badge={
+          (!isSuperAdmin || selectedCampusFilter !== "all") ? (
+            <Badge variant="gold">
+              <span className="relative flex h-2 w-2 mr-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-college-gold opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-college-gold"></span>
               </span>
               {isSuperAdmin ? campusLabel : "Allocated Campuses"}
-            </div>
-          )}
-        </div>
-      </div>
+            </Badge>
+          ) : null
+        }
+        title="Admin Control Center"
+        subtitle="Unified institutional management and system monitoring"
+      />
 
       {/* Main Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
@@ -94,32 +90,33 @@ const Dashboard = () => {
 
       {/* Quick Actions Grid */}
       <div className="space-y-6">
-        <div>
-          <h2 className="text-xl font-bold text-primary-900">Quick Actions</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="text-xl font-serif font-bold text-college-navy dark:text-white">Quick Actions</h2>
+          <div className="h-0.5 flex-1 bg-college-gold/20"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {quickActions.map((action) => (
             <Link
               key={action.title}
               to={action.path}
-              className="flex flex-col items-center text-center gap-4 p-6 rounded-2xl bg-white border border-border shadow-sm hover:shadow-lg hover:border-primary-300 transition-all duration-300 group relative overflow-hidden"
+              className="group relative flex flex-col items-center text-center gap-4 p-6 rounded-2xl bg-college-navy border-[1.5px] border-college-gold/30 shadow-lg hover:shadow-2xl hover:border-college-gold/60 hover:scale-[1.01] transition-all duration-300 overflow-hidden"
             >
               <div
-                className={`p-4 rounded-xl ${action.color} group-hover:scale-110 transition-transform duration-300 relative z-10`}
+                className="p-4 rounded-xl bg-college-gold/10 text-college-gold group-hover:scale-110 transition-transform duration-300 relative z-10"
               >
                 <action.icon size={28} strokeWidth={1.5} />
               </div>
               <div className="relative z-10 space-y-1">
-                <h3 className="font-bold text-primary-900 group-hover:text-primary-600 transition-colors">
+                <h3 className="font-bold text-white group-hover:text-college-gold transition-colors">
                   {action.title}
                 </h3>
-                <p className="text-xs text-text-secondary line-clamp-2">
+                <p className="text-xs text-gray-400 line-clamp-2">
                   {action.desc}
                 </p>
               </div>
 
               {/* Hover Effect Background */}
-              <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0" />
+              <div className="absolute inset-0 bg-college-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0" />
             </Link>
           ))}
         </div>

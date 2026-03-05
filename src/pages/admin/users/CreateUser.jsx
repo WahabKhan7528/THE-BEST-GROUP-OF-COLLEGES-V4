@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PublicButton from "../../../components/shared/PublicButton";
 import FormInput from "../../../components/admin/FormInput";
 import { useAdminContext } from "../../../context/AdminContext";
 import { UserPlus, ArrowLeft, Building2, Shield, User, X } from "lucide-react";
@@ -102,25 +103,25 @@ const CreateUser = () => {
           <ArrowLeft size={20} />
         </button>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Create New User</h1>
-          <p className="text-gray-500 text-sm">Add a new administrator, faculty member, or student</p>
+          <h1 className="text-2xl font-bold text-college-navy dark:text-white tracking-tight">Create New User</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Add a new administrator, faculty member, or student</p>
         </div>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl shadow-sm p-8 space-y-8"
+        className="bg-white/60 dark:bg-college-navy backdrop-blur-md border border-white/60 dark:border-college-gold/20 rounded-2xl shadow-sm p-8 space-y-8"
       >
         {/* Role Selection Section */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-            <Shield size={18} className="text-blue-600" />
+          <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+            <Shield size={18} className="text-blue-600 dark:text-college-gold" />
             <h2>Role & Permissions</h2>
           </div>
 
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Account Type</label>
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Account Type</label>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                 {["Student", "Faculty", "Sub-Admin", "Super Admin"].map((r) => (
                   <button
@@ -131,15 +132,15 @@ const CreateUser = () => {
                       setSelectedCampuses([]);
                     }}
                     className={`px-4 py-3 rounded-xl text-sm font-medium transition-all border ${role === r
-                      ? "bg-blue-50 border-blue-200 text-blue-700 shadow-sm"
-                      : "bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                      ? "bg-blue-50 border-blue-200 text-blue-700 shadow-sm dark:bg-college-gold/10 dark:border-college-gold dark:text-college-gold"
+                      : "bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:text-gray-400 dark:hover:bg-college-navy/80 dark:hover:text-gray-300"
                       }`}
                   >
                     {r}
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 pl-1">
+              <p className="text-xs text-gray-500 dark:text-gray-400 pl-1">
                 {role === "Super Admin" && "Full system access across all campuses"}
                 {role === "Sub-Admin" && "Administrative access restricted to allocated campuses"}
                 {role === "Faculty" && "Access to classes, grading, and materials"}
@@ -151,8 +152,8 @@ const CreateUser = () => {
 
         {/* Basic Info Section */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-            <User size={18} className="text-blue-600" />
+          <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+            <User size={18} className="text-blue-600 dark:text-college-gold" />
             <h2>Personal Identity</h2>
           </div>
 
@@ -191,8 +192,8 @@ const CreateUser = () => {
         {/* Academic / Professional Details */}
         {(role === "Student" || role === "Faculty" || role === "Sub-Admin") && (
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-              <Building2 size={18} className="text-primary-600" />
+            <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+              <Building2 size={18} className="text-college-gold" />
               <h2>{role === "Student" ? "Academic Information" : "Professional Details"}</h2>
             </div>
 
@@ -252,12 +253,12 @@ const CreateUser = () => {
                     placeholder="e.g. PhD, MSCS"
                   />
                   <div className="md:col-span-2 space-y-3">
-                    <label className="text-sm font-medium text-gray-700 flex justify-between items-center">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex justify-between items-center">
                       <span>Course & Class Allocation</span>
                       <button
                         type="button"
                         onClick={addAllocation}
-                        className="text-xs text-blue-600 hover:text-blue-700 font-semibold"
+                        className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold"
                       >
                         + Add Class
                       </button>
@@ -269,7 +270,7 @@ const CreateUser = () => {
                             <input
                               type="text"
                               placeholder="Class / Section (e.g. BSCS-5A)"
-                              className="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500"
+                              className="w-full px-4 py-2 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy/50 text-sm focus:outline-none focus:border-college-gold dark:text-white dark:placeholder-gray-500"
                               value={alloc.class}
                               onChange={(e) => handleAllocationChange(idx, 'class', e.target.value)}
                             />
@@ -278,7 +279,7 @@ const CreateUser = () => {
                             <input
                               type="text"
                               placeholder="Subject (e.g. Operating Systems)"
-                              className="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500"
+                              className="w-full px-4 py-2 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy/50 text-sm focus:outline-none focus:border-college-gold dark:text-white dark:placeholder-gray-500"
                               value={alloc.subject}
                               onChange={(e) => handleAllocationChange(idx, 'subject', e.target.value)}
                             />
@@ -314,13 +315,13 @@ const CreateUser = () => {
         {/* Campus Allocation Section */}
         {showCampusField && (
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-              <Building2 size={18} className="text-primary-600" />
+            <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+              <Building2 size={18} className="text-college-gold" />
               <h2>Campus Allocation</h2>
             </div>
 
-            <div className="bg-gray-50/50 rounded-xl p-4 border border-gray-100">
-              <h3 className="text-sm font-medium text-gray-700 mb-3 block">
+            <div className="bg-gray-50/50 dark:bg-college-navy/50 rounded-xl p-4 border border-gray-100 dark:border-college-gold/20">
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 block">
                 {isSingleCampus ? "Select Primary Campus" : "Select Allocated Campuses"}
               </h3>
 
@@ -331,7 +332,7 @@ const CreateUser = () => {
                     onChange={(e) => {
                       setSelectedCampuses(e.target.value ? [e.target.value] : []);
                     }}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-college-gold/20"
                     required
                   >
                     <option value="">Select a campus...</option>
@@ -348,21 +349,21 @@ const CreateUser = () => {
                     <label
                       key={campus.id}
                       className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${selectedCampuses.includes(campus.id)
-                        ? "bg-blue-50 border-blue-200 shadow-sm"
-                        : "bg-white border-gray-200 hover:bg-gray-50"
+                        ? "bg-blue-50 border-blue-200 shadow-sm dark:bg-college-gold/10 dark:border-college-gold/50"
+                        : "bg-white border-gray-200 hover:bg-gray-50 dark:bg-college-navy dark:border-college-gold/20 dark:hover:bg-college-navy/80"
                         }`}
                     >
                       <input
                         type="checkbox"
                         checked={selectedCampuses.includes(campus.id)}
                         onChange={() => handleCampusToggle(campus.id)}
-                        className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-gray-300"
+                        className="w-4 h-4 text-blue-600 rounded focus:ring-college-gold border-gray-300"
                       />
                       <div className="ml-3">
-                        <span className={`block text-sm font-medium ${selectedCampuses.includes(campus.id) ? "text-blue-900" : "text-gray-700"}`}>
+                        <span className={`block text-sm font-medium ${selectedCampuses.includes(campus.id) ? "text-blue-900 dark:text-college-gold" : "text-gray-700 dark:text-gray-300"}`}>
                           {campus.name}
                         </span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
                           {campus.code}
                         </span>
                       </div>
@@ -376,8 +377,8 @@ const CreateUser = () => {
 
         {/* Security Section */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold pb-2 border-b border-gray-100">
-            <Shield size={18} className="text-slate-600" />
+          <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
+            <Shield size={18} className="text-slate-600 dark:text-college-gold" />
             <h2>Security</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -400,17 +401,13 @@ const CreateUser = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-3 pt-6 border-t border-gray-100">
-          <button
-            type="button"
-            onClick={() => navigate("/admin/users")}
-            className="px-6 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-xl font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
-          >
+        <div className="flex justify-end gap-3 pt-6 border-t border-gray-100 dark:border-college-gold/20">
+          <PublicButton variant="secondary" onClick={() => navigate("/admin/users")}>
             Cancel
-          </button>
+          </PublicButton>
           <button
             type="submit"
-            className="flex items-center gap-2 px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all"
+            className="flex items-center gap-2 px-6 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all"
           >
             <UserPlus size={18} />
             Create User

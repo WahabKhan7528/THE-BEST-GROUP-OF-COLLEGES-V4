@@ -1,5 +1,6 @@
 import PublicButton from "../../../components/shared/PublicButton";
 import GSAPReveal from "../../../components/shared/GSAPReveal";
+import SectionHeader from "../../../components/public_site/SectionHeader";
 
 const societies = [
   {
@@ -43,43 +44,32 @@ const StudentLifePage = () => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Page Header */}
-      <section className="relative overflow-hidden bg-college-navy text-white pt-32 pb-20">
+      <section className="relative overflow-hidden bg-college-navy text-white pt-32 pb-20 rounded-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <GSAPReveal>
-            <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-flex items-center font-bold tracking-wider uppercase rounded transition-all duration-200 px-3 py-1 text-xs bg-college-gold/10 text-college-gold border border-college-gold/30 mb-6">
-                Campus Life
-              </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 uppercase tracking-wider">
-                Vibrant <span className="text-college-gold">Student Life</span>
-              </h1>
-              <p className="text-xl text-white/80 leading-relaxed">
-                Step beyond the classroom and immerse yourself in a world of
-                creativity, leadership, and community.
-              </p>
-            </div>
+            <SectionHeader
+              badge="Campus Life"
+              title={<>Vibrant <span className="text-college-gold">Student Life</span></>}
+              description="Step beyond the classroom and immerse yourself in a world of creativity, leadership, and community."
+              variant="dark"
+              centered
+              className="max-w-4xl mx-auto !mb-0 "
+            />
           </GSAPReveal>
         </div>
       </section>
 
       {/* Societies */}
-      <section className="relative overflow-hidden bg-white text-gray-900 py-12 md:py-16">
+      <section className="relative overflow-hidden bg-white text-college-navy py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <GSAPReveal>
-            <div className="mb-10 text-center">
-              <div className="mb-4 flex justify-center">
-                <span className="inline-flex items-center font-bold tracking-wider uppercase rounded transition-all duration-200 px-3 py-1 text-xs bg-transparent text-college-navy border border-college-navy">
-                  Join the Community
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-college-navy mb-4">
-                Societies & Clubs
-              </h2>
-              <div className="h-1 bg-college-gold mt-6 mb-6 w-24 mx-auto"></div>
-              <p className="text-gray-600 max-w-2xl mx-auto font-sans text-lg">
-                Discover your passions and build lasting friendships through our diverse range of student-led organizations.
-              </p>
-            </div>
+            <SectionHeader
+              badge="Join the Community"
+              title="Societies & Clubs"
+              description="Discover your passions and build lasting friendships through our diverse range of student-led organizations."
+              variant="light"
+              centered
+            />
           </GSAPReveal>
 
           <GSAPReveal stagger={0.15}>
@@ -108,7 +98,7 @@ const StudentLifePage = () => {
       </section>
 
       {/* Campus Highlights */}
-      <section className="relative overflow-hidden bg-college-navy text-white py-24 md:py-32">
+      <section className="relative overflow-hidden bg-college-navy text-white py-24 md:py-32 rounded-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <GSAPReveal x={-50}>
@@ -139,9 +129,9 @@ const StudentLifePage = () => {
                 </div>
                 <PublicButton
                   to="/gallery"
-                  variant="outline"
+                  variant="secondary"
                   size="lg"
-                  className="!border-white !text-white hover:!bg-white hover:!text-college-navy font-bold rounded px-8 py-4"
+                  shape="slanted"
                 >
                   View Gallery
                 </PublicButton>

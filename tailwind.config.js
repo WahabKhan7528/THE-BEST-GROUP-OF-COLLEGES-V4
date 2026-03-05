@@ -1,5 +1,8 @@
+import plugin from 'tailwindcss/plugin';
+
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,jsx}",
@@ -47,6 +50,13 @@ export default {
           navy: '#0b1a2e',
           gold: '#c5a059',
         },
+        // Dark mode surfaces using college-navy shades
+        dark: {
+          base: '#0b1a2e',        // college-navy — main bg
+          surface: '#112240',     // slightly lighter navy — cards, panels
+          elevated: '#1a2f4e',    // even lighter — elevated cards, modals
+          border: 'rgba(197, 160, 89, 0.15)', // gold-tinted border
+        },
       },
       boxShadow: {
         'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -59,5 +69,32 @@ export default {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    // Dark mode base styles using college-navy
+    plugin(function ({ addBase }) {
+      addBase({
+        // Body & HTML dark mode
+        'html.dark': {
+          backgroundColor: '#0b1a2e',
+          color: '#e2e8f0',
+        },
+        'html.dark body': {
+          backgroundColor: '#0b1a2e',
+          color: '#e2e8f0',
+        },
+        // Headings
+        'html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6': {
+          color: '#f1f5f9',
+        },
+        // Inputs, selects, textareas
+        'html.dark input, html.dark select, html.dark textarea': {
+          backgroundColor: '#112240',
+          borderColor: 'rgba(197, 160, 89, 0.15)',
+          color: '#e2e8f0',
+        },
+        'html.dark input::placeholder, html.dark select::placeholder, html.dark textarea::placeholder': {
+          color: '#64748b',
+        },
+      });
+    }),
   ],
 }

@@ -1,5 +1,8 @@
 import PublicButton from "../../../components/shared/PublicButton";
 import GSAPReveal from "../../../components/shared/GSAPReveal";
+import SectionHeader from "../../../components/public_site/SectionHeader";
+import Card from "../../../components/public_site/Card";
+import CampusCta from "../../../components/public_site/CampusCta";
 
 const facilitiesData = [
   {
@@ -70,21 +73,17 @@ const FacilitiesPage = () => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Page Header */}
-      <section className="relative overflow-hidden bg-college-navy text-white pt-32 pb-20">
+      <section className="relative overflow-hidden bg-college-navy text-white pt-32 pb-20 rounded-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <GSAPReveal>
-            <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-flex items-center font-bold tracking-wider uppercase rounded transition-all duration-200 px-3 py-1 text-xs bg-college-gold/10 text-college-gold border border-college-gold/30 mb-6">
-                Facilities
-              </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 uppercase tracking-wider">
-                World-Class <span className="text-college-gold">Facilities</span>
-              </h1>
-              <p className="text-xl text-white/80 leading-relaxed">
-                We provide state-of-the-art infrastructure and services to ensure a
-                conducive environment for both academic and personal growth.
-              </p>
-            </div>
+            <SectionHeader
+              badge="Facilities"
+              title={<>World-Class <span className="text-college-gold">Facilities</span></>}
+              description="We provide state-of-the-art infrastructure and services to ensure a conducive environment for both academic and personal growth."
+              variant="dark"
+              centered
+              className="max-w-4xl mx-auto !mb-0"
+            />
           </GSAPReveal>
         </div>
       </section>
@@ -92,31 +91,22 @@ const FacilitiesPage = () => {
       {facilitiesData.map((category, catIdx) => (
         <section
           key={category.category}
-          className={`relative overflow-hidden ${catIdx % 2 === 0 ? "bg-white text-gray-900" : "bg-gray-50 text-gray-900"} py-12 md:py-16`}
+          className={`relative overflow-hidden ${catIdx % 2 === 0 ? "bg-white text-college-navy" : "bg-gray-50 text-college-navy"} py-12 md:py-16`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <GSAPReveal>
-              <div className="mb-10 text-center">
-                <div className="mb-4 flex justify-center">
-                  <span className="inline-flex items-center font-bold tracking-wider uppercase rounded transition-all duration-200 px-3 py-1 text-xs bg-transparent text-college-navy border border-college-navy">
-                    {category.badge}
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-college-navy mb-4">
-                  {category.category}
-                </h2>
-                <div className="h-1 bg-college-gold mt-6 mb-6 w-24 mx-auto"></div>
-                <p className="text-gray-600 max-w-2xl mx-auto font-sans text-lg">
-                  {category.description}
-                </p>
-              </div>
-            </GSAPReveal>
+            <SectionHeader
+              badge={category.badge}
+              title={category.category}
+              description={category.description}
+              variant="light"
+              centered
+            />
 
             <GSAPReveal stagger={0.2} className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {category.items.map((facility) => (
-                <div
+                <Card
                   key={facility.name}
-                  className="bg-white transition-all duration-300 ease-out h-full overflow-hidden rounded-lg border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer group"
+                  className="group"
                 >
                   <div className="relative h-72 overflow-hidden">
                     <img
@@ -125,51 +115,25 @@ const FacilitiesPage = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-college-navy/60 flex items-end p-8">
-                      <div className="text-white transform transition-transform duration-500 group-hover:-translate-y-2">
-                        <h3 className="text-2xl md:text-3xl font-serif font-bold">{facility.name}</h3>
-                      </div>
-                    </div>
                   </div>
                   <div className="p-8">
+                    <h3 className="text-2xl font-serif font-bold text-college-navy mb-4">{facility.name}</h3>
                     <p className="text-gray-600 text-base leading-relaxed">{facility.description}</p>
                   </div>
-                </div>
+                </Card>
               ))}
             </GSAPReveal>
           </div>
         </section>
       ))}
 
-      {/* CTA */}
-      <section className="relative overflow-hidden bg-college-navy text-white py-20 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <GSAPReveal>
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-white uppercase tracking-wider">
-                Experience It <span className="text-college-gold">Firsthand</span>
-              </h2>
-              <p className="text-lg text-white/80 mb-10 leading-relaxed font-sans">
-                We invite you to visit our campus and see our facilities in person.
-                Our admissions team is ready to show you around.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <PublicButton to="/contact" variant="secondary" size="lg" className="rounded px-8 py-4">
-                  Schedule a Visit
-                </PublicButton>
-                <PublicButton
-                  to="/admissions"
-                  variant="outline"
-                  size="lg"
-                  className="!border-white !text-white hover:!bg-white hover:!text-college-navy font-bold rounded px-8 py-4"
-                >
-                  Apply for Admission
-                </PublicButton>
-              </div>
-            </div>
-          </GSAPReveal>
-        </div>
-      </section>
+      <CampusCta
+        title="Experience It"
+        highlightedWord="Firsthand"
+        description="We invite you to visit our campus and see our facilities in person. Our admissions team is ready to show you around."
+        primaryButton={{ text: "Schedule a Visit", to: "/contact" }}
+        secondaryButton={{ text: "Apply for Admission", to: "/admissions" }}
+      />
     </div>
   );
 };

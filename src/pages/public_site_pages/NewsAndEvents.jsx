@@ -31,7 +31,7 @@ const NewsAndEvents = () => {
           {/* Left Column - Campus News */}
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-serif font-bold text-gray-900">Campus News</h2>
+              <h2 className="text-3xl font-serif font-bold text-college-navy">Campus News</h2>
             </div>
 
             <div className="space-y-8">
@@ -51,7 +51,7 @@ const NewsAndEvents = () => {
 
           {/* Right Column - Upcoming Events */}
           <div className="lg:col-span-1">
-            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8">Upcoming Events</h2>
+            <h2 className="text-3xl font-serif font-bold text-college-navy mb-8">Upcoming Events</h2>
 
             <div className="space-y-6">
               {events.slice(0, 4).map((event) => (

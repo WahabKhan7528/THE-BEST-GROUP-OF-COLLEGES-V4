@@ -7,7 +7,7 @@ const StudentLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex relative overflow-hidden">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-dark-base flex relative overflow-hidden transition-colors duration-300">
 
 
       {/* Mobile Overlay */}

@@ -166,7 +166,7 @@ const Materials = () => {
                 {campusNames[campus]}
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-college-navy">
               Course Material
             </h1>
             <p className="text-gray-500 mt-2 max-w-xl">
@@ -185,7 +185,7 @@ const Materials = () => {
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 break-words">
+                  <h2 className="text-xl font-bold text-college-navy break-words">
                     {subject.name}
                   </h2>
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mt-1 sm:mt-0">
@@ -215,7 +215,7 @@ const Materials = () => {
           <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
             <FolderOpen size={30} className="text-gray-400" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">No materials found</h3>
+          <h3 className="text-lg font-semibold text-college-navy">No materials found</h3>
           <p className="text-gray-500 mt-2 max-w-sm mx-auto">
             No course materials are currently available for {campusNames[campus]}. Please check back later or contact your instructor.
           </p>

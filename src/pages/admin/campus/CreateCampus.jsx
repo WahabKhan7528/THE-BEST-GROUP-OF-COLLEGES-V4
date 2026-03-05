@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAdminContext } from "../../../context/AdminContext";
+import PublicButton from "../../../components/shared/PublicButton";
 import FormInput from "../../../components/admin/FormInput";
 
 
@@ -51,8 +52,8 @@ const CreateCampus = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-5 md:p-8 rounded-lg md:rounded-xl shadow-md">
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6">
+    <div className="max-w-2xl mx-auto bg-white dark:bg-college-navy border border-transparent dark:border-college-gold/20 p-5 md:p-8 rounded-lg md:rounded-xl shadow-md">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4 md:mb-6">
         Create New Campus
       </h1>
 
@@ -104,7 +105,7 @@ const CreateCampus = () => {
         />
 
         <div>
-          <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-xs md:text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
             Description
           </label>
           <textarea
@@ -113,24 +114,20 @@ const CreateCampus = () => {
             value={formData.description}
             onChange={handleChange}
             rows="4"
-            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border border-gray-300 dark:border-college-gold/20 dark:bg-college-navy/50 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-college-gold"
           />
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
           <button
             type="submit"
-            className="flex-1 px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base rounded-lg md:rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-md transition-all duration-200"
+            className="flex-1 px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base rounded-lg md:rounded-xl bg-college-navy hover:bg-college-navy/90 text-white font-semibold shadow-md transition-all duration-200"
           >
             Create Campus
           </button>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className="flex-1 px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base rounded-lg md:rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 font-semibold transition-all duration-200"
-          >
+          <PublicButton variant="secondary" onClick={handleCancel} className="flex-1">
             Cancel
-          </button>
+          </PublicButton>
         </div>
       </form>
     </div>

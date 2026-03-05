@@ -63,12 +63,12 @@ const CampusManagement = () => {
     {
       label: "Admins",
       onClick: () => handleManageAdmins(row),
-      className: "text-blue-600 hover:text-blue-700 font-medium bg-blue-50 border border-blue-100",
+      className: "text-purple-600 hover:text-purple-700 font-medium bg-purple-50 border border-purple-100 dark:bg-purple-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-purple-800",
     },
     {
       label: "Edit",
       onClick: () => handleEdit(row),
-      className: "text-cyan-600 hover:text-cyan-700 font-medium bg-cyan-50 border border-cyan-100",
+      className: "text-emerald-600 hover:text-emerald-700 font-medium bg-emerald-50 border border-emerald-100 dark:bg-emerald-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-emerald-800",
     },
     {
       label: "Delete",
@@ -77,7 +77,7 @@ const CampusManagement = () => {
           alert("Delete functionality will be connected to backend");
         }
       },
-      className: "text-red-600 hover:text-red-700 font-medium bg-red-50 border border-red-100",
+      className: "text-red-600 hover:text-red-700 font-medium bg-red-50 border border-red-100 dark:bg-red-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-red-800",
     },
   ];
 
@@ -86,15 +86,15 @@ const CampusManagement = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Campus Management</h1>
-          <p className="text-gray-500 mt-2 flex items-center gap-2">
+          <h1 className="text-3xl font-serif font-bold text-college-navy dark:text-white tracking-tight">Campus Management</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-2">
             Manage your educational centers and administrative allocation
           </p>
         </div>
 
         <button
           onClick={handleAddCampus}
-          className="flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
+          className="flex items-center gap-2 px-6 py-3 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
         >
           <Plus size={20} />
           Add New Campus
@@ -103,33 +103,33 @@ const CampusManagement = () => {
 
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-6 shadow-sm flex items-center gap-5">
-          <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center text-primary-600 shadow-sm">
+        <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-2xl p-6 shadow-sm flex items-center gap-5 transition-all duration-300">
+          <div className="w-14 h-14 rounded-xl bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-navy dark:text-college-gold shadow-sm">
             <School size={28} />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500">Total Campuses</p>
-            <p className="text-3xl font-bold text-gray-900">{campuses.length}</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Campuses</p>
+            <p className="text-3xl font-bold text-college-navy dark:text-white">{campuses.length}</p>
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-6 shadow-sm flex items-center gap-5">
-          <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center text-primary-600 shadow-sm">
+        <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-2xl p-6 shadow-sm flex items-center gap-5 transition-all duration-300">
+          <div className="w-14 h-14 rounded-xl bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-navy dark:text-college-gold shadow-sm">
             <Building2 size={28} />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500">Active Departments</p>
-            <p className="text-3xl font-bold text-gray-900">12</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Active Departments</p>
+            <p className="text-3xl font-bold text-college-navy dark:text-white">12</p>
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-6 shadow-sm flex items-center gap-5 ">
-          <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center text-primary-600 shadow-sm">
+        <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-2xl p-6 shadow-sm flex items-center gap-5 transition-all duration-300">
+          <div className="w-14 h-14 rounded-xl bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-navy dark:text-college-gold shadow-sm">
             <MapPin size={28} />
           </div>
-          <div >
-            <p className="text-sm font-medium text-gray-500">Total Locations</p>
-            <p className="text-3xl font-bold text-gray-900">{campuses.length}</p>
+          <div>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Locations</p>
+            <p className="text-3xl font-bold text-college-navy dark:text-white">{campuses.length}</p>
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@ const CampusManagement = () => {
           placeholder="Search campuses by name, code, or location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-11 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm text-gray-700"
+          className="w-full pl-11 pr-4 py-3.5 bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all shadow-sm text-college-navy dark:text-white"
         />
       </div>
 
@@ -156,10 +156,10 @@ const CampusManagement = () => {
           actionButtons={actionButtons}
         />
       ) : (
-        <div className="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-          <School className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900">No campuses found</h3>
-          <p className="text-gray-500">Try adjusting your search or add a new campus.</p>
+        <div className="text-center py-12 bg-white dark:bg-college-navy rounded-2xl border-2 border-dashed border-gray-200 dark:border-college-gold/20 transition-all duration-300">
+          <School className="w-12 h-12 text-college-navy/30 dark:text-college-gold/30 mx-auto mb-3" />
+          <h3 className="text-lg font-medium text-college-navy dark:text-white">No campuses found</h3>
+          <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or add a new campus.</p>
         </div>
       )}
     </div>

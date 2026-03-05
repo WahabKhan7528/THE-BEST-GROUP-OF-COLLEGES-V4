@@ -15,7 +15,7 @@ export default function CampusCta({
     return (
         <section
             className={clsx(
-                "relative overflow-hidden bg-college-navy text-white text-center py-16 md:py-20 flex items-center justify-center",
+                "relative overflow-hidden bg-college-navy text-white text-center py-16 md:py-20 flex items-center justify-center rounded-xl",
                 className
             )}
         >

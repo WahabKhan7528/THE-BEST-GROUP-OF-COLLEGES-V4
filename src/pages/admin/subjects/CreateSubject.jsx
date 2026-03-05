@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { useNavigate, Link } from "react-router-dom";
+import PublicButton from "../../../components/shared/PublicButton";
 import {
   BookOpen,
   Hash,
@@ -63,22 +64,22 @@ const CreateSubject = () => {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Create New Subject</h1>
-          <p className="text-sm text-gray-500">Add a new subject to the curriculum and assign to campuses</p>
+          <h1 className="text-2xl font-bold text-college-navy dark:text-white">Create New Subject</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Add a new subject to the curriculum and assign to campuses</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Subject Details Section */}
-        <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-6">
+        <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2">
-            <BookOpen className="w-5 h-5 text-blue-600" />
-            <h2 className="text-lg font-semibold text-gray-800">Subject Details</h2>
+            <BookOpen className="w-5 h-5 text-blue-600 dark:text-college-gold" />
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Subject Details</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Subject Name <span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -88,14 +89,14 @@ const CreateSubject = () => {
                   value={form.name}
                   onChange={(e) => handleChange("name", e.target.value)}
                   placeholder="e.g. Operating Systems"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Subject Code <span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -105,14 +106,14 @@ const CreateSubject = () => {
                   value={form.code}
                   onChange={(e) => handleChange("code", e.target.value)}
                   placeholder="e.g. CS-312"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all font-mono dark:text-white dark:placeholder-gray-500"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Target Class
               </label>
               <div className="relative">
@@ -122,13 +123,13 @@ const CreateSubject = () => {
                   value={form.class}
                   onChange={(e) => handleChange("class", e.target.value)}
                   placeholder="e.g. BSCS - 3rd Semester"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
                 />
               </div>
             </div>
 
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Assign Faculty
               </label>
               <div className="relative">
@@ -138,7 +139,7 @@ const CreateSubject = () => {
                   value={form.faculty}
                   onChange={(e) => handleChange("faculty", e.target.value)}
                   placeholder="e.g. Prof. Ahmed Raza"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
                 />
               </div>
             </div>
@@ -146,14 +147,14 @@ const CreateSubject = () => {
         </section>
 
         {/* Campus Availability Section */}
-        <section className="bg-white/80 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-sm space-y-4">
+        <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center gap-2 mb-2">
-            <Building2 className="w-5 h-5 text-primary-600" />
-            <h2 className="text-lg font-semibold text-gray-800">Campus Availability</h2>
+            <Building2 className="w-5 h-5 text-college-gold" />
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Campus Availability</h2>
           </div>
 
           <div className="space-y-4">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Select the campuses where this subject will be offered <span className="text-red-500">*</span>
             </p>
 
@@ -166,8 +167,8 @@ const CreateSubject = () => {
                     className={`
                       relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                       ${isSelected
-                        ? 'border-blue-600 bg-blue-50'
-                        : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50'
+                        ? 'border-blue-600 bg-blue-50 dark:bg-college-gold/10 dark:border-college-gold'
+                        : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80 hover:border-college-gold/50'
                       }
                     `}
                   >
@@ -177,8 +178,8 @@ const CreateSubject = () => {
                       onChange={() => handleCampusToggle(campus.id)}
                       className="sr-only"
                     />
-                    <Building2 className={`w-6 h-6 mb-2 ${isSelected ? 'text-blue-600' : 'text-gray-400'}`} />
-                    <span className={`text-sm font-medium text-center ${isSelected ? 'text-blue-700' : 'text-gray-600'}`}>
+                    <Building2 className={`w-6 h-6 mb-2 ${isSelected ? 'text-blue-600 dark:text-college-gold' : 'text-gray-400'}`} />
+                    <span className={`text-sm font-medium text-center ${isSelected ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-300'}`}>
                       {campus.name}
                     </span>
                     {isSelected && (
@@ -195,16 +196,12 @@ const CreateSubject = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center justify-end gap-4 pt-4">
-          <button
-            type="button"
-            onClick={() => navigate("/admin/subjects")}
-            className="px-6 py-2.5 text-gray-700 font-medium hover:bg-gray-100 rounded-xl transition-colors"
-          >
+          <PublicButton variant="secondary" onClick={() => navigate("/admin/subjects")}>
             Cancel
-          </button>
+          </PublicButton>
           <button
             type="submit"
-            className="px-8 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+            className="px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
           >
             Create Subject
           </button>

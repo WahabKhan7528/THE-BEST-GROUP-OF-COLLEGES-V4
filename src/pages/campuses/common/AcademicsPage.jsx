@@ -5,6 +5,7 @@ import SectionHeader from "../../../components/public_site/SectionHeader";
 
 import { programsData } from "../../../data/programsData";
 import ProgramCard from "../../../components/public_site/ProgramCard";
+import CampusCta from "../../../components/public_site/CampusCta";
 
 const AcademicsPage = () => {
   const location = useLocation();
@@ -17,21 +18,17 @@ const AcademicsPage = () => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Page Header / Modern Hero-like section without image */}
-      <section className="relative overflow-hidden bg-college-navy text-white pt-32 pb-20">
+      <section className="relative overflow-hidden bg-college-navy text-white pt-32 pb-20 rounded-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <GSAPReveal>
-            <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-flex items-center font-bold tracking-wider uppercase rounded transition-all duration-200 px-3 py-1 text-xs bg-college-gold/10 text-college-gold border border-college-gold/30 mb-6">
-                Academics
-              </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 uppercase tracking-wider">
-                Academic <span className="text-college-gold">Programs</span>
-              </h1>
-              <p className="text-xl text-white/80 leading-relaxed">
-                Discover our comprehensive range of programs at {campusLabel}, designed to empower
-                the next generation of leaders and professionals.
-              </p>
-            </div>
+            <SectionHeader
+              badge="Academics"
+              title={<>Academic <span className="text-college-gold">Programs</span></>}
+              description={`Discover our comprehensive range of programs at ${campusLabel}, designed to empower the next generation of leaders and professionals.`}
+              variant="dark"
+              centered
+              className="max-w-4xl mx-auto !mb-0"
+            />
           </GSAPReveal>
         </div>
       </section>
@@ -39,7 +36,7 @@ const AcademicsPage = () => {
       {campusData.map((category, idx) => (
         <section
           key={category.category}
-          className={`relative overflow-hidden ${idx % 2 === 0 ? "bg-white text-gray-900" : "bg-gray-50 text-gray-900"} py-12 md:py-16`}
+          className={`relative overflow-hidden ${idx % 2 === 0 ? "bg-white text-college-navy" : "bg-gray-50 text-college-navy"} py-12 md:py-16`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <GSAPReveal>
@@ -65,36 +62,13 @@ const AcademicsPage = () => {
         </section>
       ))}
 
-      {/* CTA */}
-      <section className="relative overflow-hidden bg-college-navy text-white py-20 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <GSAPReveal>
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-white uppercase tracking-wider">
-                Start Your <span className="text-college-gold">Journey</span>
-              </h2>
-              <p className="text-lg text-white/80 mb-10 leading-relaxed font-sans">
-                Take the first step towards a bright future. Explore our admission requirements
-                and apply today for the upcoming academic session.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <PublicButton to="/admissions" variant="secondary" size="lg" shape="slanted">
-                  Apply Online
-                </PublicButton>
-                <PublicButton
-                  to="/contact"
-                  variant="outline"
-                  size="lg"
-                  shape="slanted"
-                  className='border-2 border-white/10'
-                >
-                  Request Information
-                </PublicButton>
-              </div>
-            </div>
-          </GSAPReveal>
-        </div>
-      </section>
+      <CampusCta
+        title="Start Your"
+        highlightedWord="Journey"
+        description="Take the first step towards a bright future. Explore our admission requirements and apply today for the upcoming academic session."
+        primaryButton={{ text: "Apply Online", to: "/admissions" }}
+        secondaryButton={{ text: "Request Information", to: "/contact" }}
+      />
     </div>
   );
 };

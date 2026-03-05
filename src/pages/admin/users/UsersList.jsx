@@ -9,6 +9,7 @@ import {
   Users,
   UserPlus,
   Shield,
+  Building2,
 } from "lucide-react";
 import { mockUsersData as adminUsers } from "../../../data/adminData";
 
@@ -68,7 +69,7 @@ const UsersList = () => {
       label: "User Details",
       render: (row) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-gray-900">{row.name}</span>
+          <span className="font-semibold text-college-navy">{row.name}</span>
           <span className="text-xs text-gray-500">{row.email}</span>
         </div>
       )
@@ -77,9 +78,9 @@ const UsersList = () => {
       key: "role",
       label: "Role",
       render: (row) => (
-        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin' ? 'bg-primary-100 text-primary-800' :
-          row.role === 'Sub-Admin' ? 'bg-primary-50 text-primary-700' :
-            row.role === 'Faculty' ? 'bg-white border border-primary-200 text-primary-700' :
+        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin' ? 'bg-college-navy/10 text-primary-800' :
+          row.role === 'Sub-Admin' ? 'bg-college-navy/5 text-college-navy' :
+            row.role === 'Faculty' ? 'bg-white border border-primary-200 text-college-navy' :
               'bg-slate-50 text-slate-700'
           }`}>
           {row.role}
@@ -103,12 +104,12 @@ const UsersList = () => {
     {
       label: "Edit",
       onClick: () => navigate(`/admin/users/edit/${row.id}`),
-      className: "text-blue-600 hover:text-blue-700 font-medium bg-blue-50 border border-blue-100",
+      className: "text-emerald-600 hover:text-emerald-700 font-medium bg-emerald-50 border border-emerald-100 dark:bg-emerald-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-emerald-800",
     },
     {
       label: "Disable",
       onClick: () => alert("Disable user"),
-      className: "text-rose-600 hover:text-rose-700 font-medium bg-rose-50 border border-rose-100",
+      className: "text-red-600 hover:text-red-700 font-medium bg-red-50 border border-red-100 dark:bg-red-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-red-800",
     }
   ];
 
@@ -116,15 +117,15 @@ const UsersList = () => {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">User Management</h1>
-          <p className="text-gray-500 mt-2 flex items-center gap-2">
+          <h1 className="text-3xl font-bold text-college-navy dark:text-white tracking-tight">User Management</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-2">
             Control access and manage roles across your educational network
           </p>
         </div>
 
         <Link
           to="/admin/users/create"
-          className="flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+          className="flex items-center gap-2 px-6 py-3 bg-college-navy dark:bg-college-navy border border-transparent dark:border-college-gold/30 hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
         >
           <UserPlus size={20} />
           Create New User
@@ -132,8 +133,8 @@ const UsersList = () => {
       </div>
 
       {/* Filters Section */}
-      <div className="bg-white/60 backdrop-blur-md border border-white/60 p-6 rounded-2xl shadow-sm space-y-6">
-        <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+      <div className="bg-white/60 dark:bg-college-navy backdrop-blur-md border border-white/60 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6 transition-all duration-300">
+        <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
           <Filter size={16} />
           <span>Filters & Search</span>
         </div>
@@ -149,7 +150,7 @@ const UsersList = () => {
               placeholder="Search by name, email, or ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+              className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-dark-surface border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white"
             />
           </div>
 
@@ -161,7 +162,7 @@ const UsersList = () => {
             <select
               value={selectedRole}
               onChange={(e) => setSelectedRole(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm appearance-none"
+              className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-dark-surface border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
             >
               <option value="">All Roles</option>
               <option value="Super Admin">Super Admin</option>
@@ -180,7 +181,7 @@ const UsersList = () => {
               <select
                 value={selectedCampus}
                 onChange={(e) => setSelectedCampus(e.target.value)}
-                className="w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm appearance-none"
+                className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-dark-surface border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
               >
                 <option value="">All Campuses</option>
                 {campuses.map((campus) => (
@@ -194,21 +195,21 @@ const UsersList = () => {
         </div>
 
         {/* Active Filters Summary */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-college-gold/10">
+          <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
             Active View
           </p>
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">
+            <span className="px-3 py-1 bg-gray-100 dark:bg-college-gold/10 text-gray-700 dark:text-college-gold rounded-full text-xs font-semibold">
               {filteredData.length} Users Found
             </span>
             {selectedRole && (
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold flex items-center gap-1">
+              <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-xs font-semibold flex items-center gap-1">
                 {selectedRole}
               </span>
             )}
             {selectedCampus && (
-              <span className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-semibold flex items-center gap-1">
+              <span className="px-3 py-1 bg-college-navy/5 dark:bg-college-gold/10 text-college-navy dark:text-college-gold rounded-full text-xs font-semibold flex items-center gap-1">
                 {campuses.find((c) => c.id === selectedCampus)?.name}
               </span>
             )}
@@ -224,16 +225,16 @@ const UsersList = () => {
           actionButtons={actionButtons}
         />
       ) : (
-        <div className="bg-white/50 backdrop-blur rounded-2xl border border-dashed border-gray-300 p-12 text-center">
-          <Users className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500 font-medium">No users match your criteria.</p>
+        <div className="bg-white/50 dark:bg-college-navy backdrop-blur rounded-2xl border border-dashed border-gray-300 dark:border-college-gold/20 p-12 text-center transition-all duration-300">
+          <Users className="w-12 h-12 text-gray-300 dark:text-college-gold/30 mx-auto mb-3" />
+          <p className="text-gray-500 dark:text-gray-400 font-medium">No users match your criteria.</p>
           <button
             onClick={() => {
               setSearchTerm("");
               setSelectedRole("");
               setSelectedCampus("");
             }}
-            className="mt-4 text-blue-600 hover:text-blue-700 font-semibold text-sm"
+            className="mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 font-semibold text-sm"
           >
             Clear all filters
           </button>

@@ -95,14 +95,14 @@ const Assignments = () => {
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-2">
-              <span className="px-2 md:px-3 py-1 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] md:text-xs font-semibold uppercase tracking-wide">
+              <span className="px-2 md:px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-[10px] md:text-xs font-semibold uppercase tracking-wide">
                 Faculty Portal
               </span>
-              <span className="px-2 md:px-3 py-1 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] md:text-xs font-semibold uppercase tracking-wide">
+              <span className="px-2 md:px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-[10px] md:text-xs font-semibold uppercase tracking-wide">
                 {campusNames[campus]}
               </span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <h1 className="text-2xl md:text-3xl font-bold text-college-navy">
               Assignments
             </h1>
             <p className="text-gray-500 text-sm md:text-base mt-2 max-w-xl">
@@ -111,7 +111,7 @@ const Assignments = () => {
           </div>
           <Link
             to="/faculty/assignments/create"
-            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-college-navy hover:bg-college-navy/90 text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200"
           >
             <PlusCircle size={20} />
             Create Assignment
@@ -126,7 +126,7 @@ const Assignments = () => {
           <input
             type="text"
             placeholder="Search assignments..."
-            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all outline-none"
+            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all outline-none"
           />
         </div>
         <button className="flex items-center gap-2 px-4 py-3 bg-white/50 border border-gray-200 rounded-xl text-gray-700 font-medium hover:bg-white transition-colors">
@@ -149,16 +149,16 @@ const Assignments = () => {
         </div>
       ) : (
         <div className="bg-white/60 backdrop-blur-sm border border-dashed border-gray-300 rounded-3xl p-12 text-center">
-          <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-college-navy/5 rounded-full flex items-center justify-center mx-auto mb-4">
             <BookOpen size={30} className="text-primary-400" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">No assignments found</h3>
+          <h3 className="text-lg font-semibold text-college-navy">No assignments found</h3>
           <p className="text-gray-500 mt-2 mb-6 max-w-sm mx-auto">
             You haven't created any assignments for {campusNames[campus]} yet. Get started by creating your first assignment.
           </p>
           <Link
             to="/faculty/assignments/create"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-900 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-college-navy rounded-xl font-semibold hover:bg-gray-50 transition-colors"
           >
             <PlusCircle size={18} />
             Create Assignment

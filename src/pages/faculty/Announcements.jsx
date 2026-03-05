@@ -92,7 +92,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl md:rounded-2xl shadow-xl w-full max-w-lg p-5 md:p-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg md:text-xl font-bold text-gray-900">New Announcement</h2>
+          <h2 className="text-lg md:text-xl font-bold text-college-navy">New Announcement</h2>
           <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-full transition-colors">
             <X size={18} className="md:w-5 md:h-5 text-gray-500" />
           </button>
@@ -103,7 +103,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
             <input
               type="text"
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
+              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-gold outline-none"
               placeholder="e.g. Quiz on Monday"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -114,7 +114,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
             <textarea
               rows={4}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-gold outline-none resize-none"
               placeholder="Details about the announcement..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -125,10 +125,10 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Target Classes</label>
             <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto">
               {classes.map(cls => (
-                <label key={cls.id} className={`flex items-center p-2 rounded-lg border cursor-pointer transition-all ${selectedClasses.includes(cls.id) ? 'bg-primary-50 border-primary-200' : 'hover:bg-gray-50 border-gray-200'}`}>
+                <label key={cls.id} className={`flex items-center p-2 rounded-lg border cursor-pointer transition-all ${selectedClasses.includes(cls.id) ? 'bg-college-navy/5 border-primary-200' : 'hover:bg-gray-50 border-gray-200'}`}>
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-primary-600 rounded"
+                    className="w-4 h-4 text-college-gold rounded"
                     checked={selectedClasses.includes(cls.id)}
                     onChange={() => toggleClass(cls.id)}
                   />
@@ -142,7 +142,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
 
           <div className="flex justify-end gap-2 pt-2">
             <button type="button" onClick={onClose} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Cancel</button>
-            <button type="submit" className="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl shadow-sm">Post</button>
+            <button type="submit" className="px-6 py-2 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-sm">Post</button>
           </div>
         </form>
       </div>
@@ -190,16 +190,16 @@ const Announcements = () => {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500">Announcements</p>
-            <h1 className="text-2xl font-semibold text-gray-900">
+            <h1 className="text-2xl font-semibold text-college-navy">
               Class updates
             </h1>
-            <p className="text-sm text-primary-600 mt-2">
+            <p className="text-sm text-college-gold mt-2">
               📍 {campusNames[campus]}
             </p>
           </div>
           <button
             onClick={() => setIsPosting(true)}
-            className="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-primary-600 text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold hover:bg-primary-700 transition-all shadow-md hover:shadow-lg"
+            className="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-college-navy text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold hover:bg-college-navy/90 transition-all shadow-md hover:shadow-lg"
           >
             <Plus size={16} className="md:w-[18px] md:h-[18px]" />
             Post Announcement
@@ -231,7 +231,7 @@ const Announcements = () => {
           </p>
           <button
             onClick={() => setIsPosting(true)}
-            className="text-primary-700 font-semibold hover:text-primary-800 mt-2"
+            className="text-college-navy font-semibold hover:text-primary-800 mt-2"
           >
             Post the first announcement →
           </button>

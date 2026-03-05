@@ -46,23 +46,23 @@ const Dashboard = () => {
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <p className="text-sm font-semibold text-primary-600 tracking-wide uppercase">
+              <p className="text-sm font-semibold text-college-gold tracking-wide uppercase">
                 Faculty Dashboard
               </p>
-              <h1 className="text-2xl md:text-4xl font-bold text-primary-900 mt-2 mb-4">
+              <h1 className="text-2xl md:text-4xl font-bold text-college-navy mt-2 mb-4">
                 Welcome, {currentFaculty.name}
               </h1>
               <div className="flex flex-wrap gap-3 text-sm">
-                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 font-medium">
+                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy font-medium">
                   📍 {campusNames[campus]}
                 </span>
                 <span className="px-3 py-1.5 rounded-full bg-white border border-border text-text-secondary font-medium shadow-sm">
                   {currentFaculty.department}
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 font-medium">
+                <span className="px-3 py-1.5 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy font-medium">
                   {classes.length} active classes
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 font-medium">
+                <span className="px-3 py-1.5 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy font-medium">
                   {currentFaculty.designation}
                 </span>
               </div>
@@ -70,7 +70,7 @@ const Dashboard = () => {
                 <p className="text-sm text-text-secondary mt-4 flex items-center gap-2">
                   <BookOpen size={16} className="text-primary-500" />
                   Teaching:{" "}
-                  <span className="text-primary-900 font-medium">
+                  <span className="text-college-navy font-medium">
                     {classes.map((cls) => cls.name).join(", ")}
                   </span>
                 </p>
@@ -82,7 +82,7 @@ const Dashboard = () => {
                   Total Students
                 </p>
                 <div className="flex items-baseline justify-start md:justify-end gap-2">
-                  <span className="text-3xl md:text-4xl font-bold text-primary-900">
+                  <span className="text-3xl md:text-4xl font-bold text-college-navy">
                     {totalStudents}
                   </span>
                   <span className="text-sm text-green-600 font-medium">
@@ -110,7 +110,7 @@ const Dashboard = () => {
               >
                 <Icon size={24} />
               </div>
-              <h3 className="text-lg font-bold text-primary-900 mb-1 group-hover:text-primary-600 transition-colors">
+              <h3 className="text-lg font-bold text-college-navy mb-1 group-hover:text-college-gold transition-colors">
                 {action.title}
               </h3>
               <div className="flex items-center text-sm text-text-secondary font-medium">
@@ -129,7 +129,7 @@ const Dashboard = () => {
       <section className="bg-white border border-border rounded-3xl shadow-sm p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
-            <h2 className="text-xl font-bold text-primary-900">
+            <h2 className="text-xl font-bold text-college-navy">
               Recent Announcements
             </h2>
             <p className="text-sm text-text-secondary mt-1">
@@ -138,7 +138,7 @@ const Dashboard = () => {
           </div>
           <Link
             to="/faculty/announcements"
-            className="flex items-center justify-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 hover:bg-primary-50 px-4 py-2 rounded-xl transition-all border border-transparent hover:border-primary-100"
+            className="flex items-center justify-center gap-2 text-sm font-semibold text-college-gold hover:text-college-navy hover:bg-college-navy/5 px-4 py-2 rounded-xl transition-all border border-transparent hover:border-college-navy/10"
           >
             View All
             <ArrowRight size={16} />
@@ -149,14 +149,14 @@ const Dashboard = () => {
           {recentAnnouncements.map((item, idx) => (
             <div
               key={idx}
-              className="group relative bg-primary-50/50 border border-primary-100/50 rounded-2xl p-5 hover:bg-white hover:border-primary-200 hover:shadow-md transition-all duration-300"
+              className="group relative bg-college-navy/5/50 border border-college-navy/10/50 rounded-2xl p-5 hover:bg-white hover:border-primary-200 hover:shadow-md transition-all duration-300"
             >
               <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-college-navy/10 text-college-gold flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                   <Megaphone size={18} />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-primary-900 leading-tight mb-2 line-clamp-2">
+                  <h3 className="text-sm font-bold text-college-navy leading-tight mb-2 line-clamp-2">
                     {item.title}
                   </h3>
                   <p className="text-xs text-text-secondary font-medium flex items-center gap-1">
@@ -168,7 +168,7 @@ const Dashboard = () => {
             </div>
           ))}
 
-          <button className="flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-dashed border-border text-sm font-medium text-text-secondary hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 min-h-[100px]">
+          <button className="flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-dashed border-border text-sm font-medium text-text-secondary hover:border-primary-300 hover:text-college-gold hover:bg-college-navy/5 transition-all duration-300 min-h-[100px]">
             <PlusCircle size={24} className="opacity-50" />
             <span>Create New Announcement</span>
           </button>

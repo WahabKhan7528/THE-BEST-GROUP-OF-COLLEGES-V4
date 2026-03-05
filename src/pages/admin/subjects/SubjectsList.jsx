@@ -57,11 +57,11 @@ const SubjectsList = () => {
       label: "Subject",
       render: (row) => (
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center text-primary-600">
+          <div className="w-10 h-10 rounded-lg bg-college-navy/5 flex items-center justify-center text-college-gold">
             <BookOpen className="w-5 h-5" />
           </div>
           <div>
-            <span className="font-semibold text-gray-900 block">{row.name}</span>
+            <span className="font-semibold text-college-navy block">{row.name}</span>
             <span className="text-xs text-gray-500">{row.class}</span>
           </div>
         </div>
@@ -82,7 +82,7 @@ const SubjectsList = () => {
       label: "Faculty",
       render: (row) => (
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white shadow-sm">
+          <div className="w-8 h-8 rounded-full bg-college-navy flex items-center justify-center text-white text-xs font-bold ring-2 ring-white shadow-sm">
             {row.faculty.charAt(0)}
           </div>
           <span className="text-sm font-medium text-gray-700">{row.faculty}</span>
@@ -97,7 +97,7 @@ const SubjectsList = () => {
           {row.offeredAt.map((campusId) => (
             <span
               key={campusId}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-college-navy/5 text-college-navy border border-college-navy/10"
             >
               <Building2 className="w-3 h-3" />
               {getCampusName(campusId)}
@@ -113,7 +113,7 @@ const SubjectsList = () => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-college-navy">
             Subjects & Assignments
           </h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -122,7 +122,7 @@ const SubjectsList = () => {
         </div>
         <Link
           to="/admin/subjects/create"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
         >
           <Plus className="w-4 h-4" />
           Add New Subject
@@ -130,7 +130,7 @@ const SubjectsList = () => {
       </div>
 
       {/* Filters Section */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-sm space-y-4">
+      <div className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-4 rounded-2xl shadow-sm space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Search Input */}
           <div className="relative col-span-1 lg:col-span-2">
@@ -140,7 +140,7 @@ const SubjectsList = () => {
               placeholder="Search subjects, codes, or faculty..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white dark:placeholder-gray-400"
             />
           </div>
 
@@ -151,7 +151,7 @@ const SubjectsList = () => {
               <select
                 value={selectedCampus}
                 onChange={(e) => setSelectedCampus(e.target.value)}
-                className="w-full pl-10 pr-8 py-2 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm appearance-none cursor-pointer"
+                className="w-full pl-10 pr-8 py-2 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none cursor-pointer dark:text-gray-300"
               >
                 <option value="">All Campuses</option>
                 {campuses.map((campus) => (
@@ -174,7 +174,7 @@ const SubjectsList = () => {
             {
               label: "Edit",
               onClick: () => navigate(`/admin/subjects/edit/${row.id}`),
-              className: "text-blue-600 hover:text-blue-700 font-medium bg-blue-50 border border-blue-100",
+              className: "text-emerald-600 hover:text-emerald-700 font-medium bg-emerald-50 border border-emerald-100 dark:bg-emerald-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-emerald-800",
             },
             {
               label: "Delete",
@@ -183,7 +183,7 @@ const SubjectsList = () => {
                   alert(`Subject ${row.id} deleted (mock)`);
                 }
               },
-              className: "text-rose-600 hover:text-rose-700 font-medium bg-rose-50 border border-rose-100",
+              className: "text-red-600 hover:text-red-700 font-medium bg-red-50 border border-red-100 dark:bg-red-900 dark:border-transparent dark:text-gray-300 dark:hover:bg-red-800",
             },
           ]}
         />
@@ -192,7 +192,7 @@ const SubjectsList = () => {
           <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
             <BookOpen className="w-8 h-8 text-gray-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900">No subjects found</h3>
+          <h3 className="text-lg font-medium text-college-navy">No subjects found</h3>
           <p className="text-gray-500 text-sm mt-1 mb-4 max-w-sm text-center">
             {searchQuery || selectedCampus
               ? "Try adjusting your search or filters to find what you're looking for."

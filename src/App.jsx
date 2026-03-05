@@ -96,7 +96,6 @@ function App() {
             <Route path="gallery" element={<Gallery />} />
             <Route path="news-events" element={<NewsAndEvents />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="login/:type" element={<Login />} />
 
             {/* Campus Routes */}
             <Route path="campuses" element={<CampusLayout />}>
@@ -119,6 +118,9 @@ function App() {
               <Route path="hala/facilities" element={<FacilitiesPage />} />
             </Route>
           </Route>
+
+          {/* Login Route (outside RootLayout — no navbar/footer) */}
+          <Route path="/login/:type" element={<Login />} />
 
           {/* Admin Portal Routes */}
           <Route

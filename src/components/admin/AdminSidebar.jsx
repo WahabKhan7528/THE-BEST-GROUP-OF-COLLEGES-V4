@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   LogOut,
+  X,
 } from "lucide-react";
 import { useAdminContext } from "../../context/AdminContext";
 import { adminNavItems } from "../../data/navigationData";
@@ -16,27 +17,27 @@ const AdminSidebar = ({ onClose }) => {
   });
 
   return (
-    <aside className="h-full w-72 bg-white/80 backdrop-blur-xl border-r border-white/20 shadow-xl flex flex-col">
+    <aside className="h-full w-72 bg-white dark:bg-college-navy border-r border-gray-200 dark:border-college-gold/15 flex flex-col transition-colors duration-300">
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between px-6 h-20 border-b border-gray-100/50">
+      <div className="flex items-center justify-between px-6 h-20 border-b border-white/10">
         <div>
-          <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Admin Portal</p>
-          <p className="text-xl font-bold text-primary-900">
+          <p className="text-xs font-bold text-gray-500 dark:text-college-gold uppercase tracking-wider mb-0.5">Admin Portal</p>
+          <p className="text-lg font-serif font-bold text-college-navy dark:text-white">
             Best Colleges
           </p>
         </div>
         <button
-          className="p-2 rounded-xl hover:bg-gray-100/50 text-gray-500 hover:text-gray-700 lg:hidden transition-colors"
+          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400 dark:text-white/50 hover:text-college-navy dark:hover:text-white lg:hidden transition-colors"
           onClick={onClose}
           aria-label="Close sidebar"
         >
-          ✕
+          <X size={20} />
         </button>
       </div>
 
       {/* Navigation Items */}
       <div className="flex-1 px-4 py-6 overflow-y-auto space-y-1">
-        <p className="px-4 text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
+        <p className="px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-white/30 mb-4">
           Main Menu
         </p>
         {visibleNavItems.map((item) => {
@@ -47,29 +48,31 @@ const AdminSidebar = ({ onClose }) => {
               to={item.to}
               onClick={() => onClose && onClose()}
               className={({ isActive }) =>
-                `group flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${isActive
-                  ? "bg-primary-600 text-white shadow-md translate-x-1"
-                  : "text-gray-600 hover:bg-primary-50 hover:text-primary-700 hover:translate-x-1"
+                `group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${isActive
+                  ? "bg-college-navy/5 text-college-navy border-l-2 border-college-navy shadow-sm dark:bg-college-gold/15 dark:text-college-gold dark:border-college-gold"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-college-navy dark:text-white/60 dark:hover:bg-white/5 dark:hover:text-white"
                 }`
               }
             >
-              {Icon && (
-                <Icon
-                  size={20}
-                  className={({ isActive }) =>
-                    `transition-colors ${isActive ? "text-white" : "text-gray-400 group-hover:text-primary-600"}`
-                  }
-                />
+              {({ isActive }) => (
+                <>
+                  {Icon && (
+                    <Icon
+                      size={18}
+                      className={`transition-colors ${isActive ? "text-college-navy dark:text-college-gold" : "text-gray-400 group-hover:text-college-navy/70 dark:text-white/40 dark:group-hover:text-college-gold/70"}`}
+                    />
+                  )}
+                  <span className="text-sm font-medium">{item.label}</span>
+                </>
               )}
-              <span className="text-sm font-medium">{item.label}</span>
             </NavLink>
           );
         })}
       </div>
 
       {/* Sidebar Footer */}
-      <div className="p-4 border-t border-gray-100/50 bg-gray-50/50">
-        <button className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-xl transition-colors">
+      <div className="p-4 border-t border-white/10">
+        <button className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 hover:text-college-navy rounded-xl transition-colors dark:text-college-gold/80 dark:border-college-gold/20 dark:hover:bg-college-gold/10 dark:hover:text-college-gold">
           <LogOut size={18} />
           <span>Sign Out</span>
         </button>

@@ -8,6 +8,7 @@ const RootLayout = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.classList.remove("dark");
   }, [location.pathname]);
 
   return (

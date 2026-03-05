@@ -26,7 +26,7 @@ const Gallery = () => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-college-navy">
             Media Gallery
           </h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -35,7 +35,7 @@ const Gallery = () => {
         </div>
         <Link
           to="/admin/cms/gallery/upload"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
         >
           <Plus className="w-4 h-4" />
           Upload Image
@@ -43,7 +43,7 @@ const Gallery = () => {
       </div>
 
       {/* Filters & Search */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-4 rounded-2xl shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
         <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
           {albums.map((album) => (
             <button
@@ -52,8 +52,8 @@ const Gallery = () => {
               className={`
                 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200
                 ${activeFilter === album
-                  ? "bg-primary-50 text-primary-700 shadow-sm"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  ? "bg-college-navy/5 text-college-navy shadow-sm dark:bg-white/10 dark:text-white"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-college-navy dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5"
                 }
               `}
             >
@@ -67,7 +67,7 @@ const Gallery = () => {
           <input
             type="text"
             placeholder="Search images..."
-            className="w-full pl-10 pr-4 py-2 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+            className="w-full pl-10 pr-4 py-2 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white dark:placeholder-gray-400"
           />
         </div>
       </div>
@@ -77,7 +77,7 @@ const Gallery = () => {
         {filteredImages.map((img) => (
           <div
             key={img.id}
-            className="group relative bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+            className="group relative bg-white dark:bg-college-navy border border-gray-100 dark:border-college-gold/20 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
           >
             {/* Image Container */}
             <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
@@ -120,10 +120,10 @@ const Gallery = () => {
 
             {/* Info */}
             <div className="p-4">
-              <h3 className="font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+              <h3 className="font-semibold text-college-navy dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {img.title}
               </h3>
-              <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
+              <div className="flex items-center gap-2 mt-1 text-xs text-gray-500 dark:text-gray-400">
                 <Calendar className="w-3 h-3" />
                 <span>{img.date}</span>
               </div>

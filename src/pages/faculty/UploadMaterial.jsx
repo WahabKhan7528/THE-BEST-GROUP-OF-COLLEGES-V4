@@ -18,7 +18,7 @@ const UploadMaterial = () => {
               Faculty Portal
             </span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-college-navy">
             Upload course material
           </h1>
           <p className="text-gray-500 mt-2 max-w-xl">

@@ -1,15 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import {
-  ShieldCheck,
-  GraduationCap,
-  Users,
-  ArrowRight,
-  Lock,
-  Mail,
-  LogIn,
-} from "lucide-react";
+import { ArrowRight, Lock, Mail, Home, Key } from "lucide-react";
 import PublicButton from "../../components/shared/PublicButton";
+import GSAPReveal from "../../components/shared/GSAPReveal";
+import Card from "../../components/public_site/Card";
 
 const Login = () => {
   const { type } = useParams();
@@ -19,9 +13,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("Login Page Mounted");
-    console.log("Portal Type:", type);
-  }, [type]);
+    document.documentElement.classList.remove("dark");
+  }, []);
 
   const getPortalInfo = () => {
     const portalType = type ? type.toLowerCase() : "";
@@ -31,34 +24,24 @@ const Login = () => {
         return {
           title: "Admin Portal",
           description: "Manage college system and operations",
-          buttonClass: "bg-primary-600 hover:bg-primary-700",
-          shadow: "shadow-md",
           path: "/admin/dashboard",
         };
       case "faculty":
         return {
           title: "Faculty Portal",
           description: "Access teaching resources and manage classes",
-          buttonClass: "bg-primary-600 hover:bg-primary-700",
-          shadow: "shadow-md",
           path: "/faculty/dashboard",
         };
       case "student":
         return {
           title: "Student Portal",
           description: "View courses, grades, and campus resources",
-          buttonClass: "bg-primary-600 hover:bg-primary-700",
-          shadow: "shadow-md",
           path: "/student/dashboard",
         };
       default:
-        // Default fallback for unknown or missing routes
         return {
           title: "Portal Login",
           description: "Please select a valid portal",
-          icon: <ShieldCheck size={40} className="text-text-secondary" />,
-          buttonClass: "bg-primary-600 hover:bg-primary-700",
-          shadow: "shadow-md",
           path: "/",
         };
     }
@@ -68,101 +51,132 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Logging in to:", portalinfo.path);
-    // Simulating login - redirect to respective dashboard
+    // TODO: Add actual login logic here
+    // setLoading(true);
+    // setTimeout(() => {
+    //   navigate(portalinfo.path);
+    // }, 600);
     navigate(portalinfo.path);
   };
 
-  if (!portalinfo) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        Loading...
-      </div>
-    );
-  }
+  const titleWords = portalinfo.title.split(" ");
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-background p-4 relative">
-      <div className="w-full max-w-md relative z-10">
-        <div className="bg-white border border-gray-200 overflow-hidden transition-all duration-300 ease-out rounded-xl shadow-lg p-6 md:p-8 md:rounded-2xl">
-          <div className="text-center mb-8 md:mb-10">
-            <h1 className="text-2xl md:text-3xl font-bold text-primary-900 tracking-tight">
-              {portalinfo.title}
-            </h1>
-            <p className="text-text-secondary mt-2 md:mt-3 text-sm md:text-base">
-              {portalinfo.description}
-            </p>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-college-navy relative overflow-hidden font-sans">
+      {/* Background Ornaments */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-college-gold/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-college-gold/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-college-gold/3 rounded-full blur-3xl" />
+      </div>
 
-          <form onSubmit={handleLogin} className="space-y-5 md:space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs md:text-sm font-semibold text-primary-900">
-                Email Address
-              </label>
-              <div className="relative group">
-                <Mail
-                  className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-text-secondary transition-colors"
-                  size={18}
-                />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-border bg-white focus:ring-2 focus:ring-primary-100 focus:border-primary-500 outline-none transition-all font-medium text-sm md:text-base text-primary-900 placeholder:text-text-disabled"
-                  placeholder="name@example.com"
-                />
+      <div className="w-full max-w-xl px-4 relative z-10">
+        <GSAPReveal>
+          <Card variant="navy" hover={false} className="p-8 md:p-12">
+            {/* Home Icon */}
+            <div className="flex justify-between items-center mb-10">
+              <Link
+                to="/"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-college-gold/20 hover:border-college-gold/30 transition-all group"
+              >
+                <Home className="w-5 h-5 text-white/50 group-hover:text-college-gold transition-colors" />
+              </Link>
+              <div className="w-10 h-10 rounded-full bg-college-gold/20 flex items-center justify-center">
+                <Key className="w-5 h-5 text-college-gold" />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label className="text-xs md:text-sm font-semibold text-primary-900">
-                  Password
-                </label>
-              </div>
-              <div className="relative group">
-                <Lock
-                  className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-text-secondary transition-colors"
-                  size={18}
-                />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-border bg-white focus:ring-2 focus:ring-primary-100 focus:border-primary-500 outline-none transition-all font-medium text-sm md:text-base text-primary-900 placeholder:text-text-disabled"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-
-            <PublicButton
-              variant="unstyled"
-              size="none"
-              type="submit"
-              disabled={loading}
-              className={`w-full py-3 md:py-3.5 px-4 ${portalinfo.buttonClass} text-white font-bold text-sm md:text-base rounded-lg md:rounded-xl ${portalinfo.shadow} hover:shadow-lg transform active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed tracking-wide uppercase`}
-            >
-              <span>{loading ? "Signing in..." : "Sign In"}</span>
-              {loading ? (
-                <LogIn className="w-5 h-5 md:w-5 md:h-5 transition-transform" />
-              ) : (
-                <ArrowRight size={18} className="md:w-5 md:h-5 transition-transform" />
-              )}
-            </PublicButton>
-
-            <div className="text-center mt-6">
-              <p className="text-sm text-text-secondary">
-                New here?{" "}
-                <Link
-                  to="/admissions"
-                  className="text-primary-600 font-bold hover:underline transition-all"
-                >
-                  Apply for admission
-                </Link>
+            {/* Header */}
+            <div className="text-center mb-10">
+              <h1 className="text-3xl md:text-4xl font-serif font-bold text-white uppercase tracking-wider">
+                {titleWords[0]}{" "}
+                <span className="text-college-gold">{titleWords[1]}</span>
+              </h1>
+              <div className="h-1 bg-college-gold mt-5 mb-5 w-16 mx-auto" />
+              <p className="text-white/50 font-sans text-sm md:text-base max-w-xs mx-auto">
+                {portalinfo.description}
               </p>
             </div>
-          </form>
-        </div>
+
+            {/* Form */}
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-college-gold uppercase tracking-widest ml-1">
+                  Email Address
+                </label>
+                <div className="relative group">
+                  <Mail
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-college-gold transition-colors"
+                    size={20}
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-college-gold/50 focus:border-college-gold outline-none transition-all font-sans text-white placeholder:text-white/20 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]"
+                    placeholder="name@college.edu"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-college-gold uppercase tracking-widest ml-1">
+                  Password
+                </label>
+                <div className="relative group">
+                  <Lock
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-college-gold transition-colors"
+                    size={20}
+                  />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-college-gold/50 focus:border-college-gold outline-none transition-all font-sans text-white placeholder:text-white/20 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]"
+                    placeholder="••••••••"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <PublicButton
+                  variant="secondary"
+                  size="none"
+                  type="submit"
+                  disabled={loading}
+                  shape="slanted"
+                  className="w-full py-4 text-base font-bold uppercase tracking-widest shadow-xl rounded-xl group"
+                >
+                  <span className="flex items-center justify-center gap-3">
+                    {loading ? "Verifying..." : "Sign In"}
+                    {loading ? (
+                      <div className="w-5 h-5 border-2 border-college-navy/30 border-t-college-navy rounded-full animate-spin" />
+                    ) : (
+                      <ArrowRight
+                        size={20}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    )}
+                  </span>
+                </PublicButton>
+              </div>
+
+              {type?.toLowerCase() === "student" && (
+                <div className="text-center pt-6 border-t border-white/10 mt-8">
+                  <p className="text-xs text-white/30 font-sans">
+                    Unauthorized access is strictly prohibited.
+                  </p>
+                  <Link
+                    to="/admissions"
+                    className="inline-block mt-3 text-sm text-college-gold font-bold hover:text-white transition-colors"
+                  >
+                    Request Portal Access
+                  </Link>
+                </div>
+              )}
+            </form>
+          </Card>
+        </GSAPReveal>
       </div>
     </div>
   );

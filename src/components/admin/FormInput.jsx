@@ -10,7 +10,7 @@ const FormInput = ({
   className,
 }) => {
   return (
-    <label className="text-xs md:text-sm text-gray-700 space-y-1 block">
+    <label className="text-xs md:text-sm text-college-navy dark:text-gray-200 font-medium space-y-1 block">
       <span>{label}{required ? ' *' : ''}</span>
       <input
         type={type}
@@ -19,12 +19,11 @@ const FormInput = ({
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className={className || "w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg border-neutral-200 bg-white focus:bg-white shadow-sm focus:border-primary-500 focus:ring-primary-500 transition"}
+        className={className || "w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy/50 dark:text-white dark:placeholder-gray-400 focus:bg-white dark:focus:bg-college-navy/50 shadow-sm focus:border-college-gold focus:ring-college-gold/20 transition"}
       />
-      {helper && <span className="text-[10px] md:text-xs text-gray-500">{helper}</span>}
+      {helper && <span className="text-[10px] md:text-xs text-college-navy/50 dark:text-gray-400">{helper}</span>}
     </label>
   );
 };
 
 export default FormInput;
-
