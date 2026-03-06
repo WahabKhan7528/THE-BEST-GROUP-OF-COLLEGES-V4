@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
+import PublicButton from "../../../components/shared/PublicButton";
 import Table from "../../../components/admin/Table";
 import {
   Plus,
@@ -13,7 +14,7 @@ import { mockSubjectsData as adminSubjects } from "../../../data/adminData";
 
 const SubjectsList = () => {
   const navigate = useNavigate();
-  const { campuses, isSuperAdmin, currentAdmin } = useAdminContext();
+  const { campuses, isSuperAdmin, currentAdmin, isDarkMode } = useAdminContext();
   const [selectedCampus, setSelectedCampus] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -57,12 +58,12 @@ const SubjectsList = () => {
       label: "Subject",
       render: (row) => (
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-college-navy/5 flex items-center justify-center text-college-gold">
+          <div className="w-10 h-10 rounded-lg bg-college-navy/10 text-college-navy dark:bg-college-gold/10 dark:text-college-gold flex items-center justify-center">
             <BookOpen className="w-5 h-5" />
           </div>
           <div>
-            <span className="font-semibold text-college-navy block">{row.name}</span>
-            <span className="text-xs text-gray-500">{row.class}</span>
+            <span className="font-semibold text-college-navy dark:text-college-gold block">{row.name}</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">{row.class}</span>
           </div>
         </div>
       )
@@ -82,10 +83,10 @@ const SubjectsList = () => {
       label: "Faculty",
       render: (row) => (
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-college-navy flex items-center justify-center text-white text-xs font-bold ring-2 ring-white shadow-sm">
+          <div className="w-8 h-8 rounded-full bg-college-navy dark:bg-college-gold flex items-center justify-center text-white dark:text-college-navy text-xs font-bold ring-2 ring-white/50 shadow-sm">
             {row.faculty.charAt(0)}
           </div>
-          <span className="text-sm font-medium text-gray-700">{row.faculty}</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{row.faculty}</span>
         </div>
       )
     },
@@ -120,13 +121,16 @@ const SubjectsList = () => {
             Manage course curriculum and campus-specific subject offerings
           </p>
         </div>
-        <Link
+        <PublicButton
           to="/admin/subjects/create"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          size="md"
+          className="shadow-md transition-all duration-200"
+          icon={Plus}
         >
-          <Plus className="w-4 h-4" />
           Add New Subject
-        </Link>
+        </PublicButton>
       </div>
 
       {/* Filters Section */}
@@ -201,7 +205,7 @@ const SubjectsList = () => {
           {(searchQuery || selectedCampus) && (
             <button
               onClick={() => { setSearchQuery(""); setSelectedCampus(""); }}
-              className="text-blue-600 text-sm font-medium hover:text-blue-700 hover:underline"
+              className="text-college-navy dark:text-college-gold text-sm font-medium hover:underline"
             >
               Clear all filters
             </button>

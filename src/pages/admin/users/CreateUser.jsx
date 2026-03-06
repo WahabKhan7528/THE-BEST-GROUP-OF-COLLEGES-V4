@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PublicButton from "../../../components/shared/PublicButton";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import { useAdminContext } from "../../../context/AdminContext";
 import { UserPlus, ArrowLeft, Building2, Shield, User, X } from "lucide-react";
 
 const CreateUser = () => {
   const navigate = useNavigate();
-  const { campuses } = useAdminContext();
+  const { campuses, isDarkMode } = useAdminContext();
   const [role, setRole] = useState("Faculty");
   const [form, setForm] = useState({
     name: "",
@@ -93,7 +93,7 @@ const CreateUser = () => {
   const isMultiCampus = ["Faculty", "Sub-Admin"].includes(role);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <button
@@ -115,7 +115,7 @@ const CreateUser = () => {
         {/* Role Selection Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
-            <Shield size={18} className="text-blue-600 dark:text-college-gold" />
+
             <h2>Role & Permissions</h2>
           </div>
 
@@ -153,7 +153,7 @@ const CreateUser = () => {
         {/* Basic Info Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
-            <User size={18} className="text-blue-600 dark:text-college-gold" />
+
             <h2>Personal Identity</h2>
           </div>
 
@@ -258,7 +258,7 @@ const CreateUser = () => {
                       <button
                         type="button"
                         onClick={addAllocation}
-                        className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold"
+                        className="text-xs text-college-navy dark:text-college-gold font-semibold hover:underline"
                       >
                         + Add Class
                       </button>
@@ -316,7 +316,7 @@ const CreateUser = () => {
         {showCampusField && (
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
-              <Building2 size={18} className="text-college-gold" />
+
               <h2>Campus Allocation</h2>
             </div>
 
@@ -357,10 +357,10 @@ const CreateUser = () => {
                         type="checkbox"
                         checked={selectedCampuses.includes(campus.id)}
                         onChange={() => handleCampusToggle(campus.id)}
-                        className="w-4 h-4 text-blue-600 rounded focus:ring-college-gold border-gray-300"
+                        className="w-4 h-4 text-college-gold rounded focus:ring-college-gold border-gray-300 dark:border-college-gold/30 bg-white dark:bg-college-navy"
                       />
                       <div className="ml-3">
-                        <span className={`block text-sm font-medium ${selectedCampuses.includes(campus.id) ? "text-blue-900 dark:text-college-gold" : "text-gray-700 dark:text-gray-300"}`}>
+                        <span className={`block text-sm font-medium ${selectedCampuses.includes(campus.id) ? "text-college-navy dark:text-college-gold" : "text-gray-700 dark:text-gray-300"}`}>
                           {campus.name}
                         </span>
                         <span className="text-xs text-gray-500 dark:text-gray-400">
@@ -378,7 +378,6 @@ const CreateUser = () => {
         {/* Security Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
-            <Shield size={18} className="text-slate-600 dark:text-college-gold" />
             <h2>Security</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -401,17 +400,20 @@ const CreateUser = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-3 pt-6 border-t border-gray-100 dark:border-college-gold/20">
-          <PublicButton variant="secondary" onClick={() => navigate("/admin/users")}>
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-6 border-t border-gray-100 dark:border-college-gold/20">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/users")} className="border-2 border-white/10">
             Cancel
           </PublicButton>
-          <button
+          <PublicButton
             type="submit"
-            className="flex items-center gap-2 px-6 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all"
+            variant={isDarkMode ? "secondary" : "primary"}
+            shape="slanted"
+            size="md"
+            className="px-6 font-bold shadow-md transform hover:-translate-y-0.5"
+            icon={UserPlus}
           >
-            <UserPlus size={18} />
             Create User
-          </button>
+          </PublicButton>
         </div>
       </form>
     </div>

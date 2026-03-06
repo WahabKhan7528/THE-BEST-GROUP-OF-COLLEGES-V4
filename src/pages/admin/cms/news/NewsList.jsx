@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Table from "../../../../components/admin/Table";
+import PublicButton from "../../../../components/shared/PublicButton";
+import { useAdminContext } from "../../../../context/AdminContext";
 import {
   Plus,
   Search,
@@ -11,6 +13,7 @@ import {
 
 const NewsList = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useAdminContext();
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -73,7 +76,9 @@ const NewsList = () => {
       label: "Title & Category",
       render: (row) => (
         <div className="flex items-start gap-3 max-w-sm">
-          <div className={`p-2 rounded-lg ${row.type === 'Event' ? 'bg-college-navy/5 text-college-gold' : 'bg-white border border-college-navy/10 text-college-gold'}`}>
+          <div className={`p-2 rounded-lg ${row.type === 'Event'
+            ? 'bg-college-navy/10 text-college-navy dark:bg-college-gold/10 dark:text-college-gold'
+            : 'bg-white border border-gray-200 text-college-navy dark:bg-college-navy dark:border-college-gold/20 dark:text-college-gold'}`}>
             {row.type === 'Event' ? <Calendar className="w-5 h-5" /> : <Newspaper className="w-5 h-5" />}
           </div>
           <div>
@@ -125,13 +130,16 @@ const NewsList = () => {
             Manage your latest updates, announcements, and upcoming events
           </p>
         </div>
-        <Link
+        <PublicButton
           to="/admin/cms/news/create"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          size="md"
+          className="shadow-md transition-all duration-200"
+          icon={Plus}
         >
-          <Plus className="w-4 h-4" />
           Create Post
-        </Link>
+        </PublicButton>
       </div>
 
       {/* Filters & Search */}

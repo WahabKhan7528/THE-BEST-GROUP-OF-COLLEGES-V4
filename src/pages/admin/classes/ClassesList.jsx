@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import Table from "../../../components/admin/Table";
+import PublicButton from "../../../components/shared/PublicButton";
 import {
   Plus,
   Search,
@@ -14,7 +15,7 @@ import { mockClassesData as adminClasses } from "../../../data/adminData";
 
 const ClassesList = () => {
   const navigate = useNavigate();
-  const { campuses, isSuperAdmin, currentAdmin } = useAdminContext();
+  const { campuses, isSuperAdmin, currentAdmin, isDarkMode } = useAdminContext();
   const [selectedCampus, setSelectedCampus] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -79,7 +80,7 @@ const ClassesList = () => {
       render: (row) => (
         <div className="flex flex-wrap gap-1 max-w-[200px]">
           {row.subjects.slice(0, 2).map((sub, idx) => (
-            <span key={idx} className="bg-white text-college-navy px-2 py-0.5 rounded text-xs font-medium border border-primary-200">
+            <span key={idx} className="bg-white dark:bg-college-navy/30 text-college-navy dark:text-college-gold px-2 py-0.5 rounded text-xs font-medium border border-college-gold/20">
               {sub}
             </span>
           ))}
@@ -94,7 +95,7 @@ const ClassesList = () => {
       label: "Faculty Lead",
       render: (row) => (
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-college-navy/10 flex items-center justify-center text-college-navy text-xs font-bold border border-primary-200">
+          <div className="w-6 h-6 rounded-full bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-navy dark:text-college-gold text-xs font-bold border border-college-navy/10 dark:border-college-gold/20">
             {row.faculty.charAt(0)}
           </div>
           <span className="text-sm text-gray-700">{row.faculty}</span>
@@ -125,13 +126,16 @@ const ClassesList = () => {
             Manage academic classes, sections, and subject allocations
           </p>
         </div>
-        <Link
+        <PublicButton
           to="/admin/classes/create"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          size="md"
+          className="shadow-md transition-all duration-200"
+          icon={Plus}
         >
-          <Plus className="w-4 h-4" />
           Create New Class
-        </Link>
+        </PublicButton>
       </div>
 
       {/* Filters Section */}
@@ -206,7 +210,7 @@ const ClassesList = () => {
           {(searchQuery || selectedCampus) && (
             <button
               onClick={() => { setSearchQuery(""); setSelectedCampus(""); }}
-              className="text-blue-600 text-sm font-medium hover:text-blue-700 hover:underline"
+              className="text-college-navy dark:text-college-gold text-sm font-medium hover:underline"
             >
               Clear all filters
             </button>

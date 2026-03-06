@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import PublicButton from "../../../components/shared/PublicButton";
 import Table from "../../../components/admin/Table";
 import { useAdminContext } from "../../../context/AdminContext";
 import {
@@ -14,7 +15,7 @@ import { mockCampusAdminsData as adminUsers } from "../../../data/adminData";
 const CampusAdminsList = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { campuses } = useAdminContext();
+    const { campuses, isDarkMode } = useAdminContext();
     const [searchTerm, setSearchTerm] = useState("");
     const campus = campuses.find(c => c.id === id);
 
@@ -44,8 +45,8 @@ const CampusAdminsList = () => {
             label: "Role",
             render: (row) => (
                 <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin'
-                    ? 'bg-college-navy/5 text-college-navy dark:bg-college-gold/10 dark:text-college-gold'
-                    : 'bg-white text-college-gold border border-college-navy/10 dark:bg-college-navy/50 dark:border-college-gold/20'
+                    ? 'bg-college-navy/10 text-college-navy dark:bg-college-gold/10 dark:text-college-gold'
+                    : 'bg-college-gold/10 text-college-navy dark:text-college-gold border border-college-gold/20 shadow-sm'
                     }`}>
                     {row.role}
                 </span>
@@ -82,7 +83,7 @@ const CampusAdminsList = () => {
                     </Link>
                     <div>
                         <h1 className="text-2xl font-bold text-college-navy dark:text-white tracking-tight flex items-center gap-2">
-                            <Shield className="w-6 h-6 text-blue-600 dark:text-college-gold" />
+
                             {campus.name} Admins
                         </h1>
                         <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
@@ -91,13 +92,15 @@ const CampusAdminsList = () => {
                     </div>
                 </div>
 
-                <Link
+                <PublicButton
                     to="/admin/users/create"
-                    className="flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transition-all text-sm"
+                    variant={isDarkMode ? "secondary" : "primary"}
+                    shape="slanted"
+                    icon={UserPlus}
+                    className="shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all"
                 >
-                    <UserPlus size={18} />
                     Add New Admin
-                </Link>
+                </PublicButton>
             </div>
 
             {/* Search */}
@@ -122,9 +125,9 @@ const CampusAdminsList = () => {
                     actionButtons={actionButtons}
                 />
             ) : (
-                <div className="bg-white/50 backdrop-blur rounded-2xl border border-dashed border-gray-300 p-12 text-center">
-                    <Users className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                    <p className="text-gray-500 font-medium">No admins assigned to this campus.</p>
+                <div className="bg-white/50 dark:bg-college-navy/50 backdrop-blur rounded-2xl border border-dashed border-gray-300 dark:border-college-gold/20 p-12 text-center transition-all">
+                    <Users className="w-12 h-12 text-gray-300 dark:text-college-gold/30 mx-auto mb-3" />
+                    <p className="text-gray-500 dark:text-gray-400 font-medium">No admins assigned to this campus.</p>
                 </div>
             )}
         </div>

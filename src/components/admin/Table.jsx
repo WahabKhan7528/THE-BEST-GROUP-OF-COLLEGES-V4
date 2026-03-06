@@ -19,11 +19,11 @@ const TableHeader = ({ columns, hasActions }) => (
 );
 
 const TableRow = ({ row, columns, actionButtons }) => (
-  <tr className="hover:bg-college-gold/5 dark:hover:bg-college-gold/10 transition-colors duration-150 group">
+  <tr className="hover:bg-college-navy/5 dark:hover:bg-college-gold/10 transition-colors duration-150 group">
     {columns.map((col) => (
       <td
         key={col.key}
-        className="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-700 dark:text-gray-300 group-hover:text-college-navy dark:group-hover:text-white transition-colors"
+        className="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-700 dark:text-gray-300 group-hover:text-college-navy dark:group-hover:text-college-gold transition-colors"
       >
         {row[col.key]}
       </td>

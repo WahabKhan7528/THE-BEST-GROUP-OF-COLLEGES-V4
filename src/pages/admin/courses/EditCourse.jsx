@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PublicButton from "../../../components/shared/PublicButton";
 import { useAdminContext } from "../../../context/AdminContext";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import {
   ArrowLeft,
   BookOpen,
@@ -17,7 +17,7 @@ import {
 const EditCourse = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { campuses } = useAdminContext();
+  const { campuses, isDarkMode } = useAdminContext();
   const [form, setForm] = useState({
     title: "BS Computer Science",
     duration: "4 years",
@@ -54,7 +54,7 @@ const EditCourse = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link
@@ -67,6 +67,17 @@ const EditCourse = () => {
           <h1 className="text-2xl font-bold text-college-navy dark:text-college-gold">Edit Course</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400">Update course details and availability</p>
         </div>
+        <div className="ml-auto">
+          <PublicButton
+            type="button"
+            variant="danger"
+            size="sm"
+            onClick={() => { if (confirm("Delete this course?")) alert("Deleted"); }}
+            icon={Trash2}
+          >
+            Delete Course
+          </PublicButton>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -74,10 +85,10 @@ const EditCourse = () => {
         <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center justify-between border-b border-gray-100 dark:border-college-gold/20 pb-3">
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-blue-600 dark:text-college-gold" />
+
               Course Information
             </h2>
-            <span className="px-2.5 py-1 bg-blue-50 dark:bg-college-gold/10 text-blue-700 dark:text-college-gold text-xs font-medium rounded-lg border border-blue-100 dark:border-college-gold/20">
+            <span className="px-2.5 py-1 bg-college-gold/10 text-college-navy dark:text-college-gold text-xs font-medium rounded-lg border border-college-gold/20">
               ID: {id}
             </span>
           </div>
@@ -113,7 +124,7 @@ const EditCourse = () => {
 
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5 flex items-center gap-2">
-                <FileText className="w-4 h-4 text-gray-400 dark:text-college-gold" />
+
                 Exam System
               </label>
               <select
@@ -128,7 +139,7 @@ const EditCourse = () => {
 
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5 flex items-center gap-2">
-                <Info className="w-4 h-4 text-gray-400 dark:text-college-gold" />
+
                 Course Description
               </label>
               <textarea
@@ -144,7 +155,7 @@ const EditCourse = () => {
         {/* Campus Availability */}
         <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-college-gold" />
+
             Campus Availability
           </h2>
 
@@ -183,27 +194,19 @@ const EditCourse = () => {
           </div>
         </section>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col md:flex-row justify-between gap-4 pt-4">
-          <button
-            type="button"
-            className="px-6 py-2.5 bg-rose-50 border border-rose-100 text-rose-600 font-medium rounded-xl hover:bg-rose-100 transition-colors flex items-center justify-center gap-2"
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/courses")} className="border-2 border-white/10">
+            Cancel
+          </PublicButton>
+          <PublicButton
+            type="submit"
+            variant={isDarkMode ? "secondary" : "primary"}
+            shape="slanted"
+            className="px-6 font-bold shadow-md transform hover:-translate-y-0.5 transition-all flex items-center justify-center"
+            icon={Save}
           >
-            <Trash2 className="w-4 h-4" />
-            Delete Course
-          </button>
-
-          <div className="flex gap-3">
-            <PublicButton variant="secondary" to="/admin/courses">
-              Cancel
-            </PublicButton>
-            <button
-              type="submit"
-              className="px-6 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all flex items-center justify-center"
-            >
-              Save Changes
-            </button>
-          </div>
+            Save Changes
+          </PublicButton>
         </div>
       </form>
     </div>

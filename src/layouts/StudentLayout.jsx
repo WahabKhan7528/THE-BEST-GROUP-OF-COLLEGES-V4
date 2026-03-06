@@ -7,9 +7,7 @@ const StudentLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] dark:bg-dark-base flex relative overflow-hidden transition-colors duration-300">
-
-
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-dark-base flex transition-colors duration-300">
       {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div
@@ -18,19 +16,21 @@ const StudentLayout = () => {
         />
       )}
 
-      {/* Sidebar */}
-      <StudentSidebar
-        isSidebarOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
+      {/* Sidebar - Sticky on desktop, fixed on mobile */}
+      <div className={`fixed lg:sticky lg:top-0 lg:h-screen lg:z-0 z-40`}>
+        <StudentSidebar
+          isSidebarOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
+      </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col w-full relative z-10">
+      <div className="flex-1 flex flex-col w-full min-w-0 relative z-10">
         {/* Header */}
         <StudentNavbar onMenuToggle={() => setIsSidebarOpen(true)} />
 
         {/* Main Content Area */}
-        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-y-auto w-full max-w-[1600px] mx-auto">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 w-full max-w-[1600px] mx-auto">
           <Outlet />
         </main>
       </div>

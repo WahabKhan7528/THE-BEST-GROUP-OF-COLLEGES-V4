@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import PublicButton from "../../../components/shared/PublicButton";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import {
   BookOpen,
   Hash,
@@ -16,7 +17,7 @@ import {
 
 const EditSubject = () => {
   const { id } = useParams();
-  const { campuses } = useAdminContext();
+  const { campuses, isDarkMode } = useAdminContext();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -72,7 +73,7 @@ const EditSubject = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -87,92 +88,65 @@ const EditSubject = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">Update subject details and campus availability</p>
           </div>
         </div>
-        <button
+        <PublicButton
           onClick={handleDelete}
-          className="flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors text-sm font-medium"
+          variant="danger"
+          size="sm"
+          icon={Trash2}
         >
-          <Trash2 size={16} />
           Delete Subject
-        </button>
+        </PublicButton>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Subject Details Section */}
-        <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
+        <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 md:p-8 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2">
-            <BookOpen className="w-5 h-5 text-blue-600 dark:text-college-gold" />
+
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Subject Details</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                Subject Name <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
-                  placeholder="e.g. Operating Systems"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all font-medium dark:text-white dark:placeholder-gray-500"
-                  required
-                />
-              </div>
+              <FormInput
+                label="Subject Name"
+                value={form.name}
+                onChange={(val) => handleChange("name", val)}
+                required
+                placeholder="e.g. Operating Systems"
+              />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                Subject Code <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <Hash className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  value={form.code}
-                  onChange={(e) => handleChange("code", e.target.value)}
-                  placeholder="e.g. CS301"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all uppercase dark:text-white dark:placeholder-gray-500"
-                  required
-                />
-              </div>
+              <FormInput
+                label="Subject Code"
+                value={form.code}
+                onChange={(val) => handleChange("code", val)}
+                required
+                placeholder="e.g. CS-312"
+              />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Target Class
-              </label>
-              <div className="relative">
-                <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  value={form.class}
-                  onChange={(e) => handleChange("class", e.target.value)}
-                  placeholder="e.g. BSCS - 3rd Semester"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all"
-                />
-              </div>
+              <FormInput
+                label="Target Class"
+                value={form.class}
+                onChange={(val) => handleChange("class", val)}
+                placeholder="e.g. BSCS - 3rd Semester"
+              />
             </div>
 
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Assign Faculty
-              </label>
-              <div className="relative">
-                <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  value={form.faculty}
-                  onChange={(e) => handleChange("faculty", e.target.value)}
-                  placeholder="e.g. Prof. Ahmed Raza"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all"
-                />
-              </div>
+              <FormInput
+                label="Assign Faculty"
+                value={form.faculty}
+                onChange={(val) => handleChange("faculty", val)}
+                placeholder="e.g. Prof. Ahmed Raza"
+              />
             </div>
 
             <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label className="block text-xs md:text-sm font-medium text-college-navy dark:text-gray-200 mb-1">
                 Description
               </label>
               <textarea
@@ -187,9 +161,9 @@ const EditSubject = () => {
         </section>
 
         {/* Campus Availability Section */}
-        <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
+        <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 md:p-8 rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center gap-2 mb-2">
-            <Building2 className="w-5 h-5 text-college-gold" />
+
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Campus Availability</h2>
           </div>
 
@@ -197,16 +171,16 @@ const EditSubject = () => {
             Select the campuses where this subject will be offered.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {campuses.map((campus) => {
               const isSelected = form.offeredAt.includes(campus.id);
               return (
                 <label
                   key={campus.id}
                   className={`
-                      relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
+                      relative flex flex-col items-center justify-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-200
                       ${isSelected
-                      ? 'border-college-gold bg-college-gold/5 dark:bg-college-gold/10 pt-6'
+                      ? 'border-college-gold bg-blue-50 dark:bg-college-gold/10 dark:border-college-gold shadow-sm'
                       : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-college-gold/30 hover:bg-gray-50 dark:hover:bg-college-navy/80'
                     }
                     `}
@@ -233,17 +207,20 @@ const EditSubject = () => {
         </section>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-4 dark:border-college-gold/20">
-          <PublicButton variant="secondary" onClick={() => navigate("/admin/subjects")}>
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4 dark:border-college-gold/20">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/subjects")} className="border-2 border-white/10">
             Cancel
           </PublicButton>
-          <button
+          <PublicButton
             type="submit"
-            className="flex items-center gap-2 px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+            variant={isDarkMode ? "secondary" : "primary"}
+            shape="slanted"
+            size="md"
+            className="px-8 font-bold shadow-md transform hover:-translate-y-0.5"
+            icon={Save}
           >
-            <Save size={18} />
             Save Changes
-          </button>
+          </PublicButton>
         </div>
       </form>
     </div >

@@ -141,11 +141,11 @@ const Login = () => {
               <div className="pt-2">
                 <PublicButton
                   variant="secondary"
-                  size="none"
+                  size="lg"
                   type="submit"
                   disabled={loading}
                   shape="slanted"
-                  className="w-full py-4 text-base font-bold uppercase tracking-widest shadow-xl rounded-xl group"
+                  className="w-full font-bold uppercase tracking-widest"
                 >
                   <span className="flex items-center justify-center gap-3">
                     {loading ? "Verifying..." : "Sign In"}

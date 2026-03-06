@@ -10,7 +10,7 @@ const AllocateAdmin = () => {
   const navigate = useNavigate();
   const { campusId } = useParams();
   const location = useLocation();
-  const { campuses, adminCampusAllocations, updateAdminAllocations } =
+  const { campuses, adminCampusAllocations, updateAdminAllocations, isDarkMode } =
     useAdminContext();
 
   const [campus, setCampus] = useState(null);
@@ -87,29 +87,29 @@ const AllocateAdmin = () => {
   const currentAllocatedAdmins = getCurrentAllocatedAdmins();
 
   return (
-    <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">
+    <div className="w-full mx-auto bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-8 rounded-2xl shadow-sm">
+      <h1 className="text-3xl font-bold text-college-navy dark:text-white mb-2">
         Allocate Sub-Admins to {campus.name}
       </h1>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
         Select which sub-admins can manage this campus and its associated
         entities.
       </p>
 
       {/* Current Allocations Summary */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-        <h3 className="font-semibold text-blue-800 mb-2">
+      <div className="bg-college-gold/5 dark:bg-college-gold/10 border border-college-gold/20 rounded-xl p-4 mb-6">
+        <h3 className="font-semibold text-college-navy dark:text-college-gold mb-2">
           Currently Allocated Sub-Admins
         </h3>
         {currentAllocatedAdmins.length > 0 ? (
-          <ul className="list-disc list-inside text-blue-700">
+          <ul className="list-disc list-inside text-college-navy/80 dark:text-gray-300">
             {currentAllocatedAdmins.map((adminId) => {
               const admin = mockAllAdmins.find((a) => a.id === adminId);
               return admin ? <li key={adminId}>{admin.name}</li> : null;
             })}
           </ul>
         ) : (
-          <p className="text-blue-600">
+          <p className="text-college-navy/60 dark:text-gray-400 italic">
             No sub-admins are currently allocated to this campus.
           </p>
         )}
@@ -117,27 +117,30 @@ const AllocateAdmin = () => {
 
       {/* Admin Selection */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+        <h3 className="text-lg font-semibold text-college-navy dark:text-white mb-4">
           Available Sub-Admins
         </h3>
         <div className="space-y-3">
           {mockAllAdmins.map((admin) => (
             <label
               key={admin.id}
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+              className={`flex items-center p-4 border rounded-xl transition-all cursor-pointer ${currentAllocations[admin.id]
+                ? 'bg-college-gold/10 border-college-gold shadow-sm'
+                : 'bg-white dark:bg-college-navy/50 border-gray-200 dark:border-college-gold/20 hover:border-college-gold/50'
+                }`}
             >
               <input
                 type="checkbox"
                 checked={currentAllocations[admin.id] || false}
                 onChange={() => handleAdminToggle(admin.id)}
-                className="w-4 h-4 text-blue-600 rounded"
+                className="w-4 h-4 text-college-gold rounded focus:ring-college-gold/20 border-gray-300 dark:border-college-gold/30 bg-white dark:bg-college-navy"
               />
               <div className="ml-4 flex-1">
-                <div className="font-medium text-gray-800">{admin.name}</div>
-                <div className="text-sm text-gray-600">{admin.email}</div>
+                <div className="font-medium text-college-navy dark:text-white">{admin.name}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">{admin.email}</div>
               </div>
               {currentAllocations[admin.id] && (
-                <span className="text-xs bg-college-navy/5 text-college-navy px-3 py-1 rounded-full">
+                <span className="text-xs bg-college-navy/10 text-college-navy dark:bg-college-gold/10 dark:text-college-gold px-3 py-1 rounded-full font-medium border border-college-navy/10 dark:border-college-gold/20">
                   Currently Allocated
                 </span>
               )}
@@ -147,9 +150,9 @@ const AllocateAdmin = () => {
       </div>
 
       {/* Additional Info */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-        <p className="text-sm text-blue-800">
-          <strong>Note:</strong> Sub-Admins who are allocated to this campus can
+      <div className="bg-college-navy/5 dark:bg-college-gold/5 border border-college-navy/10 dark:border-college-gold/10 rounded-xl p-4 mb-6">
+        <p className="text-sm text-college-navy dark:text-gray-300 leading-relaxed">
+          <strong className="text-college-navy dark:text-college-gold font-bold italic mr-1">Note:</strong> Sub-Admins who are allocated to this campus can
           manage all users, classes, subjects, courses, and CMS content for this
           campus only. They cannot access other campuses.
         </p>
@@ -158,16 +161,17 @@ const AllocateAdmin = () => {
       {/* Action Buttons */}
       <div className="flex gap-4 mt-6">
         <PublicButton
-          variant="primary"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
           onClick={handleSave}
-          className="flex-1"
+          className="flex-1 font-bold shadow-md"
         >
           Save Allocations
         </PublicButton>
         <PublicButton
-          variant="secondary"
+          variant="primary"
           onClick={() => navigate("/admin/campus")}
-          className="flex-1"
+          className="flex-1 border-2 border-white/10"
         >
           Cancel
         </PublicButton>

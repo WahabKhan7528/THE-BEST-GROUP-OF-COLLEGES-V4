@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import PublicButton from "../../../components/shared/PublicButton";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import {
   MapPin,
   ArrowLeft,
@@ -15,7 +15,7 @@ const EditCampus = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { campuses } = useAdminContext();
+  const { campuses, isDarkMode } = useAdminContext();
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
@@ -101,7 +101,7 @@ const EditCampus = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -116,20 +116,20 @@ const EditCampus = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">Update campus details and configuration</p>
           </div>
         </div>
-        <button
+        <PublicButton
           onClick={handleDelete}
-          className="flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors text-sm font-medium"
+          variant="danger"
+          size="sm"
+          icon={Trash2}
         >
-          <Trash2 size={16} />
           Delete Campus
-        </button>
+        </PublicButton>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2 pb-4 border-b border-gray-100 dark:border-college-gold/20">
-            <School className="w-5 h-5 text-blue-600 dark:text-college-gold" />
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Basic Information</h2>
           </div>
 
@@ -166,7 +166,6 @@ const EditCampus = () => {
         {/* Contact & Location */}
         <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2 pb-4 border-b border-gray-100 dark:border-college-gold/20">
-            <MapPin className="w-5 h-5 text-college-gold" />
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Contact & Location</h2>
           </div>
 
@@ -200,24 +199,19 @@ const EditCampus = () => {
         </section>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-4">
-          <PublicButton variant="secondary" onClick={() => navigate("/admin/campus")}>
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/campus")} className="border-2 border-white/10">
             Cancel
           </PublicButton>
-          <button
+          <PublicButton
+            variant={isDarkMode ? "secondary" : "primary"}
             type="submit"
-            disabled={loading}
-            className="flex items-center gap-2 px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+            shape="slanted"
+            className="px-8 font-bold transform hover:-translate-y-0.5"
+            icon={Save}
           >
-            {loading ? (
-              <>Saving...</>
-            ) : (
-              <>
-                <Save size={18} />
-                Save Changes
-              </>
-            )}
-          </button>
+            Save Changes
+          </PublicButton>
         </div>
       </form>
     </div>

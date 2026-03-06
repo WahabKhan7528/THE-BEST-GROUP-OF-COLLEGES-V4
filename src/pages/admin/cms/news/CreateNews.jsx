@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import PublicButton from "../../../../components/shared/PublicButton";
-import FormInput from "../../../../components/admin/FormInput";
+import FormInput from "../../../../components/admin/FormInput.jsx";
+import { useAdminContext } from "../../../../context/AdminContext";
 import {
   ArrowLeft,
   Calendar,
@@ -14,6 +15,7 @@ import {
 
 const CreateNews = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useAdminContext();
   const [type, setType] = useState("news");
   const [form, setForm] = useState({
     title: "",
@@ -37,7 +39,7 @@ const CreateNews = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link
@@ -57,14 +59,14 @@ const CreateNews = () => {
         <div className="lg:col-span-2 space-y-6">
           {/* Content Type Selection */}
           <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Content Type</h2>
+            <h2 className="text-sm font-bold text-college-navy dark:text-college-gold uppercase tracking-wider mb-4">Content Type</h2>
             <div className="grid grid-cols-2 gap-4">
               <label
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                   ${type === "news"
-                    ? 'border-blue-600 bg-blue-50 dark:bg-college-gold/10 dark:border-college-gold'
-                    : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80 hover:border-college-gold/50'
+                    ? 'border-college-gold bg-college-gold/10 dark:bg-college-gold/20'
+                    : 'border-gray-100 bg-white hover:border-college-gold/30 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80'
                   }
                 `}
               >
@@ -76,17 +78,17 @@ const CreateNews = () => {
                   onChange={() => setType("news")}
                   className="sr-only"
                 />
-                <Newspaper className={`w-6 h-6 mb-2 ${type === "news" ? 'text-blue-600 dark:text-college-gold' : 'text-gray-400'}`} />
-                <span className={`text-sm font-medium ${type === "news" ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-300'}`}>News & Announcement</span>
-                {type === "news" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-blue-600 dark:text-college-gold" />}
+                <Newspaper className={`w-6 h-6 mb-2 ${type === "news" ? 'text-college-gold' : 'text-gray-400'}`} />
+                <span className={`text-sm font-medium ${type === "news" ? 'text-college-navy dark:text-college-gold' : 'text-gray-600 dark:text-gray-300'}`}>News & Announcement</span>
+                {type === "news" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-college-gold" />}
               </label>
 
               <label
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                   ${type === "event"
-                    ? 'border-primary-600 bg-college-navy/5 dark:bg-college-gold/10 dark:border-college-gold'
-                    : 'border-gray-100 bg-white hover:border-primary-200 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80 hover:border-college-gold/50'
+                    ? 'border-college-gold bg-college-gold/10 dark:bg-college-gold/20'
+                    : 'border-gray-100 bg-white hover:border-college-gold/30 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80'
                   }
                 `}
               >
@@ -209,7 +211,7 @@ const CreateNews = () => {
                 onChange={(e) => handleChange("image", e.target.files?.[0])}
               />
               <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center w-full">
-                <div className="w-12 h-12 bg-blue-50 dark:bg-college-gold/10 text-blue-600 dark:text-college-gold rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-college-gold/10 text-college-gold rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   <Upload className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Click to upload</span>
@@ -217,7 +219,7 @@ const CreateNews = () => {
               </label>
             </div>
             {form.image && (
-              <div className="bg-blue-50 dark:bg-college-gold/10 text-blue-700 dark:text-college-gold px-3 py-2 rounded-lg text-xs flex items-center gap-2">
+              <div className="bg-college-gold/10 text-college-navy dark:text-college-gold px-3 py-2 rounded-lg text-xs flex items-center gap-2">
                 <ImageIcon className="w-3 h-3" />
                 <span className="truncate">{form.image.name}</span>
               </div>
@@ -226,13 +228,16 @@ const CreateNews = () => {
 
           {/* Actions */}
           <div className="flex flex-col gap-3">
-            <button
+            <PublicButton
               type="submit"
-              className="w-full px-4 py-3 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+              variant={isDarkMode ? "secondary" : "primary"}
+              shape="slanted"
+              className="w-full font-bold shadow-md transform hover:-translate-y-0.5"
+              icon={Upload}
             >
               Publish Post
-            </button>
-            <PublicButton variant="secondary" onClick={() => navigate("/admin/cms/news")} className="w-full">
+            </PublicButton>
+            <PublicButton variant="primary" onClick={() => navigate("/admin/cms/news")} className="w-full border-2 border-white/10">
               Cancel
             </PublicButton>
           </div>

@@ -22,7 +22,7 @@ import {
 } from "../../data/adminData";
 
 const Dashboard = () => {
-  const { selectedCampusFilter, getCurrentCampusContext, isSuperAdmin } =
+  const { selectedCampusFilter, getCurrentCampusContext, isSuperAdmin, isDarkMode } =
     useAdminContext();
 
   const currentCampus = getCurrentCampusContext();
@@ -68,10 +68,10 @@ const Dashboard = () => {
       <PortalPageHeader
         badge={
           (!isSuperAdmin || selectedCampusFilter !== "all") ? (
-            <Badge variant="gold">
+            <Badge variant={isDarkMode ? "gold" : "navy"}>
               <span className="relative flex h-2 w-2 mr-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-college-gold opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-college-gold"></span>
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isDarkMode ? 'bg-college-gold' : 'bg-college-navy'}`}></span>
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${isDarkMode ? 'bg-college-gold' : 'bg-college-navy'}`}></span>
               </span>
               {isSuperAdmin ? campusLabel : "Allocated Campuses"}
             </Badge>
@@ -82,7 +82,7 @@ const Dashboard = () => {
       />
 
       {/* Main Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
         {stats.map((item) => (
           <AdminStatsCard key={item.title} {...item} />
         ))}
@@ -99,24 +99,24 @@ const Dashboard = () => {
             <Link
               key={action.title}
               to={action.path}
-              className="group relative flex flex-col items-center text-center gap-4 p-6 rounded-2xl bg-college-navy border-[1.5px] border-college-gold/30 shadow-lg hover:shadow-2xl hover:border-college-gold/60 hover:scale-[1.01] transition-all duration-300 overflow-hidden"
+              className="group relative flex flex-col items-center text-center gap-4 p-6 rounded-2xl bg-white dark:bg-college-navy border-[1.5px] border-gray-200 dark:border-college-gold/30 shadow-lg hover:shadow-2xl hover:border-college-navy/60 dark:hover:border-college-gold/60 hover:scale-[1.01] transition-all duration-300 overflow-hidden"
             >
               <div
-                className="p-4 rounded-xl bg-college-gold/10 text-college-gold group-hover:scale-110 transition-transform duration-300 relative z-10"
+                className="p-4 rounded-xl bg-college-navy/10 text-college-navy dark:bg-college-gold/10 dark:text-college-gold group-hover:scale-110 transition-transform duration-300 relative z-10"
               >
                 <action.icon size={28} strokeWidth={1.5} />
               </div>
               <div className="relative z-10 space-y-1">
-                <h3 className="font-bold text-white group-hover:text-college-gold transition-colors">
+                <h3 className="font-bold text-college-navy dark:text-white group-hover:text-college-navy dark:group-hover:text-college-gold transition-colors text-sm sm:text-base">
                   {action.title}
                 </h3>
-                <p className="text-xs text-gray-400 line-clamp-2">
+                <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
                   {action.desc}
                 </p>
               </div>
 
               {/* Hover Effect Background */}
-              <div className="absolute inset-0 bg-college-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0" />
+              <div className="absolute inset-0 bg-college-navy/5 dark:bg-college-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0" />
             </Link>
           ))}
         </div>

@@ -16,19 +16,21 @@ const FacultyLayout = () => {
         />
       )}
 
-      {/* Sidebar */}
-      <FacultySidebar
-        isSidebarOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
+      {/* Sidebar - Sticky on desktop, fixed on mobile */}
+      <div className={`fixed lg:sticky lg:top-0 lg:h-screen lg:z-0 z-40`}>
+        <FacultySidebar
+          isSidebarOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
+      </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col w-full relative">
+      <div className="flex-1 flex flex-col w-full relative min-w-0">
         {/* Header */}
         <FacultyNavbar onMenuToggle={() => setIsSidebarOpen(true)} />
 
         {/* Main Content Area */}
-        <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-10 overflow-y-auto scroll-smooth">
+        <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-10 scroll-smooth">
           <div className="max-w-7xl mx-auto w-full">
             <Outlet />
           </div>

@@ -7,7 +7,9 @@ const variants = {
     secondary:
         "bg-college-gold text-college-navy border-2 border-college-gold shadow-sm hover:brightness-90 hover:shadow-md active:brightness-75",
     ghost:
-        "text-college-navy hover:text-college-gold transition-colors",
+        "text-college-navy dark:text-college-gold hover:opacity-80 transition-opacity",
+    danger:
+        "bg-red-600 text-white border-2 border-red-600 shadow-sm hover:bg-red-700 hover:border-red-700 active:bg-red-800 active:border-red-800 font-bold",
     unstyled:
         "",
 };

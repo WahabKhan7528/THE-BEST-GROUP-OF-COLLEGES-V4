@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Table from "../../../components/admin/Table";
 import { useAdminContext } from "../../../context/AdminContext";
+import PublicButton from "../../../components/shared/PublicButton";
+import Table from "../../../components/admin/Table";
 import {
   Plus,
   Search,
@@ -15,7 +16,7 @@ import { mockUsersData as adminUsers } from "../../../data/adminData";
 
 const UsersList = () => {
   const navigate = useNavigate();
-  const { campuses, isSuperAdmin, currentAdmin } = useAdminContext();
+  const { campuses, isSuperAdmin, currentAdmin, isDarkMode } = useAdminContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedCampus, setSelectedCampus] = useState("");
@@ -78,10 +79,10 @@ const UsersList = () => {
       key: "role",
       label: "Role",
       render: (row) => (
-        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin' ? 'bg-college-navy/10 text-primary-800' :
-          row.role === 'Sub-Admin' ? 'bg-college-navy/5 text-college-navy' :
-            row.role === 'Faculty' ? 'bg-white border border-primary-200 text-college-navy' :
-              'bg-slate-50 text-slate-700'
+        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${row.role === 'Super Admin' ? 'bg-college-navy/10 text-college-navy dark:text-college-gold' :
+          row.role === 'Sub-Admin' ? 'bg-college-gold/10 text-college-navy dark:text-college-gold' :
+            row.role === 'Faculty' ? 'bg-white dark:bg-college-navy/50 border border-college-gold/20 text-college-navy dark:text-college-gold' :
+              'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-400'
           }`}>
           {row.role}
         </span>
@@ -123,13 +124,16 @@ const UsersList = () => {
           </p>
         </div>
 
-        <Link
+        <PublicButton
           to="/admin/users/create"
-          className="flex items-center gap-2 px-6 py-3 bg-college-navy dark:bg-college-navy border border-transparent dark:border-college-gold/30 hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          size="lg"
+          className="shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+          icon={UserPlus}
         >
-          <UserPlus size={20} />
           Create New User
-        </Link>
+        </PublicButton>
       </div>
 
       {/* Filters Section */}
@@ -150,7 +154,7 @@ const UsersList = () => {
               placeholder="Search by name, email, or ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-dark-surface border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white"
+              className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white"
             />
           </div>
 
@@ -162,7 +166,7 @@ const UsersList = () => {
             <select
               value={selectedRole}
               onChange={(e) => setSelectedRole(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-dark-surface border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
+              className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
             >
               <option value="">All Roles</option>
               <option value="Super Admin">Super Admin</option>
@@ -181,7 +185,7 @@ const UsersList = () => {
               <select
                 value={selectedCampus}
                 onChange={(e) => setSelectedCampus(e.target.value)}
-                className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-dark-surface border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
+                className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
               >
                 <option value="">All Campuses</option>
                 {campuses.map((campus) => (
@@ -204,7 +208,7 @@ const UsersList = () => {
               {filteredData.length} Users Found
             </span>
             {selectedRole && (
-              <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-xs font-semibold flex items-center gap-1">
+              <span className="px-3 py-1 bg-college-gold/10 text-college-navy dark:text-college-gold rounded-full text-xs font-semibold flex items-center gap-1">
                 {selectedRole}
               </span>
             )}
@@ -234,7 +238,7 @@ const UsersList = () => {
               setSelectedRole("");
               setSelectedCampus("");
             }}
-            className="mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 font-semibold text-sm"
+            className="mt-4 text-college-navy dark:text-college-gold hover:underline font-semibold text-sm"
           >
             Clear all filters
           </button>

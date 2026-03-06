@@ -1,4 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import PublicButton from '../../../../components/shared/PublicButton';
+import { useAdminContext } from '../../../../context/AdminContext';
 import {
   Plus,
   Image,
@@ -14,6 +16,7 @@ import { adminGalleryImages as images } from "../../../../data/adminData";
 
 const Gallery = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useAdminContext();
   const [activeFilter, setActiveFilter] = useState("All");
   const albums = ["All", ...new Set(images.map(img => img.album))];
 
@@ -26,20 +29,22 @@ const Gallery = () => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-college-navy">
+          <h1 className="text-2xl font-bold text-college-navy dark:text-white">
             Media Gallery
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             Manage your campus photos, event highlights, and media assets
           </p>
         </div>
-        <Link
+        <PublicButton
           to="/admin/cms/gallery/upload"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          icon={Plus}
+          className="shadow-md transform hover:-translate-y-0.5"
         >
-          <Plus className="w-4 h-4" />
           Upload Image
-        </Link>
+        </PublicButton>
       </div>
 
       {/* Filters & Search */}
@@ -50,10 +55,10 @@ const Gallery = () => {
               key={album}
               onClick={() => setActiveFilter(album)}
               className={`
-                px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200
+                px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 border
                 ${activeFilter === album
-                  ? "bg-college-navy/5 text-college-navy shadow-sm dark:bg-white/10 dark:text-white"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-college-navy dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5"
+                  ? "bg-college-navy/10 text-college-navy border-college-navy/20 dark:bg-college-gold/10 dark:text-college-gold dark:border-college-gold/30 shadow-sm"
+                  : "text-gray-600 border-transparent hover:bg-gray-50 hover:text-college-navy dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5"
                 }
               `}
             >
@@ -92,7 +97,7 @@ const Gallery = () => {
               <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                 <button
                   onClick={() => navigate(`/admin/cms/gallery/edit/${img.id}`)}
-                  className="p-2 bg-white/90 backdrop-blur-sm rounded-full text-gray-700 hover:text-blue-600 hover:bg-white transition-colors shadow-sm"
+                  className="p-2 bg-white/90 backdrop-blur-sm rounded-full text-gray-700 hover:text-college-gold hover:bg-white transition-colors shadow-sm"
                   title="Edit"
                 >
                   <Pencil className="w-4 h-4" />
@@ -120,7 +125,7 @@ const Gallery = () => {
 
             {/* Info */}
             <div className="p-4">
-              <h3 className="font-semibold text-college-navy dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <h3 className="font-semibold text-college-navy dark:text-white truncate group-hover:text-college-gold transition-colors">
                 {img.title}
               </h3>
               <div className="flex items-center gap-2 mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -132,15 +137,16 @@ const Gallery = () => {
         ))}
 
         {/* Upload Placeholder (Empty State or just visual cue) */}
-        <Link
+        <PublicButton
           to="/admin/cms/gallery/upload"
-          className="flex flex-col items-center justify-center aspect-[4/3] border-2 border-dashed border-gray-200 rounded-2xl hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-200 group cursor-pointer"
+          variant={isDarkMode ? "secondary" : "primary"}
+          className="flex flex-col items-center justify-center aspect-[4/3] border-2 border-dashed border-gray-200 dark:border-college-gold/20 rounded-2xl hover:border-college-gold hover:bg-college-gold/5 transition-all duration-200 group cursor-pointer"
         >
-          <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-            <Plus className="w-6 h-6 text-gray-400 group-hover:text-blue-600" />
+          <div className="w-12 h-12 bg-college-navy/5 dark:bg-college-navy rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+            <Plus className="w-6 h-6 text-college-navy/40 dark:text-college-gold group-hover:text-college-gold" />
           </div>
-          <span className="mt-3 text-sm font-medium text-gray-500 group-hover:text-blue-600">Add New Image</span>
-        </Link>
+          <span className="mt-3 text-sm font-medium text-gray-500 group-hover:text-college-gold dark:group-hover:text-college-gold">Add New Image</span>
+        </PublicButton>
       </div>
     </div>
   );

@@ -2,17 +2,18 @@ import { useState } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { useNavigate, Link } from "react-router-dom";
 import PublicButton from "../../../components/shared/PublicButton";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import {
   Building2,
   BookOpen,
   GraduationCap,
   ArrowLeft,
-  CheckCircle2
+  CheckCircle2,
+  Plus
 } from "lucide-react";
 
 const CreateClass = () => {
-  const { campuses, currentAdmin, isSuperAdmin } = useAdminContext();
+  const { campuses, currentAdmin, isSuperAdmin, isDarkMode } = useAdminContext();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -46,7 +47,7 @@ const CreateClass = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link
@@ -65,7 +66,7 @@ const CreateClass = () => {
         {/* Campus Selection Section */}
         <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center gap-2 mb-2">
-            <Building2 className="w-5 h-5 text-blue-600 dark:text-college-gold" />
+
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Campus Allocation</h2>
           </div>
 
@@ -81,10 +82,10 @@ const CreateClass = () => {
                     <label
                       key={campus.id}
                       className={`
-                        relative flex flex - col items - center justify - center p - 4 rounded - xl border - 2 cursor - pointer transition - all duration - 200
+                        relative flex flex-col items-center justify-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-200
                         ${form.campus === campus.id
-                          ? 'border-blue-600 bg-blue-50 dark:bg-college-gold/10 dark:border-college-gold'
-                          : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80 hover:border-college-gold/50'
+                          ? "bg-college-navy/5 border-college-navy dark:bg-college-gold/10 dark:border-college-gold shadow-sm"
+                          : "bg-white border-gray-100 hover:border-college-navy/50 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80"
                         }
 `}
                     >
@@ -96,12 +97,12 @@ const CreateClass = () => {
                         onChange={(e) => handleChange("campus", e.target.value)}
                         className="sr-only"
                       />
-                      <Building2 className={`w - 6 h - 6 mb - 2 ${form.campus === campus.id ? 'text-blue-600' : 'text-gray-400'} `} />
-                      <span className={`text - sm font - medium text - center ${form.campus === campus.id ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-300'} `}>
+                      <Building2 className={`w-6 h-6 mb-2 ${form.campus === campus.id ? 'text-college-navy dark:text-college-gold' : 'text-gray-400'} `} />
+                      <span className={`text-sm font-bold text-center ${form.campus === campus.id ? 'text-college-navy dark:text-college-gold' : 'text-gray-600 dark:text-gray-300'} `}>
                         {campus.name}
                       </span>
                       {form.campus === campus.id && (
-                        <div className="absolute top-2 right-2 text-blue-600">
+                        <div className="absolute top-2 right-2 text-college-gold">
                           <CheckCircle2 className="w-4 h-4" />
                         </div>
                       )}
@@ -112,7 +113,7 @@ const CreateClass = () => {
                 <div className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-200 dark:bg-college-navy/50 dark:border-college-gold/20 rounded-xl text-gray-700 dark:text-gray-300">
                   <Building2 className="w-5 h-5 text-gray-400" />
                   <span className="font-medium">{getCampusLabel()}</span>
-                  <span className="ml-auto text-xs bg-blue-100 text-blue-700 dark:bg-college-gold/10 dark:text-college-gold px-2 py-1 rounded-full">Automated Selection</span>
+                  <span className="ml-auto text-xs bg-college-gold/10 text-college-navy dark:text-college-gold px-2 py-1 rounded-full">Automated Selection</span>
                 </div>
               )}
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 ml-1">
@@ -125,7 +126,7 @@ const CreateClass = () => {
         {/* Class Details Section */}
         <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2">
-            <GraduationCap className="w-5 h-5 text-college-gold" />
+
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Academic Details</h2>
           </div>
 
@@ -164,13 +165,13 @@ const CreateClass = () => {
                 Subjects
               </label>
               <div className="relative">
-                <BookOpen className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+
                 <textarea
                   value={form.subjects}
                   onChange={(e) => handleChange("subjects", e.target.value)}
                   placeholder="e.g. Operating Systems, Data Structures, Linear Algebra..."
                   rows="3"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all resize-none dark:text-white dark:placeholder-gray-500"
+                  className="w-full pr-4 py-3.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all resize-none dark:text-white dark:placeholder-gray-500"
                 />
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1.5 ml-1">List the subjects offered to this class</p>
@@ -179,16 +180,19 @@ const CreateClass = () => {
         </section>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-4">
-          <PublicButton variant="secondary" onClick={() => navigate("/admin/classes")}>
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/classes")} className="border-2 border-white/10">
             Cancel
           </PublicButton>
-          <button
+          <PublicButton
             type="submit"
-            className="px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+            variant={isDarkMode ? "secondary" : "primary"}
+            shape="slanted"
+            className="px-8 font-bold transform hover:-translate-y-0.5"
+            icon={Plus}
           >
             Create Class
-          </button>
+          </PublicButton>
         </div>
       </form>
     </div>

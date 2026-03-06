@@ -2,18 +2,19 @@ import { useState } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { Link, useNavigate } from "react-router-dom";
 import PublicButton from "../../../components/shared/PublicButton";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import {
   ArrowLeft,
   BookOpen,
   FileText,
   Building2,
-  CheckCircle2
+  CheckCircle2,
+  Plus
 } from "lucide-react";
 
 const CreateCourse = () => {
   const navigate = useNavigate();
-  const { campuses } = useAdminContext();
+  const { campuses, isDarkMode } = useAdminContext();
   const [form, setForm] = useState({
     title: "",
     duration: "",
@@ -50,7 +51,7 @@ const CreateCourse = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link
@@ -69,7 +70,7 @@ const CreateCourse = () => {
         {/* Basic Info Section */}
         <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-college-gold/20 pb-3">
-            <BookOpen className="w-5 h-5 text-blue-600 dark:text-college-gold" />
+
             Course Information
           </h2>
 
@@ -104,7 +105,6 @@ const CreateCourse = () => {
 
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-2">
-                <FileText className="w-4 h-4 text-gray-400" />
                 Exam System
               </label>
               <select
@@ -133,7 +133,6 @@ const CreateCourse = () => {
         {/* Campus Availability */}
         <section className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-college-gold/20 pb-3">
-            <Building2 className="w-5 h-5 text-college-gold" />
             Campus Availability <span className="text-red-500 text-sm ml-1">*</span>
           </h2>
 
@@ -147,22 +146,22 @@ const CreateCourse = () => {
                   className={`
                       relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 flex items-start gap-3
                       ${isSelected
-                      ? 'border-blue-600 bg-blue-50 shadow-sm dark:bg-college-gold/10 dark:border-college-gold'
-                      : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80 hover:border-college-gold'
+                      ? 'border-college-gold bg-blue-50 shadow-sm dark:bg-college-gold/10 dark:border-college-gold'
+                      : 'border-gray-100 bg-white hover:border-college-gold/30 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80'
                     }
                     `}
                 >
-                  <div className={`p-2 rounded-lg ${isSelected ? 'bg-blue-100 text-blue-600 dark:bg-college-gold/10 dark:text-college-gold' : 'bg-gray-100 text-gray-400 dark:bg-college-navy dark:text-gray-400'}`}>
+                  <div className={`p-2 rounded-lg ${isSelected ? 'bg-college-gold/10 text-college-gold' : 'bg-gray-100 text-gray-400 dark:bg-college-navy dark:text-gray-400'}`}>
                     <Building2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className={`font-semibold text-sm ${isSelected ? 'text-blue-900 dark:text-college-gold' : 'text-college-navy dark:text-gray-300'}`}>
+                    <h3 className={`font-semibold text-sm ${isSelected ? 'text-college-navy dark:text-college-gold' : 'text-college-navy dark:text-gray-300'}`}>
                       {campus.name}
                     </h3>
                     <p className="text-xs text-gray-500 dark:text-gray-400">{campus.code}</p>
                   </div>
                   {isSelected && (
-                    <CheckCircle2 className="absolute top-3 right-3 w-5 h-5 text-blue-600 dark:text-college-gold" />
+                    <CheckCircle2 className="absolute top-3 right-3 w-5 h-5 text-college-gold" />
                   )}
                 </div>
               );
@@ -175,16 +174,19 @@ const CreateCourse = () => {
         </section>
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-3 pt-4">
-          <PublicButton variant="secondary" to="/admin/courses">
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/courses")} className="border-2 border-white/10" shape="slanted">
             Cancel
           </PublicButton>
-          <button
+          <PublicButton
             type="submit"
-            className="px-6 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+            variant={isDarkMode ? "secondary" : "primary"}
+            shape="slanted"
+            className="px-6 font-bold shadow-md transform hover:-translate-y-0.5 transition-all"
+            icon={Plus}
           >
             Create Course
-          </button>
+          </PublicButton>
         </div>
       </form>
     </div>

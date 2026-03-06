@@ -8,6 +8,7 @@ const variants = {
     warning: "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-700/40",
     danger: "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-700/40",
     info: "bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400 border border-sky-200 dark:border-sky-700/40",
+    navy: "bg-college-navy/10 text-college-navy border border-college-navy/30",
 };
 
 export default function Badge({ variant = "outline", className, children }) {

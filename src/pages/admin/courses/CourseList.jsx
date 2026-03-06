@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import Table from "../../../components/admin/Table";
+import PublicButton from "../../../components/shared/PublicButton";
 import {
   Plus,
   Search,
@@ -15,7 +16,7 @@ import {
 import { mockCoursesData as adminCourses } from "../../../data/adminData";
 
 const CourseList = () => {
-  const { campuses, isSuperAdmin, currentAdmin } = useAdminContext();
+  const { campuses, isSuperAdmin, currentAdmin, isDarkMode } = useAdminContext();
   const [selectedCampus, setSelectedCampus] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -51,7 +52,7 @@ const CourseList = () => {
       return (
         <span
           key={cId}
-          className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200"
+          className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-college-navy/5 text-college-navy dark:text-college-gold dark:bg-college-gold/10 border border-college-navy/10 dark:border-college-gold/20"
         >
           {campus?.code || cId}
         </span>
@@ -65,13 +66,13 @@ const CourseList = () => {
       label: "Course Details",
       render: (row) => (
         <div className="flex items-start gap-3">
-          <div className="p-2 bg-college-navy/5 text-college-gold rounded-lg">
+          <div className="p-2 bg-college-navy/10 text-college-navy dark:bg-college-gold/10 dark:text-college-gold rounded-lg">
             <BookOpen className="w-5 h-5" />
           </div>
           <div>
-            <span className="font-semibold text-college-navy line-clamp-1">{row.title}</span>
-            <div className="flex items-center gap-2 mt-0.5 text-xs text-gray-500">
-              <span className="bg-college-navy/5 text-college-navy px-1.5 py-0.5 rounded text-[10px] font-medium uppercase tracking-wide">
+            <span className="font-semibold text-college-navy dark:text-white line-clamp-1">{row.title}</span>
+            <div className="flex items-center gap-2 mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+              <span className="bg-college-navy/5 text-college-navy dark:bg-college-gold/10 dark:text-college-gold px-1.5 py-0.5 rounded text-[10px] font-medium uppercase tracking-wide border border-college-navy/10 dark:border-college-gold/20">
                 Undergraduate
               </span>
             </div>
@@ -84,8 +85,8 @@ const CourseList = () => {
       label: "Duration & Fee",
       render: (row) => (
         <div className="space-y-1">
-          <div className="flex items-center gap-1.5 text-sm text-gray-700 font-medium">
-            <Clock className="w-3.5 h-3.5 text-gray-400" />
+          <div className="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300 font-medium">
+            <Clock className="w-3.5 h-3.5 text-college-navy/40 dark:text-college-gold/60" />
             {row.duration}
           </div>
           <div className="flex items-center gap-1.5 text-xs text-gray-500">
@@ -100,8 +101,8 @@ const CourseList = () => {
       label: "Eligibility",
       render: (row) => (
         <div className="flex items-center gap-2">
-          <GraduationCap className="w-4 h-4 text-gray-400" />
-          <span className="text-sm text-gray-600">{row.eligibility}</span>
+          <GraduationCap className="w-4 h-4 text-college-navy/40 dark:text-college-gold/60" />
+          <span className="text-sm text-gray-600 dark:text-gray-400">{row.eligibility}</span>
         </div>
       )
     },
@@ -121,20 +122,23 @@ const CourseList = () => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-college-navy">
+          <h1 className="text-2xl font-bold text-college-navy dark:text-white">
             Course Management
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             Manage degree programs, short courses, and academic offerings
           </p>
         </div>
-        <Link
+        <PublicButton
           to="/admin/courses/create"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          size="md"
+          className="shadow-md transition-all duration-200"
+          icon={Plus}
         >
-          <Plus className="w-4 h-4" />
           Add New Course
-        </Link>
+        </PublicButton>
       </div>
 
       {/* Filters & Actions */}
@@ -196,11 +200,11 @@ const CourseList = () => {
         />
       ) : (
         <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-          <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-            <BookOpen className="w-8 h-8 text-gray-300" />
+          <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/10 rounded-full flex items-center justify-center mb-4 transition-transform hover:scale-110">
+            <BookOpen className="w-8 h-8 text-college-navy/30 dark:text-college-gold/40" />
           </div>
-          <h3 className="text-lg font-medium text-college-navy">No courses found</h3>
-          <p className="text-gray-500 max-w-sm mt-1">
+          <h3 className="text-lg font-medium text-college-navy dark:text-white">No courses found</h3>
+          <p className="text-gray-500 dark:text-gray-400 max-w-sm mt-1">
             There are no courses matching your search criteria. Try adjusting your filters or add a new course.
           </p>
         </div>

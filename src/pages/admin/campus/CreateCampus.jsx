@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAdminContext } from "../../../context/AdminContext";
 import PublicButton from "../../../components/shared/PublicButton";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 
 
 const CreateCampus = () => {
   const navigate = useNavigate();
-  const { addCampus } = useAdminContext();
+  const { addCampus, isDarkMode } = useAdminContext();
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -52,7 +52,7 @@ const CreateCampus = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white dark:bg-college-navy border border-transparent dark:border-college-gold/20 p-5 md:p-8 rounded-lg md:rounded-xl shadow-md">
+    <div className="w-full mx-auto bg-white dark:bg-college-navy border border-transparent dark:border-college-gold/20 p-5 md:p-8 rounded-lg md:rounded-xl shadow-md">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4 md:mb-6">
         Create New Campus
       </h1>
@@ -118,15 +118,12 @@ const CreateCampus = () => {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
-          <button
-            type="submit"
-            className="flex-1 px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base rounded-lg md:rounded-xl bg-college-navy hover:bg-college-navy/90 text-white font-semibold shadow-md transition-all duration-200"
-          >
-            Create Campus
-          </button>
-          <PublicButton variant="secondary" onClick={handleCancel} className="flex-1">
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4">
+          <PublicButton variant="primary" onClick={handleCancel} className="border-2 border-white/10" >
             Cancel
+          </PublicButton>
+          <PublicButton variant={isDarkMode ? "secondary" : "primary"} type="submit" shape="slanted" className="font-bold">
+            Create Campus
           </PublicButton>
         </div>
       </form>

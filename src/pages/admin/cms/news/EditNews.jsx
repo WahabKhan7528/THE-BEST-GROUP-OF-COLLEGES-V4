@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
+import { useAdminContext } from "../../../../context/AdminContext";
 import PublicButton from "../../../../components/shared/PublicButton";
-import FormInput from "../../../../components/admin/FormInput";
+import FormInput from "../../../../components/admin/FormInput.jsx";
 import {
   ArrowLeft,
   Calendar,
@@ -18,6 +19,7 @@ import {
 const EditNews = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { isDarkMode } = useAdminContext();
   const [type, setType] = useState("news");
   const [form, setForm] = useState({
     title: "",
@@ -72,7 +74,7 @@ const EditNews = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -87,13 +89,14 @@ const EditNews = () => {
             <p className="text-gray-500 dark:text-gray-400 text-sm">Update communication details</p>
           </div>
         </div>
-        <button
+        <PublicButton
           onClick={handleDelete}
-          className="flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors text-sm font-medium"
+          variant="danger"
+          size="sm"
+          icon={Trash2}
         >
-          <Trash2 size={16} />
           Delete Post
-        </button>
+        </PublicButton>
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -107,8 +110,8 @@ const EditNews = () => {
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                   ${type === "news"
-                    ? 'border-blue-600 dark:border-college-gold bg-blue-50 dark:bg-college-gold/10'
-                    : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-blue-200 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
+                    ? "bg-college-navy/5 border-college-navy dark:bg-college-gold/10 dark:border-college-gold shadow-sm"
+                    : "bg-white border-gray-100 hover:border-college-navy/50 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80"
                   }
                 `}
               >
@@ -120,17 +123,17 @@ const EditNews = () => {
                   onChange={() => setType("news")}
                   className="sr-only"
                 />
-                <Newspaper className={`w-6 h-6 mb-2 ${type === "news" ? 'text-blue-600 dark:text-college-gold' : 'text-gray-400'}`} />
-                <span className={`text-sm font-medium ${type === "news" ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>News & Announcement</span>
-                {type === "news" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-blue-600 dark:text-college-gold" />}
+                <Newspaper className={`w-6 h-6 mb-2 ${type === "news" ? "text-college-navy dark:text-college-gold" : "text-gray-400"}`} />
+                <span className={`text-sm font-bold ${type === "news" ? "text-college-navy dark:text-college-gold" : "text-gray-600 dark:text-gray-400"}`}>News & Announcement</span>
+                {type === "news" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-college-gold" />}
               </label>
 
               <label
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                   ${type === "event"
-                    ? 'border-primary-600 dark:border-college-gold bg-college-navy/5 dark:bg-college-gold/10'
-                    : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-primary-200 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
+                    ? "bg-college-navy/5 border-college-navy dark:bg-college-gold/10 dark:border-college-gold shadow-sm"
+                    : "bg-white border-gray-100 hover:border-college-navy/50 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80"
                   }
                 `}
               >
@@ -142,9 +145,9 @@ const EditNews = () => {
                   onChange={() => setType("event")}
                   className="sr-only"
                 />
-                <Calendar className={`w-6 h-6 mb-2 ${type === "event" ? 'text-college-gold' : 'text-gray-400'}`} />
-                <span className={`text-sm font-medium ${type === "event" ? 'text-college-navy dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>Event</span>
-                {type === "event" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-college-gold" />}
+                <Calendar className={`w-6 h-6 mb-2 ${type === "event" ? "text-college-navy dark:text-college-gold" : "text-gray-400"}`} />
+                <span className={`text-sm font-bold ${type === "event" ? "text-college-navy dark:text-college-gold" : "text-gray-600 dark:text-gray-400"}`}>Event</span>
+                {type === "event" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-college-navy dark:text-college-gold" />}
               </label>
             </div>
           </section>
@@ -163,11 +166,11 @@ const EditNews = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Subject Category</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Subject Category</label>
                 <select
                   value={form.category}
                   onChange={(e) => handleChange("category", e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none"
+                  className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
                 >
                   <option value="" disabled>Select category</option>
                   <option value="Academic">Academic</option>
@@ -180,15 +183,15 @@ const EditNews = () => {
 
               {type === "event" && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Location</label>
                   <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+
                     <input
                       type="text"
                       value={form.location}
                       onChange={(e) => handleChange("location", e.target.value)}
                       placeholder="Event Venue"
-                      className="w-full pl-9 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm"
+                      className="w-full pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white dark:placeholder-gray-500"
                     />
                   </div>
                 </div>
@@ -196,7 +199,7 @@ const EditNews = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Description <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -204,7 +207,7 @@ const EditNews = () => {
                 onChange={(e) => handleChange("description", e.target.value)}
                 rows={6}
                 placeholder="Write the full content description here..."
-                className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm resize-none leading-relaxed"
+                className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm resize-none leading-relaxed dark:text-white dark:placeholder-gray-500"
                 required
               />
             </div>
@@ -216,7 +219,7 @@ const EditNews = () => {
           {/* Metadata */}
           <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
             <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-              <Megaphone className="w-4 h-4 text-college-gold" />
+
               Publishing Details
             </h3>
 
@@ -274,7 +277,7 @@ const EditNews = () => {
           {/* Cover Image */}
           <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
             <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-              <ImageIcon className="w-4 h-4 text-college-gold" />
+
               Cover Image
             </h3>
 
@@ -287,7 +290,7 @@ const EditNews = () => {
                 id="image-upload"
               />
               <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center w-full">
-                <div className="w-12 h-12 bg-blue-50 dark:bg-college-gold/10 text-blue-600 dark:text-college-gold rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-college-gold/10 text-college-gold rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   <Upload className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Click to replace</span>
@@ -295,8 +298,8 @@ const EditNews = () => {
               </label>
             </div>
             {form.image && (
-              <div className="bg-blue-50 dark:bg-college-gold/10 text-blue-700 dark:text-college-gold px-3 py-2 rounded-lg text-xs flex items-center gap-2">
-                <ImageIcon className="w-3 h-3" />
+              <div className="bg-college-gold/10 text-college-navy dark:text-college-gold px-3 py-2 rounded-lg text-xs flex items-center gap-2">
+
                 <span className="truncate">{form.image.name}</span>
               </div>
             )}
@@ -304,14 +307,16 @@ const EditNews = () => {
 
           {/* Actions */}
           <div className="flex flex-col gap-3">
-            <button
+            <PublicButton
               type="submit"
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+              variant={isDarkMode ? "secondary" : "primary"}
+              shape="slanted"
+              className="w-full font-bold shadow-md transform hover:-translate-y-0.5"
+              icon={Save}
             >
-              <Save size={18} />
               Save Changes
-            </button>
-            <PublicButton variant="secondary" onClick={() => navigate("/admin/cms/news")} className="w-full">
+            </PublicButton>
+            <PublicButton variant="primary" onClick={() => navigate("/admin/cms/news")} className="w-full border-2 border-white/10">
               Cancel
             </PublicButton>
           </div>

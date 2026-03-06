@@ -22,7 +22,7 @@ const AdminNavbar = ({ onMenuToggle }) => {
         {/* Left Section: Menu Toggle & Role Badge */}
         <div className="flex items-center gap-4">
           <button
-            className="p-2.5 rounded-xl hover:bg-college-gold/10 text-college-navy lg:hidden transition-all duration-200 active:scale-95"
+            className="p-2.5 rounded-xl hover:bg-college-navy/10 text-college-navy dark:text-gray-200 lg:hidden transition-all duration-200 active:scale-95 dark:hover:bg-college-gold/10"
             onClick={onMenuToggle}
             aria-label="Toggle sidebar"
           >
@@ -38,33 +38,31 @@ const AdminNavbar = ({ onMenuToggle }) => {
         </div>
 
         {/* Right Section: Actions & Profile */}
-        <div className="flex items-center gap-2 sm:gap-4">
-          <div className="mr-1 sm:mr-2">
-            <CampusFilter />
-          </div>
+        <div className="flex items-center gap-1.5 sm:gap-4">
+          <CampusFilter />
 
           <DarkModeToggle />
 
           <button
             onClick={() => navigate("/")}
-            className="p-2.5 rounded-xl text-gray-500 hover:bg-college-gold/10 hover:text-college-gold transition-all duration-200"
+            className="p-2 sm:p-2.5 rounded-xl text-gray-500 hover:bg-college-navy/10 hover:text-college-navy dark:hover:bg-college-gold/10 dark:hover:text-college-gold transition-all duration-200"
             title="Back to Home"
           >
-            <Home size={20} />
+            <Home size={18} className="sm:w-5 sm:h-5" />
           </button>
 
-          <div className="h-8 w-px bg-gray-200 mx-1 hidden sm:block"></div>
+          <div className="h-6 sm:h-8 w-px bg-gray-200 mx-0.5 sm:mx-1"></div>
 
-          <div className="flex items-center gap-3 p-1.5 pl-2 rounded-xl group cursor-default">
+          <div className="flex items-center gap-2 sm:gap-3 p-1 sm:p-1.5 sm:pl-2 rounded-xl group cursor-default">
             <div className="hidden sm:block text-right">
-              <p className="text-sm font-semibold text-college-navy leading-none">
+              <p className="text-sm font-semibold text-college-navy dark:text-gray-200 leading-none">
                 {currentAdmin?.name || "Admin User"}
               </p>
               <p className="text-xs text-gray-500 mt-1 leading-none">
                 {currentAdmin?.email || "admin@example.com"}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-full bg-college-navy text-white flex items-center justify-center text-sm font-bold shadow-sm ring-2 ring-college-gold/30">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-college-navy text-white flex items-center justify-center text-xs sm:text-sm font-bold shadow-sm ring-2 ring-college-gold/30">
               {initials}
             </div>
           </div>

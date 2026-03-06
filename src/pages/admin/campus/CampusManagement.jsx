@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminContext } from "../../../context/AdminContext";
+import PublicButton from "../../../components/shared/PublicButton";
 import Table from "../../../components/admin/Table";
 import {
   Plus,
@@ -13,18 +14,18 @@ import {
 
 const CampusManagement = () => {
   const navigate = useNavigate();
-  const { campuses, isSuperAdmin } = useAdminContext();
+  const { campuses, isSuperAdmin, isDarkMode } = useAdminContext();
   const [searchTerm, setSearchTerm] = useState("");
 
   if (!isSuperAdmin) {
     return (
-      <div className="p-8 bg-red-50/50 backdrop-blur-sm border border-red-200 rounded-2xl flex items-center gap-4">
-        <div className="p-3 bg-red-100 rounded-xl text-red-600">
+      <div className="p-8 bg-college-navy/5 dark:bg-college-gold/10 backdrop-blur-sm border border-college-navy/10 dark:border-college-gold/20 rounded-2xl flex items-center gap-4">
+        <div className="p-3 bg-college-navy/20 dark:bg-college-gold/20 rounded-xl text-college-navy dark:text-white">
           <ShieldCheck size={24} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-red-900">Access Denied</h2>
-          <p className="text-red-700 mt-1">
+          <h2 className="text-xl font-bold text-college-navy dark:text-white">Access Denied</h2>
+          <p className="text-college-navy/70 dark:text-gray-300 mt-1">
             Only Super Admins can access Campus Management.
           </p>
         </div>
@@ -92,13 +93,15 @@ const CampusManagement = () => {
           </p>
         </div>
 
-        <button
+        <PublicButton
           onClick={handleAddCampus}
-          className="flex items-center gap-2 px-6 py-3 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl font-semibold shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
+          variant={isDarkMode ? "secondary" : "primary"}
+          shape="slanted"
+          size="lg"
+          icon={Plus}
         >
-          <Plus size={20} />
           Add New Campus
-        </button>
+        </PublicButton>
       </div>
 
       {/* Stats Overview */}
@@ -110,16 +113,6 @@ const CampusManagement = () => {
           <div>
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Campuses</p>
             <p className="text-3xl font-bold text-college-navy dark:text-white">{campuses.length}</p>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-2xl p-6 shadow-sm flex items-center gap-5 transition-all duration-300">
-          <div className="w-14 h-14 rounded-xl bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-navy dark:text-college-gold shadow-sm">
-            <Building2 size={28} />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Active Departments</p>
-            <p className="text-3xl font-bold text-college-navy dark:text-white">12</p>
           </div>
         </div>
 

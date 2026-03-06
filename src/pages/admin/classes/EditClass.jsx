@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAdminContext } from "../../../context/AdminContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import PublicButton from "../../../components/shared/PublicButton";
-import FormInput from "../../../components/admin/FormInput";
+import FormInput from "../../../components/admin/FormInput.jsx";
 import {
   Building2,
   BookOpen,
@@ -15,7 +15,7 @@ import {
 
 const EditClass = () => {
   const { id } = useParams();
-  const { campuses, currentAdmin, isSuperAdmin } = useAdminContext();
+  const { campuses, currentAdmin, isSuperAdmin, isDarkMode } = useAdminContext();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -66,7 +66,7 @@ const EditClass = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -81,20 +81,20 @@ const EditClass = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">Update class details and assignments</p>
           </div>
         </div>
-        <button
+        <PublicButton
           onClick={handleDelete}
-          className="flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors text-sm font-medium"
+          variant="danger"
+          size="sm"
+          icon={Trash2}
         >
-          <Trash2 size={16} />
           Delete Class
-        </button>
+        </PublicButton>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Campus Selection Section */}
         <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center gap-2 mb-2">
-            <Building2 className="w-5 h-5 text-blue-600 dark:text-college-gold" />
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Campus Allocation</h2>
           </div>
 
@@ -112,8 +112,8 @@ const EditClass = () => {
                       className={`
                         relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
                         ${form.campus === campus.id
-                          ? 'border-blue-600 dark:border-college-gold bg-blue-50 dark:bg-college-gold/10'
-                          : 'border-gray-100 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-blue-200 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
+                          ? "bg-college-navy/5 border-college-navy dark:bg-college-gold/10 dark:border-college-gold shadow-sm"
+                          : "bg-white border-gray-100 hover:border-college-navy/50 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/20 dark:hover:bg-college-navy/80"
                         }
                       `}
                     >
@@ -125,15 +125,13 @@ const EditClass = () => {
                         onChange={(e) => handleChange("campus", e.target.value)}
                         className="sr-only"
                       />
-                      <Building2 className={`w-6 h-6 mb-2 ${form.campus === campus.id ? 'text-blue-600 dark:text-college-gold' : 'text-gray-400'}`} />
-                      <span className={`text-sm font-medium text-center ${form.campus === campus.id ? 'text-blue-700 dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>
+                      <Building2 className={`w-6 h-6 mb-2 ${form.campus === campus.id ? 'text-college-navy dark:text-college-gold' : 'text-gray-400'}`} />
+                      <span className={`text-sm font-bold text-center ${form.campus === campus.id ? 'text-college-navy dark:text-college-gold' : 'text-gray-600 dark:text-gray-400'}`}>
                         {campus.name}
                       </span>
-                      {form.campus === campus.id && (
-                        <div className="absolute top-2 right-2 text-blue-600 dark:text-college-gold">
-                          <CheckCircle2 className="w-4 h-4" />
-                        </div>
-                      )}
+                      <div className="absolute top-2 right-2 text-college-gold">
+                        <CheckCircle2 className="w-4 h-4" />
+                      </div>
                     </label>
                   ))}
                 </div>
@@ -141,7 +139,7 @@ const EditClass = () => {
                 <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl text-gray-700 dark:text-gray-200">
                   <Building2 className="w-5 h-5 text-gray-400" />
                   <span className="font-medium">{getCampusLabel()}</span>
-                  <span className="ml-auto text-xs bg-blue-100 dark:bg-college-gold/20 text-blue-700 dark:text-college-gold px-2 py-1 rounded-full">Automated Selection</span>
+                  <span className="ml-auto text-xs bg-college-gold/10 text-college-navy dark:text-college-gold px-2 py-1 rounded-full">Automated Selection</span>
                 </div>
               )}
             </div>
@@ -151,7 +149,7 @@ const EditClass = () => {
         {/* Class Details Section */}
         <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-6">
           <div className="flex items-center gap-2 mb-2">
-            <GraduationCap className="w-5 h-5 text-college-gold" />
+
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Academic Details</h2>
           </div>
 
@@ -189,13 +187,13 @@ const EditClass = () => {
                 Subjects
               </label>
               <div className="relative">
-                <BookOpen className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+
                 <textarea
                   value={form.subjects}
                   onChange={(e) => handleChange("subjects", e.target.value)}
                   placeholder="e.g. Operating Systems, Data Structures, Linear Algebra..."
                   rows="3"
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all resize-none dark:text-white dark:placeholder-gray-500"
+                  className="w-full pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all resize-none dark:text-white dark:placeholder-gray-500"
                 />
               </div>
             </div>
@@ -203,17 +201,19 @@ const EditClass = () => {
         </section>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-4">
-          <PublicButton variant="secondary" onClick={() => navigate("/admin/classes")}>
+        <div className="flex items-center justify-end gap-3 md:gap-4 pt-4">
+          <PublicButton variant="primary" onClick={() => navigate("/admin/classes")} className="border-2 border-white/10">
             Cancel
           </PublicButton>
-          <button
+          <PublicButton
             type="submit"
-            className="flex items-center gap-2 px-8 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+            variant={isDarkMode ? "secondary" : "primary"}
+            shape="slanted"
+            className="px-8 font-bold shadow-md transform hover:-translate-y-0.5 transition-all"
+            icon={Save}
           >
-            <Save size={18} />
             Save Changes
-          </button>
+          </PublicButton>
         </div>
       </form>
     </div>

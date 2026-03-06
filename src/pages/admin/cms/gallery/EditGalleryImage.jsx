@@ -1,13 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import PublicButton from '../../../../components/shared/PublicButton';
+import FormInput from '../../../../components/admin/FormInput.jsx';
 import { ArrowLeft, Upload, Image as ImageIcon, X, CheckCircle2, Save, Trash2, Calendar } from 'lucide-react';
+import { useAdminContext } from '../../../../context/AdminContext';
 import { adminGalleryImages as mockImages } from "../../../../data/adminData";
 
 
 const EditGalleryImage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { isDarkMode } = useAdminContext();
     const fileInputRef = useRef(null);
 
     const [loading, setLoading] = useState(false);
@@ -15,6 +18,7 @@ const EditGalleryImage = () => {
         title: "",
         album: "",
         tags: "",
+        description: "",
         date: ""
     });
     const [file, setFile] = useState(null);
@@ -28,6 +32,7 @@ const EditGalleryImage = () => {
                 title: foundImage.title,
                 album: foundImage.album,
                 tags: "",
+                description: foundImage.description || "",
                 date: foundImage.date
             });
             setPreview(foundImage.url);
@@ -104,7 +109,7 @@ const EditGalleryImage = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="w-full mx-auto space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
@@ -119,13 +124,14 @@ const EditGalleryImage = () => {
                         <p className="text-gray-500 dark:text-gray-400 text-sm">Update gallery image details</p>
                     </div>
                 </div>
-                <button
+                <PublicButton
                     onClick={handleDelete}
-                    className="flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors text-sm font-medium"
+                    variant="danger"
+                    size="sm"
+                    icon={Trash2}
                 >
-                    <Trash2 size={16} />
                     Delete
-                </button>
+                </PublicButton>
             </div>
 
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -139,10 +145,10 @@ const EditGalleryImage = () => {
                         className={`
               relative aspect-square md:aspect-[4/3] rounded-2xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center cursor-pointer overflow-hidden
               ${isDragging
-                                ? 'border-primary-500 dark:border-college-gold bg-college-navy/5 dark:bg-college-gold/10'
+                                ? "bg-college-navy/5 border-college-navy dark:bg-college-gold/10 dark:border-college-gold shadow-sm"
                                 : preview
-                                    ? 'border-primary-200 dark:border-college-gold/30 bg-gray-50 dark:bg-college-navy'
-                                    : 'border-gray-300 dark:border-college-gold/20 bg-white dark:bg-college-navy hover:border-primary-400 dark:hover:border-college-gold/50 hover:bg-gray-50 dark:hover:bg-college-navy/80'
+                                    ? "bg-gray-50 border-college-navy/30 dark:bg-college-navy dark:border-college-gold/30"
+                                    : "bg-white border-gray-300 hover:border-college-navy/50 hover:bg-gray-50 dark:bg-college-navy dark:border-college-gold/20 dark:hover:bg-college-navy/80"
                             }
             `}
                     >
@@ -174,7 +180,7 @@ const EditGalleryImage = () => {
                             </div>
                         ) : (
                             <div className="text-center p-6 space-y-3">
-                                <div className="w-16 h-16 mx-auto bg-blue-50 dark:bg-college-gold/10 text-blue-600 dark:text-college-gold rounded-full flex items-center justify-center mb-2">
+                                <div className="w-16 h-16 mx-auto bg-college-gold/10 dark:bg-college-gold/10 text-college-gold dark:text-college-gold rounded-full flex items-center justify-center mb-2">
                                     <Upload className="w-8 h-8" />
                                 </div>
                                 <div>
@@ -186,8 +192,8 @@ const EditGalleryImage = () => {
                     </div>
 
                     {file && (
-                        <div className="flex items-center gap-3 p-3 bg-white/50 border border-white/20 rounded-xl shadow-sm">
-                            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                        <div className="flex items-center gap-3 p-3 bg-white/50 dark:bg-college-navy/50 border border-white/20 dark:border-college-gold/20 rounded-xl shadow-sm">
+                            <div className="w-10 h-10 rounded-lg bg-college-gold/10 flex items-center justify-center text-college-gold">
                                 <ImageIcon className="w-5 h-5" />
                             </div>
                             <div className="flex-1 min-w-0">
@@ -200,34 +206,32 @@ const EditGalleryImage = () => {
                 </div>
 
                 {/* Right Column: Form Details */}
-                <div className="bg-white/60 dark:bg-college-navy/60 backdrop-blur-md border border-white/60 dark:border-college-gold/20 rounded-2xl shadow-sm p-6 flex flex-col">
-                    <div className="flex-1 space-y-5">
+                <div className="bg-white/60 dark:bg-college-navy/60 backdrop-blur-md border border-white/60 dark:border-college-gold/20 rounded-2xl shadow-sm p-6 md:p-8 flex flex-col">
+                    <div className="flex-1 space-y-6">
                         <div className="flex items-center gap-2 text-gray-800 dark:text-white font-semibold pb-2 border-b border-gray-100 dark:border-college-gold/20">
-                            <Calendar size={18} className="text-blue-600 dark:text-college-gold" />
+                            <Calendar size={18} className="text-college-gold" />
                             <h2>Media Details</h2>
                         </div>
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5">Image Title <span className="text-red-500">*</span></label>
-                                <input
-                                    type="text"
+                                <FormInput
+                                    label="Image Title"
                                     value={form.title}
-                                    onChange={(e) => handleChange("title", e.target.value)}
+                                    onChange={(val) => handleChange("title", val)}
                                     placeholder="e.g. Orientation Ceremony 2025"
-                                    className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all font-medium dark:text-white dark:placeholder-gray-500"
                                     required
                                 />
                             </div>
 
                             <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                                <label className="text-xs md:text-sm font-medium text-college-navy dark:text-gray-200">
                                     Album Collection <span className="text-red-500">*</span>
                                 </label>
                                 <select
                                     value={form.album}
                                     onChange={(e) => handleChange('album', e.target.value)}
-                                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-sm"
+                                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy/50 dark:text-white focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm md:text-base"
                                     required
                                 >
                                     <option value="" disabled>Select album</option>
@@ -240,21 +244,16 @@ const EditGalleryImage = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5">Date</label>
-                                <div className="relative">
-                                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                    <input
-                                        type="text"
-                                        value={form.date}
-                                        onChange={(e) => handleChange("date", e.target.value)}
-                                        placeholder="e.g. Sept 5, 2025"
-                                        className="w-full pl-10 pr-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
-                                    />
-                                </div>
+                                <FormInput
+                                    label="Date"
+                                    value={form.date}
+                                    onChange={(val) => handleChange("date", val)}
+                                    placeholder="e.g. Sept 5, 2025"
+                                />
                             </div>
 
                             <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                                <label className="text-xs md:text-sm font-medium text-college-navy dark:text-gray-200">
                                     Description
                                 </label>
                                 <textarea
@@ -262,61 +261,39 @@ const EditGalleryImage = () => {
                                     onChange={(e) => handleChange('description', e.target.value)}
                                     placeholder="Write a short description..."
                                     rows="3"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all resize-none text-sm"
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white dark:bg-college-navy/50 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all resize-none text-sm md:text-base shadow-sm"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5">Tags (Optional)</label>
-                                <input
-                                    type="text"
+                                <FormInput
+                                    label="Tags (Optional)"
                                     value={form.tags}
-                                    onChange={(e) => handleChange("tags", e.target.value)}
+                                    onChange={(val) => handleChange("tags", val)}
                                     placeholder="e.g. students, auditorium, celebration"
-                                    className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
+                                    helper="Comma separated"
                                 />
-                                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Comma separated</p>
                             </div>
 
-                            <div className="pt-2 flex items-center justify-between">
-                                <label className="flex items-center gap-3 cursor-pointer group">
-                                    <div className="relative flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            checked={form.featured}
-                                            onChange={(e) => handleChange('featured', e.target.checked)}
-                                            className="peer sr-only"
-                                        />
-                                        <div className="w-10 h-6 bg-gray-200 dark:bg-gray-600 rounded-full peer peer-checked:bg-college-gold transition-colors"></div>
-                                        <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4 shadow-sm"></div>
-                                    </div>
-                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-college-gold transition-colors">
-                                        Feature on Home Page
-                                    </span>
-                                </label>
-                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="pt-4 flex gap-3">
-                    <PublicButton variant="secondary" onClick={() => navigate("/admin/cms/gallery")} className="flex-1">
+                <div className="md:col-span-2 pt-6 flex items-center justify-end gap-3 md:gap-4 border-t border-gray-100 dark:border-college-gold/20">
+                    <PublicButton variant="primary" onClick={() => navigate("/admin/cms/gallery")} className="border-2 border-white/10">
                         Cancel
                     </PublicButton>
-                    <button
+                    <PublicButton
                         type="submit"
+                        variant={isDarkMode ? "secondary" : "primary"}
+                        shape="slanted"
                         disabled={loading}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                        size="md"
+                        className="px-8 font-bold shadow-md transform hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                        icon={loading ? null : Save}
                     >
-                        {loading ? (
-                            <>Saving...</>
-                        ) : (
-                            <>
-                                <Save size={18} />
-                                Save Changes
-                            </>
-                        )}
-                    </button>
+                        {loading ? "Saving..." : "Save Changes"}
+                    </PublicButton>
                 </div>
             </form >
         </div >

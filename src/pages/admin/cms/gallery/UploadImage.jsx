@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAdminContext } from '../../../../context/AdminContext';
 import PublicButton from '../../../../components/shared/PublicButton';
 import { ArrowLeft, Upload, Image as ImageIcon, X, CheckCircle2 } from 'lucide-react';
 
 const UploadImage = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useAdminContext();
   const fileInputRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -68,7 +70,7 @@ const UploadImage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link
@@ -94,10 +96,10 @@ const UploadImage = () => {
             className={`
               relative aspect-square md:aspect-[4/3] rounded-2xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center cursor-pointer overflow-hidden
               ${isDragging
-                ? 'border-primary-500 bg-college-navy/5 dark:bg-college-gold/10 dark:border-college-gold'
+                ? "bg-college-navy/5 border-college-navy dark:bg-college-gold/10 dark:border-college-gold shadow-sm"
                 : preview
-                  ? 'border-primary-200 bg-gray-50 dark:border-college-gold/50 dark:bg-college-navy/30'
-                  : 'border-gray-300 bg-white hover:border-primary-400 hover:bg-gray-50 dark:border-college-gold/30 dark:bg-college-navy/50 dark:hover:bg-college-navy/80 hover:border-college-gold'
+                  ? "bg-gray-50 border-college-navy/30 dark:bg-college-navy/30 dark:border-college-gold/30"
+                  : "bg-white border-gray-300 hover:border-college-navy/50 hover:bg-gray-50 dark:bg-college-navy/50 dark:border-college-gold/30 dark:hover:bg-college-navy/80"
               }
             `}
           >
@@ -127,7 +129,7 @@ const UploadImage = () => {
               </div>
             ) : (
               <div className="text-center p-6 space-y-3">
-                <div className="w-16 h-16 mx-auto bg-college-navy/5 dark:bg-college-gold/10 text-college-gold rounded-full flex items-center justify-center mb-2">
+                <div className="w-16 h-16 mx-auto bg-college-gold/10 text-college-gold rounded-full flex items-center justify-center mb-2">
                   <Upload className="w-8 h-8" />
                 </div>
                 <div>
@@ -140,7 +142,7 @@ const UploadImage = () => {
 
           {file && (
             <div className="flex items-center gap-3 p-3 bg-white/50 dark:bg-college-navy/50 border border-white/20 dark:border-college-gold/20 rounded-xl shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-college-navy/10 dark:bg-college-gold/10 flex items-center justify-center text-college-gold">
+              <div className="w-10 h-10 rounded-lg bg-college-gold/10 flex items-center justify-center text-college-gold">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
@@ -155,7 +157,6 @@ const UploadImage = () => {
         {/* Right Column: Details Form */}
         <div className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-5 h-fit">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-            <ImageIcon className="w-5 h-5 text-college-gold" />
             Image Details
           </h2>
 
@@ -202,16 +203,19 @@ const UploadImage = () => {
             </div>
           </div>
 
-          <div className="pt-4 flex gap-3">
-            <PublicButton variant="secondary" onClick={() => navigate("/admin/cms/gallery")} className="flex-1">
+          <div className="pt-4 flex items-center justify-end gap-3 md:gap-4">
+            <PublicButton variant="primary" onClick={() => navigate("/admin/cms/gallery")} className="border-2 border-white/10">
               Cancel
             </PublicButton>
-            <button
+            <PublicButton
               type="submit"
-              className="flex-1 px-4 py-2.5 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-md transform hover:-translate-y-0.5 transition-all"
+              variant={isDarkMode ? "secondary" : "primary"}
+              shape="slanted"
+              className="px-8 font-bold shadow-md transform hover:-translate-y-0.5 transition-all"
+              icon={Upload}
             >
               Upload Image
-            </button>
+            </PublicButton>
           </div>
         </div>
       </form>
