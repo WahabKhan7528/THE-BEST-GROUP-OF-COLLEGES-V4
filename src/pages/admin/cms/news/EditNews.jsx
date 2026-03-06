@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAdminContext } from "../../../../context/AdminContext";
 import PublicButton from "../../../../components/shared/PublicButton";
-import FormInput from "../../../../components/admin/FormInput.jsx";
+import PortalForms from "../../../../components/shared/PortalForms";
 import {
-  ArrowLeft,
   Calendar,
   Newspaper,
   Image as ImageIcon,
-  MapPin,
   CheckCircle2,
   Save,
   Trash2,
-  Upload,
-  Megaphone
+  Upload
 } from "lucide-react";
 
 const EditNews = () => {
@@ -33,7 +30,6 @@ const EditNews = () => {
   });
 
   useEffect(() => {
-    // Mock fetch data
     if (id === 'n1' || id === 'n4') setType('event');
     else setType('news');
 
@@ -74,38 +70,33 @@ const EditNews = () => {
   };
 
   return (
-    <div className="w-full mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Link
-            to="/admin/cms/news"
-            className="p-2 hover:bg-white/50 rounded-full transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </Link>
-          <div>
-            <h1 className="text-2xl font-bold text-college-navy dark:text-college-gold tracking-tight">Edit Post</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Update communication details</p>
-          </div>
-        </div>
+    <PortalForms
+      title="Edit Post"
+      subtitle="Update communication details"
+      backPath="/admin/cms/news"
+      onSubmit={handleSubmit}
+      onCancel={() => navigate("/admin/cms/news")}
+      submitLabel="Save Changes"
+      submitIcon={Save}
+      headerActions={
         <PublicButton
           onClick={handleDelete}
           variant="danger"
           size="sm"
           icon={Trash2}
+          type="button"
         >
           Delete Post
         </PublicButton>
-      </div>
-
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      }
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Content Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Content Type Selection */}
-          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Content Type</h2>
-            <div className="grid grid-cols-2 gap-4">
+          <PortalForms.Section className="!p-6">
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white col-span-1 md:col-span-2 border-b border-gray-100 dark:border-college-gold/20 pb-2 mb-2">Content Type</h2>
+            <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
               <label
                 className={`
                   relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
@@ -150,12 +141,12 @@ const EditNews = () => {
                 {type === "event" && <CheckCircle2 className="absolute top-2 right-2 w-4 h-4 text-college-navy dark:text-college-gold" />}
               </label>
             </div>
-          </section>
+          </PortalForms.Section>
 
           {/* Details Form */}
-          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
-            <div>
-              <FormInput
+          <PortalForms.Section className="!p-6">
+            <div className="col-span-1 md:col-span-2">
+              <PortalForms.Input
                 label="Title"
                 value={form.title}
                 onChange={(val) => handleChange("title", val)}
@@ -164,41 +155,38 @@ const EditNews = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Subject Category</label>
-                <select
-                  value={form.category}
-                  onChange={(e) => handleChange("category", e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
-                >
-                  <option value="" disabled>Select category</option>
-                  <option value="Academic">Academic</option>
-                  <option value="Sports">Sports</option>
-                  <option value="Research">Research</option>
-                  <option value="Cultural">Cultural</option>
-                  <option value="Administration">Administration</option>
-                </select>
-              </div>
-
-              {type === "event" && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Location</label>
-                  <div className="relative">
-
-                    <input
-                      type="text"
-                      value={form.location}
-                      onChange={(e) => handleChange("location", e.target.value)}
-                      placeholder="Event Venue"
-                      className="w-full pr-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm dark:text-white dark:placeholder-gray-500"
-                    />
-                  </div>
-                </div>
-              )}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Subject Category</label>
+              <select
+                value={form.category}
+                onChange={(e) => handleChange("category", e.target.value)}
+                className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all text-sm appearance-none dark:text-white"
+              >
+                <option value="" disabled>Select category</option>
+                <option value="Academic">Academic</option>
+                <option value="Sports">Sports</option>
+                <option value="Research">Research</option>
+                <option value="Cultural">Cultural</option>
+                <option value="Administration">Administration</option>
+              </select>
             </div>
 
-            <div>
+            {type === "event" && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Location</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={form.location}
+                    onChange={(e) => handleChange("location", e.target.value)}
+                    placeholder="Event Venue"
+                    className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all text-sm dark:text-white dark:placeholder-gray-500"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="col-span-1 md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Description <span className="text-red-500">*</span>
               </label>
@@ -207,24 +195,21 @@ const EditNews = () => {
                 onChange={(e) => handleChange("description", e.target.value)}
                 rows={6}
                 placeholder="Write the full content description here..."
-                className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all text-sm resize-none leading-relaxed dark:text-white dark:placeholder-gray-500"
+                className="w-full px-4 py-3 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all text-sm resize-none leading-relaxed dark:text-white dark:placeholder-gray-500"
                 required
               />
             </div>
-          </section>
+          </PortalForms.Section>
         </div>
 
         {/* Sidebar Column */}
         <div className="space-y-6">
           {/* Metadata */}
-          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
-            <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-
-              Publishing Details
-            </h3>
+          <PortalForms.Section className="!p-6 !flex !flex-col !gap-4">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2 !col-span-1 border-b border-gray-100 dark:border-college-gold/20 pb-2 mb-2">Publishing Details</h3>
 
             <div>
-              <FormInput
+              <PortalForms.Input
                 label="Date"
                 type="date"
                 value={form.date}
@@ -235,23 +220,7 @@ const EditNews = () => {
 
             {type === "event" && (
               <div>
-                <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1">
-                  Event Date
-                </label>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <input
-                    type="date"
-                    value={form.date}
-                    onChange={(e) => handleChange("date", e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 dark:border-college-gold/20 dark:bg-college-navy/50 rounded-xl focus:outline-none focus:border-college-gold transition-all text-sm font-medium text-gray-700 dark:text-white"
-                  />
-                </div>
-              </div>
-            )}
-            {type === "event" && (
-              <div>
-                <FormInput
+                <PortalForms.Input
                   label="Time"
                   type="time"
                   value={form.time}
@@ -259,27 +228,12 @@ const EditNews = () => {
                 />
               </div>
             )}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5 ml-1">
-                Content
-              </label>
-              <textarea
-                value={form.description}
-                onChange={(e) => handleChange("description", e.target.value)}
-                placeholder="Write the full content..."
-                rows="6"
-                className="w-full px-4 py-3 bg-white/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:border-college-gold focus:bg-white dark:focus:bg-college-navy transition-all resize-y text-gray-700 dark:text-white dark:placeholder-gray-500"
-                required
-              />
-            </div>
-          </section>
+
+          </PortalForms.Section>
 
           {/* Cover Image */}
-          <section className="bg-white/80 dark:bg-college-navy/60 backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-4">
-            <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-
-              Cover Image
-            </h3>
+          <PortalForms.Section className="!p-6 !flex !flex-col !gap-4">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-2 !col-span-1 border-b border-gray-100 dark:border-college-gold/20 pb-2 mb-2">Cover Image</h3>
 
             <div className="relative border-2 border-dashed border-gray-200 dark:border-college-gold/30 rounded-xl p-6 hover:bg-gray-50 dark:hover:bg-college-navy/80 transition-colors group">
               <input
@@ -299,30 +253,13 @@ const EditNews = () => {
             </div>
             {form.image && (
               <div className="bg-college-gold/10 text-college-navy dark:text-college-gold px-3 py-2 rounded-lg text-xs flex items-center gap-2">
-
                 <span className="truncate">{form.image.name}</span>
               </div>
             )}
-          </section>
-
-          {/* Actions */}
-          <div className="flex flex-col gap-3">
-            <PublicButton
-              type="submit"
-              variant={isDarkMode ? "secondary" : "primary"}
-              shape="slanted"
-              className="w-full font-bold shadow-md transform hover:-translate-y-0.5"
-              icon={Save}
-            >
-              Save Changes
-            </PublicButton>
-            <PublicButton variant="primary" onClick={() => navigate("/admin/cms/news")} className="w-full border-2 border-white/10">
-              Cancel
-            </PublicButton>
-          </div>
+          </PortalForms.Section>
         </div>
-      </form>
-    </div>
+      </div>
+    </PortalForms>
   );
 };
 

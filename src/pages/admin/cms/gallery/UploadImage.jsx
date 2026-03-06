@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAdminContext } from '../../../../context/AdminContext';
-import PublicButton from '../../../../components/shared/PublicButton';
-import { ArrowLeft, Upload, Image as ImageIcon, X, CheckCircle2 } from 'lucide-react';
+import PortalForms from "../../../../components/shared/PortalForms";
+import { Upload, Image as ImageIcon, X, CheckCircle2 } from 'lucide-react';
 
 const UploadImage = () => {
   const navigate = useNavigate();
@@ -65,27 +65,20 @@ const UploadImage = () => {
       alert("Please select an image to upload");
       return;
     }
-    // alert('Image uploaded (mock)');
     navigate("/admin/cms/gallery");
   };
 
   return (
-    <div className="w-full mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex items-center gap-4">
-        <Link
-          to="/admin/cms/gallery"
-          className="p-2 hover:bg-white/50 rounded-full transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
-        </Link>
-        <div>
-          <h1 className="text-2xl font-bold text-college-navy dark:text-white">Upload Media</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Add new photos to your campus gallery</p>
-        </div>
-      </div>
-
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <PortalForms
+      title="Upload Media"
+      subtitle="Add new photos to your campus gallery"
+      backPath="/admin/cms/gallery"
+      onSubmit={handleSubmit}
+      onCancel={() => navigate("/admin/cms/gallery")}
+      submitLabel="Upload Image"
+      submitIcon={Upload}
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Column: Upload Area */}
         <div className="space-y-4">
           <div
@@ -155,30 +148,24 @@ const UploadImage = () => {
         </div>
 
         {/* Right Column: Details Form */}
-        <div className="bg-white/80 dark:bg-college-navy backdrop-blur-xl border border-white/20 dark:border-college-gold/20 p-6 rounded-2xl shadow-sm space-y-5 h-fit">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-            Image Details
-          </h2>
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Image Title <span className="text-red-500">*</span></label>
-              <input
-                type="text"
+        <div className="h-fit">
+          <PortalForms.Section title="Image Details" className="!p-6 !h-full">
+            <div className="col-span-1 md:col-span-2">
+              <PortalForms.Input
+                label="Image Title"
                 value={form.title}
-                onChange={(e) => handleChange("title", e.target.value)}
+                onChange={(val) => handleChange("title", val)}
                 placeholder="e.g. Orientation Ceremony 2025"
-                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
                 required
               />
             </div>
 
-            <div>
+            <div className="col-span-1 md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Album / Category <span className="text-red-500">*</span></label>
               <select
                 value={form.album}
                 onChange={(e) => handleChange("album", e.target.value)}
-                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all appearance-none dark:text-white"
+                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all appearance-none dark:text-white"
                 required
               >
                 <option value="" disabled>Select album</option>
@@ -190,38 +177,20 @@ const UploadImage = () => {
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Tags (Optional)</label>
-              <input
-                type="text"
+            <div className="col-span-1 md:col-span-2">
+              <PortalForms.Input
+                label="Tags (Optional)"
                 value={form.tags}
-                onChange={(e) => handleChange("tags", e.target.value)}
+                onChange={(val) => handleChange("tags", val)}
                 placeholder="e.g. students, auditorium, celebration"
-                className="w-full px-4 py-2.5 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-500"
+                helper="Comma separated"
               />
-              <p className="text-xs text-gray-400 mt-1">Comma separated</p>
             </div>
-          </div>
-
-          <div className="pt-4 flex items-center justify-end gap-3 md:gap-4">
-            <PublicButton variant="primary" onClick={() => navigate("/admin/cms/gallery")} className="border-2 border-white/10">
-              Cancel
-            </PublicButton>
-            <PublicButton
-              type="submit"
-              variant={isDarkMode ? "secondary" : "primary"}
-              shape="slanted"
-              className="px-8 font-bold shadow-md transform hover:-translate-y-0.5 transition-all"
-              icon={Upload}
-            >
-              Upload Image
-            </PublicButton>
-          </div>
+          </PortalForms.Section>
         </div>
-      </form>
-    </div>
+      </div>
+    </PortalForms>
   );
 };
 
 export default UploadImage;
-

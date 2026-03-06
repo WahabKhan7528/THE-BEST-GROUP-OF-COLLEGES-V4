@@ -43,23 +43,23 @@ export default function AdmissionForm({ programs }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div>
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">Full Name *</label>
-                        <input name="fullname" type="text" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all" placeholder="Enter your full name" />
+                        <input name="fullname" type="text" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all" placeholder="Enter your full name" />
                     </div>
                     <div>
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">Email Address *</label>
-                        <input name="email" type="email" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all" placeholder="Enter your email" />
+                        <input name="email" type="email" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all" placeholder="Enter your email" />
                     </div>
                     <div>
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">Phone Number *</label>
-                        <input name="phone" type="tel" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all" placeholder="+92 300 1234567" />
+                        <input name="phone" type="tel" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all" placeholder="+92 300 1234567" />
                     </div>
                     <div>
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">CNIC Number</label>
-                        <input name="cnic" type="text" className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all" placeholder="12345-1234567-1" />
+                        <input name="cnic" type="text" className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all" placeholder="12345-1234567-1" />
                     </div>
                     <div className="xl:col-span-2">
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">Select Program *</label>
-                        <select name="program" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all text-gray-700">
+                        <select name="program" required className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all text-gray-700">
                             <option value="">Choose a program</option>
                             {programs && programs.map((program) => (
                                 <option key={program.value} value={program.value}>{program.label} - {program.campus}</option>
@@ -68,11 +68,11 @@ export default function AdmissionForm({ programs }) {
                     </div>
                     <div className="xl:col-span-2">
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">Previous Education</label>
-                        <input name="previous_education" type="text" className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all" placeholder="e.g., Matric with 85% marks" />
+                        <input name="previous_education" type="text" className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all" placeholder="e.g., Matric with 85% marks" />
                     </div>
                     <div className="md:col-span-2 lg:col-span-3 xl:col-span-4">
                         <label className="block text-sm font-bold text-college-navy mb-2 tracking-wide">Additional Message</label>
-                        <textarea name="message" rows="3" className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all resize-none" placeholder="Any additional information you'd like to share..." />
+                        <textarea name="message" rows="3" className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all resize-none" placeholder="Any additional information you'd like to share..." />
                     </div>
                 </div>
 

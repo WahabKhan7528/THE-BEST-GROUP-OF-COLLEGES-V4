@@ -59,7 +59,7 @@ export default function ContactForm({ className }) {
                                 type="text"
                                 name="name"
                                 required
-                                className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all"
+                                className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all"
                                 placeholder="Your name"
                             />
                         </div>
@@ -72,7 +72,7 @@ export default function ContactForm({ className }) {
                                 type="email"
                                 name="email"
                                 required
-                                className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all"
+                                className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all"
                                 placeholder="your@email.com"
                             />
                         </div>
@@ -86,7 +86,7 @@ export default function ContactForm({ className }) {
                             id="phone"
                             type="tel"
                             name="phone"
-                            className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all"
+                            className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all"
                             placeholder="+92 XXX XXXXXXX"
                         />
                     </div>
@@ -99,7 +99,7 @@ export default function ContactForm({ className }) {
                             id="subject"
                             name="subject"
                             required
-                            className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all text-gray-700"
+                            className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all text-gray-700"
                         >
                             <option value="">Select a subject</option>
                             <option value="admissions">Admissions Inquiry</option>
@@ -119,7 +119,7 @@ export default function ContactForm({ className }) {
                             rows="5"
                             name="message"
                             required
-                            className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-gold/30 outline-none transition-all resize-none"
+                            className="w-full px-4 py-3.5 rounded border border-gray-200 bg-gray-50 focus:bg-white focus:border-college-navy focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30 outline-none transition-all resize-none"
                             placeholder="How can we help you?"
                         />
                     </div>

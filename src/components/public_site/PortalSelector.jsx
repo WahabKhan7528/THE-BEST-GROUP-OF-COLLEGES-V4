@@ -39,7 +39,7 @@ export default function PortalSelector({ isOpen, onClose }) {
                                 key={title}
                                 variant="navy"
                                 hover={true}
-                                className="border-white/10 bg-white/5 hover:border-college-gold hover:bg-white/10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-college-gold/30"
+                                className="border-white/10 bg-white/5 hover:border-college-gold hover:bg-white/10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-college-navy/30 dark:focus:ring-college-gold/30"
                                 as="button"
                             >
                                 <button

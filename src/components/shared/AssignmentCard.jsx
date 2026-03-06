@@ -58,7 +58,7 @@ const AssignmentCard = ({ assignment, role = 'faculty' }) => {
                         <input
                             type="file"
                             onChange={handleFileChange}
-                            className="block w-full px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm rounded-lg border-gray-300 dark:border-dark-border dark:bg-dark-elevated shadow-sm focus:border-college-gold focus:ring-college-gold"
+                            className="block w-full px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm rounded-lg border-gray-300 dark:border-dark-border dark:bg-dark-elevated shadow-sm focus:border-college-navy dark:focus:border-college-gold focus:ring-college-navy dark:focus:ring-college-gold"
                         />
                         {fileName && <span className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">Selected: {fileName}</span>}
                     </label>
@@ -70,7 +70,7 @@ const AssignmentCard = ({ assignment, role = 'faculty' }) => {
                             onChange={(e) => setNote(e.target.value)}
                             rows={3}
                             placeholder="Add clarification or links..."
-                            className="px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm rounded-lg border-gray-300 dark:border-dark-border dark:bg-dark-elevated shadow-sm focus:border-college-gold focus:ring-college-gold"
+                            className="px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm rounded-lg border-gray-300 dark:border-dark-border dark:bg-dark-elevated shadow-sm focus:border-college-navy dark:focus:border-college-gold focus:ring-college-navy dark:focus:ring-college-gold"
                         />
                     </label>
                 </div>

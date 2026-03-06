@@ -177,7 +177,7 @@ const EditAssignment = () => {
                         onChange={(e) => handleChange('description', e.target.value)}
                         rows={6}
                         placeholder="Detailed instructions for the assignment..."
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all outline-none resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all outline-none resize-none"
                     />
                 </div>
 

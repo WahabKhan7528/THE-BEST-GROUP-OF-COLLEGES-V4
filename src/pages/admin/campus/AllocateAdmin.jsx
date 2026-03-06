@@ -133,7 +133,7 @@ const AllocateAdmin = () => {
                 type="checkbox"
                 checked={currentAllocations[admin.id] || false}
                 onChange={() => handleAdminToggle(admin.id)}
-                className="w-4 h-4 text-college-gold rounded focus:ring-college-gold/20 border-gray-300 dark:border-college-gold/30 bg-white dark:bg-college-navy"
+                className="w-4 h-4 text-college-gold rounded focus:ring-college-navy/20 dark:focus:ring-college-gold/20 border-gray-300 dark:border-college-gold/30 bg-white dark:bg-college-navy"
               />
               <div className="ml-4 flex-1">
                 <div className="font-medium text-college-navy dark:text-white">{admin.name}</div>
@@ -161,7 +161,7 @@ const AllocateAdmin = () => {
       {/* Action Buttons */}
       <div className="flex gap-4 mt-6">
         <PublicButton
-          variant={isDarkMode ? "secondary" : "primary"}
+          variant="secondary"
           shape="slanted"
           onClick={handleSave}
           className="flex-1 font-bold shadow-md"

@@ -27,7 +27,7 @@ export default function FilterBar({
                                 placeholder={searchPlaceholder}
                                 value={searchQuery}
                                 onChange={(e) => onSearchChange(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-college-gold focus:border-transparent text-sm"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold focus:border-transparent text-sm"
                             />
                         </div>
                     )}
@@ -63,7 +63,7 @@ export default function FilterBar({
                                 <select
                                     value={sortBy}
                                     onChange={(e) => onSortChange(e.target.value)}
-                                    className="appearance-none bg-white border border-gray-300 rounded px-4 py-2.5 pr-10 text-sm font-medium text-gray-700 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-college-gold cursor-pointer"
+                                    className="appearance-none bg-white border border-gray-300 rounded px-4 py-2.5 pr-10 text-sm font-medium text-gray-700 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold cursor-pointer"
                                 >
                                     {sortOptions.map((opt) => (
                                         <option key={opt.value} value={opt.value}>
@@ -82,7 +82,7 @@ export default function FilterBar({
                             <select
                                 value={activeFilter}
                                 onChange={(e) => onFilterChange(e.target.value)}
-                                className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-college-gold text-sm bg-white min-w-[180px]"
+                                className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold text-sm bg-white min-w-[180px]"
                             >
                                 {filters?.map((f) => (
                                     <option key={f.id} value={f.id}>{f.name}</option>

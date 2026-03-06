@@ -126,7 +126,7 @@ const Assignments = () => {
           <input
             type="text"
             placeholder="Search assignments..."
-            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all outline-none"
+            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all outline-none"
           />
         </div>
         <button className="flex items-center gap-2 px-4 py-3 bg-white/50 border border-gray-200 rounded-xl text-gray-700 font-medium hover:bg-white transition-colors">

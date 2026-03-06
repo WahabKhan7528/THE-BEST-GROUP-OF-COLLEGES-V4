@@ -26,7 +26,7 @@ export default function PortalPageHeader({ title, subtitle, badge, className }) 
 
                     <div className="space-y-4">
                         {/* Meta Label / Badge */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-2 md:gap-3">
                             <span className="text-[10px] md:text-xs font-black text-college-navy dark:text-college-gold uppercase tracking-[0.3em] leading-none">
                                 Institutional Portal
                             </span>

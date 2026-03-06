@@ -113,7 +113,7 @@ const Login = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-college-gold/50 focus:border-college-gold outline-none transition-all font-sans text-white placeholder:text-white/20 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]"
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-college-navy/50 dark:focus:ring-college-gold/50 focus:border-college-navy dark:focus:border-college-gold outline-none transition-all font-sans text-white placeholder:text-white/20 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]"
                     placeholder="name@college.edu"
                   />
                 </div>
@@ -132,7 +132,7 @@ const Login = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-college-gold/50 focus:border-college-gold outline-none transition-all font-sans text-white placeholder:text-white/20 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]"
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-college-navy/50 dark:focus:ring-college-gold/50 focus:border-college-navy dark:focus:border-college-gold outline-none transition-all font-sans text-white placeholder:text-white/20 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]"
                     placeholder="••••••••"
                   />
                 </div>

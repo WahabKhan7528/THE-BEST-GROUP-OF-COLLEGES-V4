@@ -103,7 +103,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
             <input
               type="text"
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-gold outline-none"
+              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold outline-none"
               placeholder="e.g. Quiz on Monday"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -114,7 +114,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
             <textarea
               rows={4}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-gold outline-none resize-none"
+              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold outline-none resize-none"
               placeholder="Details about the announcement..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}

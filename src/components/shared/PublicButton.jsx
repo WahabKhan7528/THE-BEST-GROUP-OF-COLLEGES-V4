@@ -5,7 +5,7 @@ const variants = {
     primary:
         "bg-college-navy text-white border-2 border-college-navy shadow-sm hover:brightness-150 hover:shadow-md active:brightness-95",
     secondary:
-        "bg-college-gold text-college-navy border-2 border-college-gold shadow-sm hover:brightness-90 hover:shadow-md active:brightness-75",
+        "bg-college-gold text-white border-2 border-college-gold shadow-sm hover:brightness-90 hover:shadow-md active:brightness-75",
     ghost:
         "text-college-navy dark:text-college-gold hover:opacity-80 transition-opacity",
     danger:
@@ -48,7 +48,7 @@ export default function PublicButton({
 
     const baseClasses = clsx(
         "inline-flex items-center justify-center transition-all duration-200",
-        "focus:outline-none focus:ring-2 focus:ring-college-gold/50 focus:ring-offset-1",
+        "focus:outline-none focus:ring-2 focus:ring-college-navy/50 dark:focus:ring-college-gold/50 focus:ring-offset-1",
         variants[variant] ?? variants.primary,
         sizes[size] ?? sizes.md,
         shapeClass,

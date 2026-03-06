@@ -18,7 +18,7 @@ const AdminLayout = () => {
 
       {/* Sidebar - Sticky on desktop, fixed on mobile */}
       <div
-        className={`fixed lg:sticky lg:top-0 lg:h-screen lg:z-0 transform transition-transform duration-300 z-40 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed inset-y-0 left-0 lg:sticky lg:top-0 lg:h-screen lg:z-0 transform transition-transform duration-300 z-40 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
       >
         <AdminSidebar onClose={() => setIsSidebarOpen(false)} />

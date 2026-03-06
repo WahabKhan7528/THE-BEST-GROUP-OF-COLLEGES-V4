@@ -137,7 +137,7 @@ const CampusManagement = () => {
           placeholder="Search campuses by name, code, or location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-11 pr-4 py-3.5 bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold transition-all shadow-sm text-college-navy dark:text-white"
+          className="w-full pl-11 pr-4 py-3.5 bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all shadow-sm text-college-navy dark:text-white"
         />
       </div>
 

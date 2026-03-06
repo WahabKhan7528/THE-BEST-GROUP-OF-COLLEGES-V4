@@ -69,10 +69,6 @@ const Dashboard = () => {
         badge={
           (!isSuperAdmin || selectedCampusFilter !== "all") ? (
             <Badge variant={isDarkMode ? "gold" : "navy"}>
-              <span className="relative flex h-2 w-2 mr-1.5">
-                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isDarkMode ? 'bg-college-gold' : 'bg-college-navy'}`}></span>
-                <span className={`relative inline-flex rounded-full h-2 w-2 ${isDarkMode ? 'bg-college-gold' : 'bg-college-navy'}`}></span>
-              </span>
               {isSuperAdmin ? campusLabel : "Allocated Campuses"}
             </Badge>
           ) : null

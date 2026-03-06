@@ -85,7 +85,7 @@ const StudentResults = () => {
             <select
               value={selectedSemesterId}
               onChange={(e) => setSelectedSemesterId(e.target.value)}
-              className="appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-2 md:py-3 pl-3 md:pl-4 pr-8 md:pr-10 text-sm md:text-base rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-college-gold/20 focus:border-college-gold font-medium cursor-pointer min-w-[120px] md:min-w-[150px]"
+              className="appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-2 md:py-3 pl-3 md:pl-4 pr-8 md:pr-10 text-sm md:text-base rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold font-medium cursor-pointer min-w-[120px] md:min-w-[150px]"
             >
               <option value="all">All Semesters</option>
               {semesters.map(sem => (
