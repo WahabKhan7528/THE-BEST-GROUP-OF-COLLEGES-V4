@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
 import { useFacultyContext } from "../../context/FacultyContext";
 import AssignmentCard from "../../components/shared/AssignmentCard";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
 import { PlusCircle, Search, Filter, BookOpen } from "lucide-react";
+import PublicButton from "../../components/shared/PublicButton";
+import FormInput from "../../components/shared/FormInput";
+import Button from "../../components/shared/Button";
+import Card from "../../components/public_site/Card";
 
 
 // Mock assignments data by campus
@@ -82,88 +87,71 @@ const campusNames = {
 };
 
 const Assignments = () => {
-  const { getCurrentCampus } = useFacultyContext();
+  const { getCurrentCampus, isDarkMode } = useFacultyContext();
   const campus = getCurrentCampus();
   const assignments = assignmentsByCampus[campus] || [];
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white/70 backdrop-blur-xl border border-white/40 rounded-2xl md:rounded-3xl shadow-xl p-5 md:p-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-8 opacity-5">
-          <BookOpen size={150} />
-        </div>
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-2">
-              <span className="px-2 md:px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-[10px] md:text-xs font-semibold uppercase tracking-wide">
-                Faculty Portal
-              </span>
-              <span className="px-2 md:px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-[10px] md:text-xs font-semibold uppercase tracking-wide">
-                {campusNames[campus]}
-              </span>
-            </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-college-navy">
-              Assignments
-            </h1>
-            <p className="text-gray-500 text-sm md:text-base mt-2 max-w-xl">
-              Manage and publish assignments for your classes. Track submissions and grade student work efficiently.
-            </p>
-          </div>
-          <Link
+    <div className="space-y-6 pb-10">
+      <PortalPageHeader
+        badge={
+          <Badge variant={isDarkMode ? "gold" : "navy"}>
+            {campusNames[campus]}
+          </Badge>
+        }
+        title="Assignments"
+        subtitle="Manage and publish assignments for your classes. Track submissions and grade student work efficiently."
+        action={
+          <PublicButton
             to="/faculty/assignments/create"
-            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-college-navy hover:bg-college-navy/90 text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            className=""
+            variant="secondary"
+            shape="slanted"
           >
             <PlusCircle size={20} />
             Create Assignment
-          </Link>
-        </div>
-      </div>
+          </PublicButton>
+        }
+      />
 
-      {/* Filters and Search - Placeholder for future functionality */}
+      {/* Filters and Search */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <input
-            type="text"
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-10" size={20} />
+          <FormInput
             placeholder="Search assignments..."
-            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all outline-none"
+            className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-college-gold/20 bg-white/50 dark:bg-college-navy/50 focus:bg-white dark:focus:bg-college-navy focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold transition-all outline-none dark:text-white"
           />
         </div>
-        <button className="flex items-center gap-2 px-4 py-3 bg-white/50 border border-gray-200 rounded-xl text-gray-700 font-medium hover:bg-white transition-colors">
+        <Button
+          variant="outline"
+          className="gap-2 bg-white/50 dark:bg-college-navy/50 border-gray-200 dark:border-college-gold/20 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-college-navy"
+        >
           <Filter size={18} />
-          <span>Filter</span>
-        </button>
+          Filter
+        </Button>
       </div>
 
       {assignments.length > 0 ? (
-        <div
-          className="grid grid-cols-1 gap-4"
-        >
-          {assignments.map((assignment, index) => (
-            <div
-              key={assignment.id}
-            >
-              <AssignmentCard assignment={assignment} />
-            </div>
+        <div className="grid grid-cols-1 gap-4">
+          {assignments.map((assignment) => (
+            <AssignmentCard key={assignment.id} assignment={assignment} />
           ))}
         </div>
       ) : (
-        <div className="bg-white/60 backdrop-blur-sm border border-dashed border-gray-300 rounded-3xl p-12 text-center">
-          <div className="w-16 h-16 bg-college-navy/5 rounded-full flex items-center justify-center mx-auto mb-4">
-            <BookOpen size={30} className="text-primary-400" />
+        <Card hover={false} className="backdrop-blur-sm border-dashed border-gray-300 dark:border-college-gold/30 p-12 text-center">
+          <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 text-college-navy dark:text-college-gold">
+            <BookOpen size={30} />
           </div>
-          <h3 className="text-lg font-semibold text-college-navy">No assignments found</h3>
-          <p className="text-gray-500 mt-2 mb-6 max-w-sm mx-auto">
+          <h3 className="text-lg font-semibold text-college-navy dark:text-white">No assignments found</h3>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 mb-6 max-w-sm mx-auto">
             You haven't created any assignments for {campusNames[campus]} yet. Get started by creating your first assignment.
           </p>
-          <Link
-            to="/faculty/assignments/create"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-college-navy rounded-xl font-semibold hover:bg-gray-50 transition-colors"
-          >
+          <Button to="/faculty/assignments/create" variant="outline">
             <PlusCircle size={18} />
             Create Assignment
-          </Link>
-        </div>
+          </Button>
+        </Card>
       )}
     </div>
   );

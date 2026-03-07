@@ -12,6 +12,7 @@ import {
   mockResultsByStatus,
   mockStudentAttendanceStats as mockAttendanceStats,
 } from "../data/studentPortalData";
+import { useThemeContext } from "./ThemeContext";
 
 export const StudentProvider = ({ children }) => {
   // Current logged-in student user
@@ -19,6 +20,8 @@ export const StudentProvider = ({ children }) => {
 
   // Enrolled courses
   const [enrolledCourses, setEnrolledCourses] = useState(mockEnrolledCourses);
+
+  const { isDarkMode, toggleDarkMode } = useThemeContext();
 
   // Get current campus context
   const getCurrentCampus = () => {
@@ -85,6 +88,7 @@ export const StudentProvider = ({ children }) => {
     // State
     currentStudent,
     enrolledCourses,
+    isDarkMode,
 
     // Methods
     getCurrentCampus,
@@ -100,6 +104,7 @@ export const StudentProvider = ({ children }) => {
     getCampusContext,
     getTotalCredits,
     switchStudentUser,
+    toggleDarkMode,
   };
 
   return (

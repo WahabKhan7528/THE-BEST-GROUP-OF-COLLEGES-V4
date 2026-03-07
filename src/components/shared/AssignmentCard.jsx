@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Calendar, FileText, Pencil, Trash2, ClipboardList } from 'lucide-react';
+import Card from '../public_site/Card';
+import Button from './Button';
 
 /*
  Shared AssignmentCard
@@ -27,7 +28,7 @@ const AssignmentCard = ({ assignment, role = 'faculty' }) => {
     if (role === 'student') {
         const badge = statusStyles[assignment.status] || 'bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-100 dark:border-gray-700';
         return (
-            <div className="bg-white dark:bg-dark-surface border dark:border-dark-border rounded-xl md:rounded-2xl p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 space-y-4">
+            <Card hover={false} className="p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                     <div className="flex-1">
                         <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
@@ -79,17 +80,17 @@ const AssignmentCard = ({ assignment, role = 'faculty' }) => {
                     <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">
                         Last submission status: {assignment.status}
                     </p>
-                    <button className="px-4 md:px-5 py-2 md:py-2.5 bg-college-navy hover:bg-college-navy/90 text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all">
+                    <Button variant="primary" size="sm" className="shadow-md hover:-translate-y-0.5">
                         Submit Assignment
-                    </button>
+                    </Button>
                 </div>
-            </div>
+            </Card>
         );
     }
 
     // faculty variant (default)
     return (
-        <div className="bg-white dark:bg-dark-surface border dark:border-dark-border rounded-xl md:rounded-2xl p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300">
+        <Card hover={false} className="p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                 <div className="flex-1">
                     <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
@@ -118,26 +119,29 @@ const AssignmentCard = ({ assignment, role = 'faculty' }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 md:gap-3 mt-4">
-                <Link
+                <Button
                     to={`/faculty/submissions/${assignment.id}`}
-                    className="inline-flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-lg bg-gray-100 dark:bg-dark-elevated text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-dark-elevated/80"
+                    variant="ghost"
+                    size="sm"
+                    className="bg-gray-100 dark:bg-dark-elevated font-semibold"
                 >
                     <ClipboardList size={14} />
                     View submissions
-                </Link>
-                <Link
+                </Button>
+                <Button
                     to={`/faculty/assignments/edit/${assignment.id}`}
-                    className="inline-flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-lg border dark:border-dark-border text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-elevated"
+                    variant="outline"
+                    size="sm"
                 >
                     <Pencil size={14} />
                     Edit
-                </Link>
-                <button className="inline-flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-lg border dark:border-dark-border text-xs md:text-sm font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
+                </Button>
+                <Button variant="danger" size="sm">
                     <Trash2 size={14} />
                     Delete
-                </button>
+                </Button>
             </div>
-        </div>
+        </Card>
     );
 };
 

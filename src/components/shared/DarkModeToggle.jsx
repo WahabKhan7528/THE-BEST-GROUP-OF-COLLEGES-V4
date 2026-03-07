@@ -1,8 +1,8 @@
 import { Sun, Moon } from "lucide-react";
-import { useAdminContext } from "../../context/AdminContext";
+import { useThemeContext } from "../../context/ThemeContext";
 
 export default function DarkModeToggle() {
-    const { isDarkMode, toggleDarkMode } = useAdminContext();
+    const { isDarkMode, toggleDarkMode } = useThemeContext();
 
     return (
         <button

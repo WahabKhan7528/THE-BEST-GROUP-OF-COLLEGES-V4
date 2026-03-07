@@ -1,51 +1,47 @@
-/*
- Shared AnnouncementCard
- 
- variant="faculty" (default) — shows classSection, attachment link, date on right
- variant="student"           — simpler layout: date left, title, description only
- */
+import Card from '../public_site/Card';
+
 const AnnouncementCard = ({ announcement, role = 'faculty' }) => {
     if (role === 'student') {
         return (
-            <article className="bg-white dark:bg-dark-surface border dark:border-dark-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300">
+            <Card hover={false} className="p-5">
                 <div className="flex items-start justify-between gap-3">
                     <div>
                         <p className="text-xs text-gray-500 dark:text-gray-400">{announcement.date}</p>
                         <h3 className="text-lg font-semibold text-college-navy dark:text-white">{announcement.title}</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{announcement.description}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{announcement.description}</p>
                     </div>
-                    <span className="text-xs font-semibold text-college-navy dark:text-college-gold bg-college-navy/5 dark:bg-college-gold/10 px-3 py-1 rounded-full">
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-college-navy dark:text-college-gold bg-college-navy/5 dark:bg-white/5 px-3 py-1 rounded-full border border-college-navy/10 dark:border-college-gold/20">
                         Announcement
                     </span>
                 </div>
-            </article>
+            </Card>
         );
     }
 
     // faculty variant (default)
     return (
-        <article className="bg-white dark:bg-dark-surface border dark:border-dark-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300">
+        <Card hover={false} className="p-5">
             <div className="flex items-start justify-between gap-3">
-                <div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                <div className="flex-1">
+                    <p className="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-widest leading-none mb-2">
                         {announcement.classSection}
                     </p>
-                    <h3 className="text-lg font-semibold text-college-navy dark:text-white">{announcement.title}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{announcement.description}</p>
+                    <h3 className="text-lg font-bold text-college-navy dark:text-white leading-tight">{announcement.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">{announcement.description}</p>
                     {announcement.attachment && (
-                        <a href={announcement.attachment} className="text-sm text-college-gold font-semibold hover:text-college-gold/80 mt-2 inline-block">
+                        <a href={announcement.attachment} className="text-sm text-college-navy dark:text-college-gold font-bold hover:underline mt-4 inline-flex items-center gap-1 transition-all">
                             View attachment
                         </a>
                     )}
                 </div>
-                <div className="text-right">
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{announcement.date}</p>
-                    <span className="text-xs font-semibold text-college-navy dark:text-college-gold bg-college-navy/5 dark:bg-college-gold/10 px-3 py-1 rounded-full">
+                <div className="flex flex-col items-end gap-3 shrink-0">
+                    <p className="text-xs text-gray-400 dark:text-gray-500 font-medium">{announcement.date}</p>
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-college-navy dark:text-college-gold bg-college-navy/5 dark:bg-white/5 px-3 py-1 rounded-full border border-college-navy/10 dark:border-college-gold/20">
                         Announcement
                     </span>
                 </div>
             </div>
-        </article>
+        </Card>
     );
 };
 

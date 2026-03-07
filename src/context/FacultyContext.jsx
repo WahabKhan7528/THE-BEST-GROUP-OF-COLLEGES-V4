@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 const FacultyContext = createContext();
 
 import { mockFacultyUser, mockClasses, mockAssignmentStats, mockFacultyAttendanceStats as mockAttendanceStats } from "../data/facultyPortalData";
+import { useThemeContext } from "./ThemeContext";
 
 export const FacultyProvider = ({ children }) => {
   // Current logged-in faculty user
@@ -11,6 +12,8 @@ export const FacultyProvider = ({ children }) => {
 
   // All classes assigned to this faculty
   const [classes, setClasses] = useState(mockClasses);
+
+  const { isDarkMode, toggleDarkMode } = useThemeContext();
 
   // Get current campus context
   const getCurrentCampus = () => {
@@ -71,6 +74,7 @@ export const FacultyProvider = ({ children }) => {
     // State
     currentFaculty,
     classes,
+    isDarkMode,
 
     // Methods
     getCurrentCampus,
@@ -81,6 +85,7 @@ export const FacultyProvider = ({ children }) => {
     getTotalStudents,
     getAverageClassSize,
     switchFacultyUser,
+    toggleDarkMode,
   };
 
   return (

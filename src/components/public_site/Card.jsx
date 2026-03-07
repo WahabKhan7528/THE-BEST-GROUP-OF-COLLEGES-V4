@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 
 const variants = {
     default:
-        "bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-2xl shadow-sm",
+        "bg-white dark:bg-college-navy border border-gray-200 dark:border-college-navy/20 rounded-2xl shadow-sm",
     navy:
         "bg-college-navy border border-college-gold/20 rounded-2xl shadow-sm",
     glass:

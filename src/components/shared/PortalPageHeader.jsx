@@ -10,7 +10,7 @@ import { clsx } from "clsx";
  * - Dual-layer prestigious typography.
  * - Clean, heavy, and institutional feel.
  */
-export default function PortalPageHeader({ title, subtitle, badge, className }) {
+export default function PortalPageHeader({ title, subtitle, badge, action, className }) {
     return (
         <div className={clsx(
             "relative bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-2xl p-8 md:p-10 shadow-2xl overflow-hidden transition-colors duration-300",
@@ -61,7 +61,12 @@ export default function PortalPageHeader({ title, subtitle, badge, className }) 
                     </div>
                 </div>
 
-                {/* Optional Right Action Slot if needed in future */}
+                {/* Optional Right Action Slot */}
+                {action && (
+                    <div className="shrink-0">
+                        {action}
+                    </div>
+                )}
             </div>
         </div>
     );

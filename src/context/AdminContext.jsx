@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 // Create the context
 const AdminContext = createContext();
 
 import { mockAdminUser, mockCampuses } from "../data/adminData";
+import { useThemeContext } from "./ThemeContext";
 
 export const AdminProvider = ({ children }) => {
   // Current logged-in admin user
@@ -21,27 +22,7 @@ export const AdminProvider = ({ children }) => {
     "U-004": ["main", "hala"], // Example: Sub-Admin can manage multiple campuses
   });
 
-  // Theme state centralized here
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("portal-theme") === "dark";
-    }
-    return false;
-  });
-
-  // Sync theme with DOM and localStorage
-  useEffect(() => {
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add("dark");
-      localStorage.setItem("portal-theme", "dark");
-    } else {
-      root.classList.remove("dark");
-      localStorage.setItem("portal-theme", "light");
-    }
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => setIsDarkMode(prev => !prev);
+  const { isDarkMode, toggleDarkMode } = useThemeContext();
 
   // Check if current admin is Super Admin
   const isSuperAdmin = currentAdmin?.adminRole === "Super Admin";

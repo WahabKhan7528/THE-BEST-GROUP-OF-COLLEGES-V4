@@ -50,7 +50,7 @@ const Admissions = () => {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {admissionSteps.map((step, index) => (
-            <Card key={step.title} variant="glass" hover className="p-6 md:p-8 relative">
+            <Card key={step.title} variant="navy" hover className="p-6 md:p-8 relative">
               <div className="mb-4">
                 <Badge variant="gold">Step {index + 1}</Badge>
               </div>

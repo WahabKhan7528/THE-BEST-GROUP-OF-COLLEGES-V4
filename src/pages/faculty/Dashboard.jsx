@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 import {
-  ClipboardList,
-  FolderOpen,
   Megaphone,
   PlusCircle,
-  BookOpen,
   ArrowRight,
-  GraduationCap,
 } from "lucide-react";
 
 import { useFacultyContext } from "../../context/FacultyContext";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
+import AdminStatsCard from "../../components/admin/AdminStatsCard";
 
 import {
   campusNames,
@@ -24,8 +23,8 @@ const Dashboard = () => {
     getAssignmentStatsByCurrentCampus,
     getAttendanceByCurrentCampus,
     getTotalStudents,
-    getAverageClassSize,
     getCurrentCampus,
+    isDarkMode,
   } = useFacultyContext();
 
   const campus = getCurrentCampus();
@@ -33,112 +32,118 @@ const Dashboard = () => {
   const assignmentStats = getAssignmentStatsByCurrentCampus();
   const attendance = getAttendanceByCurrentCampus();
   const totalStudents = getTotalStudents();
-  // const averageClassSize = getAverageClassSize();
+
+  const stats = [
+    {
+      title: "Total Students",
+      value: totalStudents,
+      hint: "Active",
+    },
+    {
+      title: "Active Classes",
+      value: classes.length,
+      hint: "Assigned",
+    },
+    {
+      title: "Average Attendance",
+      value: attendance + "%",
+      hint: "Current Semester",
+    },
+    {
+      title: "Assignments",
+      value: assignmentStats?.total || 12, // fallback for mock
+      hint: "Across all classes",
+    }
+  ];
 
   return (
-    <div className="space-y-8">
-      {/* Header Section with Campus Info */}
-      <div>
-        <section className="relative overflow-hidden bg-white border border-border rounded-3xl shadow-sm p-6 md:p-8">
-          <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
-            <GraduationCap size={200} />
-          </div>
+    <div className="space-y-8 pb-10">
+      {/* Header */}
+      <PortalPageHeader
+        badge={
+          <Badge variant={isDarkMode ? "gold" : "navy"}>
+            {campusNames[campus]}
+          </Badge>
+        }
+        title={`Welcome, ${currentFaculty.name}`}
+        subtitle={`${currentFaculty.designation} • ${currentFaculty.department}`}
+      />
 
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <p className="text-sm font-semibold text-college-gold tracking-wide uppercase">
-                Faculty Dashboard
-              </p>
-              <h1 className="text-2xl md:text-4xl font-bold text-college-navy mt-2 mb-4">
-                Welcome, {currentFaculty.name}
-              </h1>
-              <div className="flex flex-wrap gap-3 text-sm">
-                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy font-medium">
-                  📍 {campusNames[campus]}
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-border text-text-secondary font-medium shadow-sm">
-                  {currentFaculty.department}
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy font-medium">
-                  {classes.length} active classes
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy font-medium">
-                  {currentFaculty.designation}
-                </span>
-              </div>
-              {classes.length > 0 && (
-                <p className="text-sm text-text-secondary mt-4 flex items-center gap-2">
-                  <BookOpen size={16} className="text-primary-500" />
-                  Teaching:{" "}
-                  <span className="text-college-navy font-medium">
-                    {classes.map((cls) => cls.name).join(", ")}
-                  </span>
-                </p>
-              )}
-            </div>
-            <div className="flex items-center gap-8 w-full md:w-auto">
-              <div className="text-left md:text-right w-full md:w-auto">
-                <p className="text-sm font-medium text-text-secondary mb-1">
-                  Total Students
-                </p>
-                <div className="flex items-baseline justify-start md:justify-end gap-2">
-                  <span className="text-3xl md:text-4xl font-bold text-college-navy">
-                    {totalStudents}
-                  </span>
-                  <span className="text-sm text-green-600 font-medium">
-                    active
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Main Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+        {stats.map((item) => (
+          <AdminStatsCard key={item.title} {...item} />
+        ))}
       </div>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {quickActions.map((action) => {
-          const Icon = action.icon;
+          const descriptions = {
+            "Create Assignment": "Post new tasks and deadlines for your students.",
+            "Upload Material": "Share lecture notes, slides, and reference files.",
+            "View Submissions": "Review and grade student work submissions.",
+            "Announcements": "Broadcast important updates to all your classes."
+          };
+
           return (
             <Link
               key={action.title}
               to={action.path}
-              className="group relative overflow-hidden bg-white border border-border rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="group relative overflow-hidden bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/20 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex"
             >
-              <div
-                className={`w-14 h-14 rounded-xl ${action.bgColor} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105`}
-              >
-                <Icon size={24} />
+              {/* Vertical Accent Bar */}
+              <div className="w-1.5 bg-college-navy dark:bg-college-gold opacity-10 dark:opacity-20 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+
+              <div className="p-6 md:p-7 flex flex-col justify-between w-full">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-bold tracking-[0.15em] text-college-navy/40 dark:text-college-gold/50 uppercase">
+                      Action Required
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className="text-college-gold opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                    />
+                  </div>
+
+                  <h3 className="text-lg md:text-xl font-bold text-college-navy dark:text-white mb-2 leading-tight group-hover:text-college-gold transition-colors">
+                    {action.title}
+                  </h3>
+
+                  <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-[90%]">
+                    {descriptions[action.title] || "Access your faculty tools and management options."}
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center justify-end">
+                  <span className="text-[10px] font-bold text-college-gold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                    PROCEED
+                  </span>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-college-navy mb-1 group-hover:text-college-gold transition-colors">
-                {action.title}
-              </h3>
-              <div className="flex items-center text-sm text-text-secondary font-medium">
-                <span>Quick Access</span>
-                <ArrowRight
-                  size={14}
-                  className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                />
-              </div>
+
+              {/* Decorative background element for prestige look */}
+              <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-college-navy/[0.02] dark:bg-college-gold/[0.03] rounded-full group-hover:scale-150 transition-transform duration-700" />
             </Link>
           );
         })}
       </div>
 
-      {/* Announcements Section - Expanded */}
-      <section className="bg-white border border-border rounded-3xl shadow-sm p-6 md:p-8">
+      {/* Announcements Section */}
+      <section className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-3xl shadow-sm p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
-            <h2 className="text-xl font-bold text-college-navy">
+            <h2 className="text-xl font-bold text-college-navy dark:text-white">
               Recent Announcements
             </h2>
-            <p className="text-sm text-text-secondary mt-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Updates for your students and classes
             </p>
           </div>
           <Link
             to="/faculty/announcements"
-            className="flex items-center justify-center gap-2 text-sm font-semibold text-college-gold hover:text-college-navy hover:bg-college-navy/5 px-4 py-2 rounded-xl transition-all border border-transparent hover:border-college-navy/10"
+            className="flex items-center justify-center gap-2 text-sm font-semibold text-college-gold hover:text-college-navy dark:hover:text-white hover:bg-college-navy/5 dark:hover:bg-white/5 px-4 py-2 rounded-xl transition-all border border-transparent hover:border-college-navy/10 dark:hover:border-college-gold/30"
           >
             View All
             <ArrowRight size={16} />
@@ -149,28 +154,36 @@ const Dashboard = () => {
           {recentAnnouncements.map((item, idx) => (
             <div
               key={idx}
-              className="group relative bg-college-navy/5/50 border border-college-navy/10/50 rounded-2xl p-5 hover:bg-white hover:border-primary-200 hover:shadow-md transition-all duration-300"
+              className="group relative bg-white dark:bg-college-navy border border-gray-100 dark:border-college-gold/20 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex overflow-hidden"
             >
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-college-navy/10 text-college-gold flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <Megaphone size={18} />
-                </div>
+              {/* Vertical Accent Bar */}
+              <div className="w-1 bg-college-gold opacity-20 dark:opacity-30 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+
+              <div className="p-5 flex flex-col justify-between w-full">
                 <div>
-                  <h3 className="text-sm font-bold text-college-navy leading-tight mb-2 line-clamp-2">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-bold tracking-wider text-college-gold uppercase">
+                      RECENT
+                    </span>
+                    <ArrowRight
+                      size={14}
+                      className="text-college-gold opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                    />
+                  </div>
+                  <h3 className="text-sm font-bold text-college-navy dark:text-white leading-tight mb-2 group-hover:text-college-gold transition-colors line-clamp-2">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-text-secondary font-medium flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary-400"></span>
-                    {item.date}
-                  </p>
                 </div>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 font-semibold tracking-widest uppercase mt-4">
+                  {item.date}
+                </p>
               </div>
             </div>
           ))}
 
-          <button className="flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-dashed border-border text-sm font-medium text-text-secondary hover:border-primary-300 hover:text-college-gold hover:bg-college-navy/5 transition-all duration-300 min-h-[100px]">
-            <PlusCircle size={24} className="opacity-50" />
-            <span>Create New Announcement</span>
+          <button className="group relative flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border-2 border-dashed border-gray-200 dark:border-college-gold/20 bg-gray-50/50 dark:bg-white/5 text-sm font-bold text-gray-400 dark:text-gray-500 hover:border-college-gold dark:hover:border-college-gold hover:text-college-gold dark:hover:text-college-gold hover:bg-white dark:hover:bg-college-gold/5 transition-all duration-300 min-h-[120px]">
+            <span className="text-2xl font-light group-hover:scale-125 transition-transform">+</span>
+            <span className="tracking-widest uppercase text-[11px]">New Broadcast</span>
           </button>
         </div>
       </section>

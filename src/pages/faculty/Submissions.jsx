@@ -1,34 +1,49 @@
 import { useParams, Link } from 'react-router-dom';
 import SubmissionCard from '../../components/faculty/SubmissionCard';
+import PortalPageHeader from '../../components/shared/PortalPageHeader';
+import Badge from '../../components/public_site/Badge';
+import { useFacultyContext } from '../../context/FacultyContext';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 
 import { mockSubmissions } from "../../data/facultyPortalData";
+import PublicButton from '../../components/shared/PublicButton';
 
 const Submissions = () => {
   const { assignmentId } = useParams();
+  const { isDarkMode } = useFacultyContext();
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 md:gap-4">
-        <div>
-          <p className="text-xs md:text-sm text-gray-500">Submissions</p>
-          <h1 className="text-xl md:text-2xl font-semibold text-college-navy">Assignment {assignmentId}</h1>
-          <p className="text-xs md:text-sm text-gray-600">Class: BSCS - A • Subject: Operating Systems</p>
-        </div>
-        <div className="flex items-center gap-2 md:gap-3">
-          <button
-            onClick={() => alert('Navigate to grading (mock)')}
-            className="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-college-navy text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold hover:bg-college-navy/90 transition-all shadow-md hover:shadow-lg"
-          >
-            <CheckCircle size={16} className="md:w-[18px] md:h-[18px]" />
-            Mark Grades
-          </button>
-          <Link to="/faculty/assignments" className="inline-flex items-center gap-2 px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm text-gray-600 hover:text-college-navy border border-gray-300 rounded-lg md:rounded-xl hover:bg-gray-50 transition-all">
-            <ArrowLeft size={14} className="md:w-4 md:h-4" />
-            Back to assignments
-          </Link>
-        </div>
-      </div>
+    <div className="space-y-6 pb-10">
+      <PortalPageHeader
+        badge={
+          <Badge variant={isDarkMode ? "gold" : "navy"}>
+            BSCS - A • Operating Systems
+          </Badge>
+        }
+        title={`Assignment ${assignmentId}`}
+        subtitle="Review and grade student submissions."
+        action={
+          <div className="flex items-center gap-2 md:gap-3 flex-col sm:flex-row w-full sm:w-auto">
+            <PublicButton
+              to="/faculty/assignments"
+              variant="primary"
+              shape="slanted"
+              className="border-2 border-white/10"
+              icon={ArrowLeft}
+            >
+              Return to Assignments
+            </PublicButton>
+            <PublicButton
+              onClick={() => alert('Grading process finalized (mock)')}
+              variant="secondary"
+              shape="slanted"
+              icon={CheckCircle}
+            >
+              Mark Grades
+            </PublicButton>
+          </div>
+        }
+      />
 
       <div className="space-y-4">
         {mockSubmissions.map((submission) => (

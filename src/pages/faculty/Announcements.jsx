@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useFacultyContext } from "../../context/FacultyContext";
 import AnnouncementCard from "../../components/shared/AnnouncementCard";
-import { X, Plus } from "lucide-react";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
+import { X, Plus, Megaphone } from "lucide-react";
 
 // Mock announcements data by campus
 const announcementsByCampus = {
@@ -90,20 +92,20 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl md:rounded-2xl shadow-xl w-full max-w-lg p-5 md:p-6 space-y-4">
+      <div className="bg-white dark:bg-college-navy rounded-xl md:rounded-2xl shadow-xl w-full max-w-lg p-5 md:p-6 space-y-4 border border-gray-200 dark:border-college-gold/20">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg md:text-xl font-bold text-college-navy">New Announcement</h2>
-          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-            <X size={18} className="md:w-5 md:h-5 text-gray-500" />
+          <h2 className="text-lg md:text-xl font-bold text-college-navy dark:text-white">New Announcement</h2>
+          <button onClick={onClose} className="p-1 hover:bg-gray-100 dark:hover:bg-white/10 rounded-full transition-colors hidden sm:block">
+            <X size={18} className="md:w-5 md:h-5 text-gray-500 dark:text-gray-400" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title</label>
             <input
               type="text"
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold outline-none"
+              className="w-full px-4 py-2 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold outline-none dark:text-white"
               placeholder="e.g. Quiz on Monday"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -111,10 +113,10 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
             <textarea
               rows={4}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-college-navy dark:focus:ring-college-gold outline-none resize-none"
+              className="w-full px-4 py-2 bg-gray-50/50 dark:bg-college-navy/50 border border-gray-200 dark:border-college-gold/20 rounded-xl focus:ring-2 focus:ring-college-navy/20 dark:focus:ring-college-gold/20 focus:border-college-navy dark:focus:border-college-gold outline-none resize-none dark:text-white"
               placeholder="Details about the announcement..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -122,18 +124,18 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Target Classes</label>
-            <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Target Classes</label>
+            <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-2">
               {classes.map(cls => (
-                <label key={cls.id} className={`flex items-center p-2 rounded-lg border cursor-pointer transition-all ${selectedClasses.includes(cls.id) ? 'bg-college-navy/5 border-primary-200' : 'hover:bg-gray-50 border-gray-200'}`}>
+                <label key={cls.id} className={`flex items-center p-2 rounded-lg border cursor-pointer transition-all ${selectedClasses.includes(cls.id) ? 'bg-college-navy/5 dark:bg-college-gold/10 border-college-navy dark:border-college-gold text-college-navy dark:text-college-gold' : 'hover:bg-gray-50 dark:hover:bg-white/5 border-gray-200 dark:border-college-gold/20 text-gray-700 dark:text-gray-300'}`}>
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-college-gold rounded"
+                    className="w-4 h-4 text-college-gold rounded focus:ring-college-gold"
                     checked={selectedClasses.includes(cls.id)}
                     onChange={() => toggleClass(cls.id)}
                   />
-                  <span className="ml-2 text-sm text-gray-700 font-medium">
-                    {cls.code} <span className="text-xs text-gray-500">({cls.section})</span>
+                  <span className="ml-2 text-sm font-medium">
+                    {cls.code} <span className="text-xs opacity-70">({cls.section})</span>
                   </span>
                 </label>
               ))}
@@ -141,7 +143,7 @@ const PostAnnouncementForm = ({ classes, onClose, onPost }) => {
           </div>
 
           <div className="flex justify-end gap-2 pt-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Cancel</button>
+            <button type="button" onClick={onClose} className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg">Cancel</button>
             <button type="submit" className="px-6 py-2 bg-college-navy hover:bg-college-navy/90 text-white font-semibold rounded-xl shadow-sm">Post</button>
           </div>
         </form>
@@ -157,7 +159,7 @@ const campusNames = {
 };
 
 const Announcements = () => {
-  const { getCurrentCampus, getClassesByCurrentCampus } = useFacultyContext(); // Get classes getter
+  const { getCurrentCampus, getClassesByCurrentCampus, isDarkMode } = useFacultyContext(); // Get classes getter
   const campus = getCurrentCampus();
   const classes = getClassesByCurrentCampus(); // Get array of classes
 
@@ -185,27 +187,25 @@ const Announcements = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border rounded-2xl shadow-sm p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-gray-500">Announcements</p>
-            <h1 className="text-2xl font-semibold text-college-navy">
-              Class updates
-            </h1>
-            <p className="text-sm text-college-gold mt-2">
-              📍 {campusNames[campus]}
-            </p>
-          </div>
+    <div className="space-y-6 pb-10">
+      <PortalPageHeader
+        badge={
+          <Badge variant={isDarkMode ? "gold" : "navy"}>
+            {campusNames[campus]}
+          </Badge>
+        }
+        title="Class Announcements"
+        subtitle="Broadcast updates, schedules, and alerts directly to your students."
+        action={
           <button
             onClick={() => setIsPosting(true)}
-            className="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-college-navy text-white rounded-lg md:rounded-xl text-xs md:text-sm font-semibold hover:bg-college-navy/90 transition-all shadow-md hover:shadow-lg"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto"
           >
-            <Plus size={16} className="md:w-[18px] md:h-[18px]" />
+            <Plus size={20} />
             Post Announcement
           </button>
-        </div>
-      </div>
+        }
+      />
 
       {isPosting && (
         <PostAnnouncementForm
@@ -225,15 +225,20 @@ const Announcements = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white border rounded-2xl shadow-sm p-8 text-center">
-          <p className="text-gray-600 text-lg">
-            No announcements for {campusNames[campus]} yet.
+        <div className="bg-white/60 dark:bg-college-navy/40 backdrop-blur-sm border border-dashed border-gray-300 dark:border-college-gold/30 rounded-3xl p-12 text-center">
+          <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 text-college-navy dark:text-college-gold">
+            <Megaphone size={30} />
+          </div>
+          <h3 className="text-lg font-semibold text-college-navy dark:text-white">No announcements found</h3>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 mb-6 max-w-sm mx-auto">
+            You haven't posted any announcements for {campusNames[campus]} yet. Engage your students by posting an update.
           </p>
           <button
             onClick={() => setIsPosting(true)}
-            className="text-college-navy font-semibold hover:text-primary-800 mt-2"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-college-navy/80 border border-gray-200 dark:border-college-gold/30 text-college-navy dark:text-white rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-college-navy transition-colors"
           >
-            Post the first announcement →
+            <Plus size={18} />
+            Post Announcement
           </button>
         </div>
       )}

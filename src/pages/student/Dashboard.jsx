@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  ClipboardList,
-  FolderOpen,
   Megaphone,
-  BarChart3,
   BookOpen,
   ArrowRight,
 } from "lucide-react";
 
 import { useStudentContext } from "../../context/StudentContext";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
+import AdminStatsCard from "../../components/admin/AdminStatsCard";
 
 import {
   studentCampusNames as campusNames,
@@ -23,6 +23,7 @@ const Dashboard = () => {
     getAnnouncementsByCurrentCampus,
     getTotalCredits,
     getCurrentCampus,
+    isDarkMode,
   } = useStudentContext();
 
   const campus = getCurrentCampus();
@@ -51,62 +52,47 @@ const Dashboard = () => {
   const displayAnnouncements =
     realAnnouncements.length > 0 ? realAnnouncements : announcements.recent;
 
+  const stats = [
+    {
+      title: "Current Program",
+      value: currentStudent.department,
+      hint: `Semester ${currentStudent.semester}`,
+    },
+    {
+      title: "Enrolled Courses",
+      value: courses.length,
+      hint: "Current Term",
+    },
+    {
+      title: "Overall CGPA",
+      value: currentStudent.cgpa,
+      hint: "Cumulative",
+    },
+    {
+      title: "Total Credits",
+      value: totalCredits,
+      hint: "Completed",
+    }
+  ];
+
   return (
-    <div className="space-y-8">
-      {/* Header Section with Campus Info */}
-      <div>
-        <section className="bg-white border border-border rounded-3xl shadow-sm overflow-hidden relative p-8">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-college-navy/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none opacity-50"></div>
+    <div className="space-y-8 pb-10">
+      {/* Header */}
+      <PortalPageHeader
+        badge={
+          <Badge variant={isDarkMode ? "gold" : "navy"}>
+            {campusNames[campus]}
+          </Badge>
+        }
+        title={`Welcome back, ${currentStudent.name.split(" ")[0]}!`}
+        subtitle={`ID: ${currentStudent.id} • Student Dashboard`}
+      />
 
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-xs font-semibold uppercase tracking-wide">
-                  Student Dashboard
-                </span>
-                <span className="px-3 py-1 rounded-full bg-college-navy/5 border border-college-navy/10 text-college-navy text-xs font-semibold uppercase tracking-wide">
-                  {campusNames[campus]}
-                </span>
-              </div>
-              <h1 className="text-3xl font-bold text-college-navy">
-                Welcome back, {currentStudent.name.split(" ")[0]}!
-              </h1>
-              <div className="flex flex-wrap gap-4 mt-4 text-sm font-medium text-text-secondary">
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
-                  <span className="text-text-disabled">ID:</span>
-                  <span className="text-college-navy">{currentStudent.id}</span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
-                  <span className="text-text-disabled">program:</span>
-                  <span className="text-college-navy">
-                    {currentStudent.department}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
-                  <span className="text-text-disabled">semester:</span>
-                  <span className="text-college-navy">
-                    {currentStudent.semester}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-border shadow-sm">
-                  <span className="text-text-disabled">credits:</span>
-                  <span className="text-college-navy">{totalCredits} hrs</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6 bg-college-navy/5 p-4 rounded-2xl border border-college-navy/10 shadow-sm">
-              <div className="text-right">
-                <p className="text-sm font-medium text-text-secondary">
-                  Overall CGPA
-                </p>
-                <p className="text-3xl font-bold text-college-navy">
-                  {currentStudent.cgpa}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Main Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+        {stats.map((item) => (
+          <AdminStatsCard key={item.title} {...item} />
+        ))}
       </div>
 
       {/* Quick Links */}
@@ -117,21 +103,21 @@ const Dashboard = () => {
             <Link
               to={link.path}
               key={link.title}
-              className="group relative overflow-hidden bg-white border border-border rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="group relative overflow-hidden bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
               <div
-                className={`w-14 h-14 rounded-xl ${link.bgColor} ${link.color} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110`}
+                className={`w-14 h-14 rounded-xl ${link.bgColor} dark:bg-college-gold/10 ${link.color} dark:text-college-gold flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110`}
               >
                 <Icon size={24} />
               </div>
-              <h3 className="text-lg font-bold text-college-navy mb-1 group-hover:text-college-gold transition-colors">
+              <h3 className="text-lg font-bold text-college-navy dark:text-white mb-1 group-hover:text-college-gold transition-colors">
                 {link.title}
               </h3>
-              <p className="text-sm text-text-secondary font-medium mb-3">
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-3">
                 {link.description}
               </p>
 
-              <div className="flex items-center text-sm font-bold text-text-disabled group-hover:text-college-gold transition-colors">
+              <div className="flex items-center text-sm font-bold text-gray-400 dark:text-gray-500 group-hover:text-college-gold transition-colors">
                 <span>Access</span>
                 <ArrowRight
                   size={14}
@@ -145,19 +131,19 @@ const Dashboard = () => {
 
       {/* Enrolled Courses and Recent Material */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white border border-border rounded-3xl shadow-sm p-6 flex flex-col h-full">
+        <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-3xl shadow-sm p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-college-navy">
+              <h2 className="text-xl font-bold text-college-navy dark:text-white">
                 Enrolled Courses
               </h2>
-              <p className="text-sm text-text-secondary">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {campusNames[campus]}
               </p>
             </div>
             <Link
               to="/student/materials"
-              className="px-4 py-2 bg-college-navy/5 text-college-navy rounded-xl text-sm font-semibold hover:bg-college-navy/10 transition-colors"
+              className="px-4 py-2 bg-college-navy/5 dark:bg-college-gold/10 text-college-navy dark:text-college-gold rounded-xl text-sm font-semibold hover:bg-college-navy/10 dark:hover:bg-college-gold/20 transition-colors"
             >
               View Materials
             </Link>
@@ -168,57 +154,57 @@ const Dashboard = () => {
               {courses.map((course) => (
                 <div
                   key={course.code}
-                  className="group flex items-center justify-between p-4 rounded-2xl border border-border hover:shadow-md hover:border-college-navy/10 transition-all duration-300"
+                  className="group flex items-center justify-between p-4 rounded-2xl border border-gray-200 dark:border-college-gold/20 hover:shadow-md hover:border-college-navy/10 dark:hover:border-college-gold/40 transition-all duration-300"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-college-navy/10 text-college-gold flex items-center justify-center font-bold text-lg">
+                    <div className="w-12 h-12 rounded-xl bg-college-navy/10 dark:bg-college-gold/10 text-college-gold flex items-center justify-center font-bold text-lg">
                       {course.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="font-bold text-college-navy group-hover:text-college-navy transition-colors">
+                      <h4 className="font-bold text-college-navy dark:text-white transition-colors">
                         {course.name}
                       </h4>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs font-medium text-text-secondary bg-gray-100 px-2 py-0.5 rounded-md">
+                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-white/5 px-2 py-0.5 rounded-md">
                           {course.code}
                         </span>
-                        <span className="text-xs text-text-secondary">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
                           • {course.instructor}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs font-bold text-college-navy bg-college-navy/5 px-3 py-1.5 rounded-lg border border-college-navy/10">
+                  <span className="text-xs font-bold text-college-navy dark:text-college-gold bg-college-navy/5 dark:bg-college-gold/10 px-3 py-1.5 rounded-lg border border-college-navy/10 dark:border-college-gold/20">
                     {course.credits} Cr
                   </span>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-border rounded-2xl">
-              <div className="w-16 h-16 bg-college-navy/5 rounded-full flex items-center justify-center mb-4">
-                <BookOpen size={24} className="text-primary-300" />
+            <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-300 dark:border-college-gold/30 rounded-2xl">
+              <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/5 rounded-full flex items-center justify-center mb-4">
+                <BookOpen size={24} className="text-college-gold" />
               </div>
-              <p className="text-text-secondary font-medium">
+              <p className="text-gray-500 dark:text-gray-400 font-medium">
                 No courses enrolled for this campus
               </p>
             </div>
           )}
         </div>
 
-        <div className="bg-white border border-border rounded-3xl shadow-sm p-6 flex flex-col h-full">
+        <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-gold/30 rounded-3xl shadow-sm p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-college-navy">
+              <h2 className="text-xl font-bold text-college-navy dark:text-white">
                 Recent Announcements
               </h2>
-              <p className="text-sm text-text-secondary">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Stay updated with latest news
               </p>
             </div>
             <Link
               to="/student/announcements"
-              className="px-4 py-2 bg-college-navy/5 text-college-navy rounded-xl text-sm font-semibold hover:bg-college-navy/10 transition-colors"
+              className="px-4 py-2 bg-college-navy/5 dark:bg-college-gold/10 text-college-navy dark:text-college-gold rounded-xl text-sm font-semibold hover:bg-college-navy/10 dark:hover:bg-college-gold/20 transition-colors"
             >
               See All
             </Link>
@@ -229,22 +215,22 @@ const Dashboard = () => {
               {displayAnnouncements.slice(0, 3).map((item, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden bg-college-navy/5 border border-college-navy/10 p-5 rounded-2xl hover:bg-white hover:shadow-md hover:border-primary-200 transition-all duration-200"
+                  className="group relative overflow-hidden bg-college-navy/5 dark:bg-college-gold/5 border border-college-navy/10 dark:border-college-gold/20 p-5 rounded-2xl hover:bg-white dark:hover:bg-white/5 hover:shadow-md transition-all duration-200"
                 >
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-college-navy/10 text-college-gold flex items-center justify-center shadow-sm">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-college-navy/10 dark:bg-college-gold/10 text-college-gold flex items-center justify-center shadow-sm">
                       <Megaphone size={20} />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-semibold text-text-disabled">
+                        <span className="text-xs font-semibold text-gray-400 dark:text-gray-500">
                           {item.date}
                         </span>
                       </div>
-                      <h4 className="font-bold text-college-navy text-sm mb-1 group-hover:text-college-navy transition-colors">
+                      <h4 className="font-bold text-college-navy dark:text-white text-sm mb-1 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-text-secondary line-clamp-2">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
                         {item.description ||
                           "Click to visit announcements page."}
                       </p>
@@ -254,11 +240,11 @@ const Dashboard = () => {
               ))}
             </div>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-border rounded-2xl">
-              <div className="w-16 h-16 bg-college-navy/5 rounded-full flex items-center justify-center mb-4">
-                <Megaphone size={24} className="text-primary-300" />
+            <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-300 dark:border-college-gold/30 rounded-2xl">
+              <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/5 rounded-full flex items-center justify-center mb-4">
+                <Megaphone size={24} className="text-college-gold" />
               </div>
-              <p className="text-text-secondary font-medium">
+              <p className="text-gray-500 dark:text-gray-400 font-medium">
                 No announcements yet
               </p>
             </div>

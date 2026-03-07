@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useStudentContext } from "../../context/StudentContext";
 import AnnouncementCard from "../../components/shared/AnnouncementCard";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
 import { Bell } from "lucide-react";
 
 const StudentAnnouncements = () => {
-    const { getCurrentCampus, getCoursesByCurrentCampus } = useStudentContext();
+    const { getCurrentCampus, getCoursesByCurrentCampus, isDarkMode } = useStudentContext();
     const campus = getCurrentCampus();
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,7 +14,7 @@ const StudentAnnouncements = () => {
     useEffect(() => {
         // 1. Get enrolled course codes
         const courses = getCoursesByCurrentCampus() || [];
-        const courseCodes = courses.map((c) => c.code); // e.g., ["CS-312", "MTH-205"]
+        const courseCodes = courses.map((c) => c.code);
 
         // 2. Fetch announcements from localStorage
         const saved = localStorage.getItem("college_announcements");
@@ -21,14 +23,10 @@ const StudentAnnouncements = () => {
         if (saved) {
             const parsed = JSON.parse(saved);
             campusAnnouncements = parsed[campus] || [];
-        } else {
-            // Fallback to empty if nothing in LS (or basic mock if you want)
         }
 
         // 3. Filter announcements relevant to the student
         const relevant = campusAnnouncements.filter((announcement) => {
-            // Check if the announcement's target classes include any of the student's enrolled courses
-            // announcement.classSection is a string like "CS-312, BBA-101"
             if (!announcement.classSection) return false;
             return courseCodes.some(code => announcement.classSection.includes(code));
         });
@@ -44,20 +42,17 @@ const StudentAnnouncements = () => {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 pb-10">
             {/* Header */}
-            <div className="bg-white border rounded-2xl shadow-sm p-6">
-                <div className="flex items-center gap-4">
-                    <div className="p-3 bg-college-navy/10 rounded-full text-college-gold">
-                        <Bell size={24} />
-                    </div>
-                    <div>
-                        <h1 className="text-2xl font-bold text-college-navy">Class Announcements</h1>
-                        <p className="text-gray-500 text-sm">Updates from your teachers and department</p>
-                        <p className="text-xs text-college-gold font-medium mt-1"> {campusNames[campus]}</p>
-                    </div>
-                </div>
-            </div>
+            <PortalPageHeader
+                badge={
+                    <Badge variant={isDarkMode ? "gold" : "navy"}>
+                        {campusNames[campus]}
+                    </Badge>
+                }
+                title="Class Announcements"
+                subtitle="Updates from your teachers and department."
+            />
 
             {/* List */}
             <div className="space-y-4">
@@ -68,15 +63,16 @@ const StudentAnnouncements = () => {
                         <AnnouncementCard
                             key={index}
                             announcement={announcement}
+                            role="student"
                         />
                     ))
                 ) : (
-                    <div className="bg-white border rounded-2xl shadow-sm p-12 text-center">
-                        <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Bell size={32} className="text-gray-400" />
+                    <div className="bg-white/60 dark:bg-college-navy/40 backdrop-blur-sm border border-dashed border-gray-300 dark:border-college-gold/30 rounded-3xl p-12 text-center">
+                        <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/10 text-college-navy dark:text-college-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Bell size={32} />
                         </div>
-                        <h3 className="text-lg font-semibold text-college-navy">No New Announcements</h3>
-                        <p className="text-gray-500 mt-2">
+                        <h3 className="text-lg font-semibold text-college-navy dark:text-white">No New Announcements</h3>
+                        <p className="text-gray-500 dark:text-gray-400 mt-2">
                             You're all caught up! No recent updates from your classes.
                         </p>
                     </div>

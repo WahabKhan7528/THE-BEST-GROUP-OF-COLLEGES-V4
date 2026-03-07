@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useFacultyContext } from "../../context/FacultyContext";
 import MaterialCard from "../../components/shared/MaterialCard";
+import PortalPageHeader from "../../components/shared/PortalPageHeader";
+import Badge from "../../components/public_site/Badge";
+import { UploadCloud } from "lucide-react";
 
 // Mock materials data by campus
 const materialsByCampus = {
@@ -73,31 +76,30 @@ const campusNames = {
 };
 
 const Materials = () => {
-  const { getCurrentCampus } = useFacultyContext();
+  const { getCurrentCampus, isDarkMode } = useFacultyContext();
   const campus = getCurrentCampus();
   const materials = materialsByCampus[campus] || [];
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border rounded-xl md:rounded-2xl shadow-sm p-4 md:p-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4">
-          <div>
-            <p className="text-xs md:text-sm text-gray-500">Course Materials</p>
-            <h1 className="text-xl md:text-2xl font-semibold text-college-navy">
-              Uploaded resources
-            </h1>
-            <p className="text-xs md:text-sm text-college-gold mt-2">
-              📍 {campusNames[campus]}
-            </p>
-          </div>
+    <div className="space-y-6 pb-10">
+      <PortalPageHeader
+        badge={
+          <Badge variant={isDarkMode ? "gold" : "navy"}>
+            {campusNames[campus]}
+          </Badge>
+        }
+        title="Course Materials"
+        subtitle="Upload and manage resources, lecture notes, and media for your students."
+        action={
           <Link
             to="/faculty/materials/upload"
-            className="px-4 md:px-5 py-2.5 md:py-3 text-xs md:text-sm bg-college-navy text-white rounded-lg md:rounded-xl font-semibold hover:bg-college-navy/90 transition-all shadow-md hover:shadow-lg"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-college-navy hover:bg-college-navy/90 text-white rounded-xl text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200"
           >
+            <UploadCloud size={20} />
             Upload Material
           </Link>
-        </div>
-      </div>
+        }
+      />
 
       {materials.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -106,15 +108,18 @@ const Materials = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white border rounded-2xl shadow-sm p-8 text-center">
-          <p className="text-gray-600 text-lg">
+        <div className="bg-white/60 dark:bg-college-navy/40 backdrop-blur-sm border border-dashed border-gray-300 dark:border-college-gold/30 rounded-3xl p-12 text-center">
+          <div className="w-16 h-16 bg-college-navy/5 dark:bg-college-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 text-college-navy dark:text-college-gold">
+            <UploadCloud size={30} />
+          </div>
+          <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">
             No materials uploaded for {campusNames[campus]} yet.
           </p>
           <Link
             to="/faculty/materials/upload"
-            className="text-college-navy font-semibold hover:text-primary-800 mt-2 inline-block"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-college-navy/80 border border-gray-200 dark:border-college-gold/30 text-college-navy dark:text-white rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-college-navy transition-colors"
           >
-            Upload your first material →
+            Upload your first material
           </Link>
         </div>
       )}

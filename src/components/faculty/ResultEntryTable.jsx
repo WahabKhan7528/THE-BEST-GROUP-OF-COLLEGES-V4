@@ -34,10 +34,10 @@ const ResultEntryTable = ({ rows }) => {
   };
 
   const getGradeColor = (percentage) => {
-    if (percentage >= 80) return "text-primary-700 bg-primary-50";
-    if (percentage >= 60) return "text-primary-700 bg-primary-50";
-    if (percentage >= 40) return "text-slate-700 bg-slate-50";
-    return "text-red-700 bg-red-50";
+    if (percentage >= 80) return "text-primary-700 dark:text-emerald-400 bg-primary-50 dark:bg-emerald-900/30";
+    if (percentage >= 60) return "text-primary-700 dark:text-college-gold bg-primary-50 dark:bg-blue-900/30";
+    if (percentage >= 40) return "text-slate-700 dark:text-gray-300 bg-slate-50 dark:bg-white/10";
+    return "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/30";
   };
 
   const getGradeLetter = (percentage) => {
@@ -50,35 +50,35 @@ const ResultEntryTable = ({ rows }) => {
   };
 
   return (
-    <div className="bg-white border rounded-2xl shadow-sm overflow-hidden">
+    <div className="bg-white dark:bg-college-navy border border-gray-200 dark:border-college-navy/20 rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 text-sm">
-          <thead className="bg-gray-50 border-b">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-white/10 text-sm">
+          <thead className="bg-gray-50 dark:bg-white/5 border-b border-gray-200 dark:border-white/10">
             <tr>
-              <th className="px-6 py-4 text-left font-semibold text-gray-700 whitespace-nowrap">
+              <th className="px-6 py-4 text-left font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 Roll No.
               </th>
-              <th className="px-6 py-4 text-left font-semibold text-gray-700">
+              <th className="px-6 py-4 text-left font-semibold text-gray-700 dark:text-gray-300">
                 Student Name
               </th>
-              <th className="px-6 py-4 text-left font-semibold text-gray-700 whitespace-nowrap">
+              <th className="px-6 py-4 text-left font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 Marks Obtained
               </th>
-              <th className="px-6 py-4 text-left font-semibold text-gray-700 whitespace-nowrap">
+              <th className="px-6 py-4 text-left font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 %
               </th>
-              <th className="px-6 py-4 text-left font-semibold text-gray-700 whitespace-nowrap">
+              <th className="px-6 py-4 text-left font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 Grade
               </th>
-              <th className="px-6 py-4 text-left font-semibold text-gray-700">
+              <th className="px-6 py-4 text-left font-semibold text-gray-700 dark:text-gray-300">
                 Remarks
               </th>
-              <th className="px-6 py-4 text-center font-semibold text-gray-700 whitespace-nowrap">
+              <th className="px-6 py-4 text-center font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 Status
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
+          <tbody className="divide-y divide-gray-200 dark:divide-white/10">
             {rows.map((row) => {
               const studentMarks = marks[row.studentId];
               const percentage = getMarksPercentage(studentMarks, row.maxMarks);
@@ -87,18 +87,18 @@ const ResultEntryTable = ({ rows }) => {
               const isGraded = studentMarks > 0;
 
               return (
-                <tr key={row.studentId} className="hover:bg-gray-50 transition">
+                <tr key={row.studentId} className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4">
-                    <p className="font-medium text-gray-900 whitespace-nowrap">
+                    <p className="font-medium text-gray-900 dark:text-white whitespace-nowrap">
                       {row.rollNo}
                     </p>
                   </td>
                   <td className="px-6 py-4">
                     <div>
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-gray-900 dark:text-white">
                         {row.studentName}
                       </p>
-                      <p className="text-xs text-gray-500">{row.studentId}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{row.studentId}</p>
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -115,9 +115,9 @@ const ResultEntryTable = ({ rows }) => {
                             row.maxMarks,
                           )
                         }
-                        className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        className="w-20 px-3 py-2 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-college-gold/20 focus:border-transparent dark:focus:border-college-gold transition-all dark:text-white"
                       />
-                      <span className="text-gray-500 text-xs">
+                      <span className="text-gray-500 dark:text-gray-400 text-xs">
                         / {row.maxMarks}
                       </span>
                     </div>
@@ -137,7 +137,6 @@ const ResultEntryTable = ({ rows }) => {
                     </span>
                   </td>
                   <td className="px-6 py-4">
-
                     <input
                       type="text"
                       placeholder="Add feedback..."
@@ -145,20 +144,20 @@ const ResultEntryTable = ({ rows }) => {
                       onChange={(e) =>
                         handleRemarksChange(row.studentId, e.target.value)
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-college-gold/20 focus:border-transparent dark:focus:border-college-gold transition-all dark:text-white dark:placeholder-gray-400"
                     />
                   </td>
                   <td className="px-6 py-4 text-center">
                     {isGraded ? (
                       <div className="flex items-center justify-center">
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-emerald-700">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/50">
                           <Check size={14} />
                           Graded
                         </span>
                       </div>
                     ) : (
                       <div className="flex items-center justify-center">
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary-700">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 dark:bg-college-gold/10 text-primary-700 dark:text-college-gold border border-primary-100 dark:border-college-gold/20">
                           <AlertCircle size={14} />
                           Pending
                         </span>
@@ -171,8 +170,8 @@ const ResultEntryTable = ({ rows }) => {
           </tbody>
         </table>
       </div>
-      <div className="px-6 py-4 flex justify-end border-t bg-gray-50">
-        <button className="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all">
+      <div className="px-6 py-4 flex justify-end border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5">
+        <button className="px-6 py-2 bg-primary-600 dark:bg-college-gold hover:bg-primary-700 dark:hover:bg-college-gold/90 text-white dark:text-college-navy rounded-xl text-sm font-semibold shadow-md hover:-translate-y-0.5 transition-all">
           Save All Marks
         </button>
       </div>
